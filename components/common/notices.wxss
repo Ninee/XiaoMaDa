@@ -1,0 +1,29 @@
+.notice_box {
+    width: 100%;
+    padding: 10rpx 0 10rpx 20rpx;
+    font-size: 20rpx;
+    color: #333;
+}
+
+.notice_box .white_boxs {
+    height: 40rpx;
+    line-height: 40rpx;
+    border-radius: 16rpx;
+    background-color: #fff;
+    display: flex;
+}
+
+.notice_box .white_boxs image {
+    width: 40rpx;
+    height: 24rpx;
+    margin: 0 10rpx 0 22rpx;
+}
+
+.notice_box .white_boxs .notice {
+    height: 40rpx;
+    background-color: #fff;
+    width: 100%;
+    font-size: 20rpx;
+    color: #333;
+    border-radius: 0 16rpx 16rpx 0;
+}

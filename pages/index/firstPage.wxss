@@ -1,0 +1,211 @@
+.topNav {
+    width: 100vh;
+    color: #fff;
+    top: 0;
+}
+
+.top,.topNav {
+    background-color: #fff;
+    position: fixed;
+    left: 0;
+    z-index: 100;
+}
+
+.top {
+    width: 100vw;
+    height: 88rpx;
+    line-height: 88rpx;
+    color: #333;
+    font-size: 36rpx;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.map {
+    width: 100%;
+    position: relative;
+}
+
+.tips_text {
+    width: 100%;
+    height: 60rpx;
+    margin-bottom: 20rpx;
+    background-color: #fff;
+    box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(0,0,0,.1);
+    border-radius: 16rpx;
+}
+
+.index_bottom {
+    position: absolute;
+    left: 0;
+    bottom: 150rpx;
+    width: 100%;
+    padding: 0 20rpx;
+    z-index: 1;
+    height: 382rpx;
+    overflow: hidden;
+}
+
+.index_bottom .address_time {
+    height: 300rpx;
+    background: #fff;
+    box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(0,0,0,.1);
+    border-radius: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.index_bottom .address_time .show_address {
+    padding: 0 20rpx 0 28rpx;
+    position: relative;
+    font-size: 28rpx;
+    color: #666;
+}
+
+.index_bottom .address_time .show_address .addr_pop {
+    display: flex;
+    position: absolute;
+    top: 70rpx;
+    left: 140rpx;
+    padding: 10rpx 10rpx 10rpx 14rpx;
+    color: #fff;
+    z-index: 100;
+}
+
+.index_bottom .address_time .show_address .addr_pop .addr_pop_bg {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAUAgMAAADJgETFAAAACVBMVEUAAABGRkZHR0cR+zwNAAAAAnRSTlMAf7YpoZUAAAA0SURBVAgdBcGhAcBACASwYNCvma6aqU4zZRM8fFToMGGjLvpiLvZiL+aiL+rChgkdKvjwftUEEl1ZMEgNAAAAAElFTkSuQmCC);
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: 14rpx;
+    width: 14rpx;
+}
+
+.index_bottom .address_time .show_address .addr_pop .cacle {
+    width: 40rpx;
+    background-color: #474747;
+    color: #fff;
+    border-radius: 0 10px 10px 0;
+    -webkit-box-pack: left;
+    justify-content: left;
+    font-size: 28rpx;
+}
+
+.index_bottom .address_time .show_address .addr_pop .cacle,.index_bottom .address_time .show_address .choose_address {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.index_bottom .address_time .show_address .choose_address {
+    height: 90rpx;
+    line-height: 90rpx;
+    border-bottom: 2rpx solid #e6e6e6;
+}
+
+.index_bottom .address_time .show_address .choose_address .address {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-flex: 1;
+    flex: 1;
+    margin-left: 23rpx;
+    padding-right: 14rpx;
+}
+
+.index_bottom .address_time .show_address .detailed_address {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.index_bottom .address_time .show_address .detailed_address .detailed {
+    -webkit-box-flex: 1;
+    flex: 1;
+    margin-left: 23rpx;
+    padding-right: 14rpx;
+}
+
+.index_bottom .address_time .show_address .detailed_address .detailed,.index_bottom .address_time .show_address .name_tell {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.index_bottom .address_time .show_address .name_tell {
+    height: 100rpx;
+    line-height: 100rpx;
+    border-top: 2rpx solid #e6e6e6;
+}
+
+.index_bottom .address_time .show_address .name_tell .name_tell_left {
+    width: 270rpx;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-right: 14rpx;
+}
+
+.index_bottom .address_time .show_address .name_tell .name_tell_left input {
+    margin-left: 24rpx;
+}
+
+.index_bottom .address_time .show_address .name_tell .name_tell_right {
+    -webkit-box-flex: 1;
+    flex: 1;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.index_bottom .address_time .show_address .name_tell .name_tell_right input {
+    margin-left: 24rpx;
+}
+
+.index_bottom .address_time .show_address .name_tell .one_get {
+    width: 100rpx;
+    height: 40rpx;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 2rpx solid #09d334;
+    border-radius: 20rpx;
+    font-size: 16rpx;
+    color: #09d334;
+}
+
+.index_bottom .user_info {
+    background-color: #fff;
+    box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(0,0,0,.1);
+    border-radius: 20rpx;
+    width: 100%;
+    font-size: 30rpx;
+    font-weight: 300;
+    margin-bottom: 20rpx;
+}
+
+.min_length {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal!important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.play_order_btn {
+    font-size: 36rpx;
+    color: #fff;
+    text-align: center;
+    height: 80rpx;
+    line-height: 80rpx;
+    background: #09d334;
+    border-radius: 16rpx;
+}

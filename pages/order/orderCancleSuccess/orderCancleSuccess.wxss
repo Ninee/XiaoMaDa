@@ -1,0 +1,79 @@
+.out_padding {
+    padding: 0 20rpx 20rpx;
+}
+
+.ok_img {
+    width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin-top: 50rpx;
+}
+
+.ok_img image {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.msg {
+    color: #333;
+    font-size: 32rpx;
+    text-align: center;
+    margin-top: 32rpx;
+    font-weight: 700;
+}
+
+.white_bg {
+    background: #fff;
+    border-radius: 16rpx;
+    color: #666;
+    font-size: 28rpx;
+    padding: 68rpx 0 48rpx;
+    margin-top: 54rpx;
+}
+
+.white_bg .title {
+    color: #333;
+    font-size: 32rpx;
+    text-align: center;
+    font-weight: 700;
+}
+
+.white_bg .sorry {
+    margin-top: 30rpx;
+    text-align: center;
+}
+
+.white_bg .radios {
+    padding-left: 50rpx;
+    margin-top: 120rpx;
+}
+
+.white_bg .radios .radios_item {
+    margin-top: 66rpx;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.white_bg .radios .radios_item .system_reson {
+    margin-left: 30rpx;
+}
+
+.white_bg .radios input {
+    border-bottom: 2rpx solid #c4c4c6;
+    margin: 0 20rpx 0 90rpx;
+}
+
+.submit_btn {
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    background: #09d334;
+    border-radius: 16rpx;
+    color: #fff;
+    font-size: 36rpx;
+    margin-top: 26rpx;
+}

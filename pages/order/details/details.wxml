@@ -1,0 +1,130 @@
+<view style="position:relative;height:100vh;">
+    <view class="map">
+        <map class="maps_h" id="maps" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{covers}}" polyline="{{polyline}}" scale="{{11}}"></map>
+        <view bindtap="__e" class="fresh" data-event-opts="{{[ [ 'tap',[ [ 'flushCater',['$event'] ] ] ] ]}}" wx:if="{{order_info.order_status==25}}">
+            <image src="../../../static/order/icon-sx@2x.png"></image>
+        </view>
+    </view>
+    <view class="now_order" wx:if="{{order_info.order_status!=10&&order_info.order_status!=50}}">
+        <view class="now_order_bg">
+            <view class="now_order_l">
+                <view style="margin-bottom:20rpx;">订单编号<text>{{order_info.order_no}}</text>
+                </view>
+                <view>下单时间<text>{{order_info.create_time_str}}</text>
+                </view>
+            </view>
+            <view class="now_order_r">
+                <text wx:if="{{order_info.order_status==20||order_info.order_status==25}}">已接单</text>
+                <text wx:if="{{order_info.order_status==30||order_info.order_status==40}}">已完成</text>
+                <image src="../../../static/order/pic_che.png"></image>
+            </view>
+        </view>
+    </view>
+    <view animation="{{animationData}}" catchtouchmove="__e" class="index_bottom" data-event-opts="{{[ [ 'touchmove',[ [ 'e0',['$event'] ] ] ] ]}}">
+        <view style="padding:0 20rpx;">
+            <view class="tips_text" wx:if="{{order_info.order_status==20||order_info.order_status==25}}">
+                <image src="/static/index/icon_laba.png" style="width:30rpx;height:30rpx;margin:-4rpx 22rpx 0 26rpx;vertical-align:middle;"></image>
+                <text>回收小哥已接单，正在火速赶来，请保持电话畅通</text>
+            </view>
+            <view class="tips_text" style="background:rgba(0,0,0,0);opacity:0;" wx:else></view>
+            <view class="rider_info">
+                <view class="ly-flex-center" wx:if="{{order_info.order_status!=10}}">
+                    <image class="head_img" src="/static/order/img_usr@2x.png" wx:if="{{!order_info.carter_pic}}"></image>
+                    <image class="head_img" src="{{order_info.carter_pic}}" wx:else></image>
+                    <view>
+                        <text class="rider_name">{{order_info.carter_name}}</text>
+                        <view class="ly-flex-center">
+                            <view class="example-body">
+                                <uni-rate bind:__l="__l" readonly="{{true}}" size="{{14}}" value="{{stars_num}}" vueId="55f7285b-1"></uni-rate>
+                            </view>
+                            <view class="rider_score ly-flex-center-center">4.5</view>
+                            <view class="rider_orders">{{order_info.total_complete_order+'单'}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view style="height:100rpx;line-height:100rpx;margin-left:38rpx;color:#FF0000;" wx:else>暂无骑手接单</view>
+                <view class="is_take_order" style="color:#666666;" wx:if="{{order_info.order_status==50}}">已取消</view>
+                <view class="ly-flex-center" wx:if="{{order_info.order_status!=50}}">
+                    <image bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toTell',['$0'],['order_info.carter_phone'] ] ] ] ]}}" src="/static/order/icon_pho.png"></image>
+                </view>
+            </view>
+            <view class="user_info">
+                <view bindtap="__e" class="more_info ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'showMoreGoods',['$event'] ] ] ] ]}}">
+                    <image src="/static/index/icon_sjt.png" wx:if="{{!is_show_more_goods}}"></image>
+                    <image src="/static/order/icon_jtxia.png" wx:if="{{is_show_more_goods}}"></image>
+                </view>
+                <view class="infos">
+                    <view>
+                        <image src="/static/order/icon_shijianf.png"></image>{{''+(order_info.appointment_time_str||'')+''}}</view>
+                    <view class="ly-flex-center" style="margin:20rpx 0;">
+                        <image src="/static/order/icon_dianhuaf.png"></image>
+                        <view class="min_length" style="max-width:320rpx;margin-right:10rpx;">{{order_info.terminal_user_name||''}}</view>
+                        <view>{{order_info.terminal_user_phone||''}}</view>
+                    </view>
+                    <view class="ly-flex-center">
+                        <image src="/static/order/icon_dizhif.png"></image>
+                        <view class="address min_length">{{order_info.terminal_user_address||''}}</view>
+                    </view>
+                </view>
+            </view>
+            <view style="background-color:#FFFFFF;border-radius:16rpx;padding-bottom:20rpx;margin-top:10rpx;">
+                <view class="recovery_goods">
+                    <view>
+                        <text style="margin-right:46rpx;">回收物品</text>{{'('+(order_info.type2_count&&order_info.type2_count>0?order_info.type2_count:order_info.type1_count)+')'}}</view>
+                    <view class="more_goods ly-flex-center">
+                        <text wx:if="{{order_info.order_status==30||order_info.order_status==40}}">{{'￥'+order_info.sum_price}}</text>
+                    </view>
+                </view>
+                <view class="recovery_items">
+                    <scroll-view scrollTop="{{0}}" scrollY="{{true}}" style="height:62rpx;">
+                        <block wx:for="{{order_info.order_item_list_resps}}" wx:for-index="ind" wx:for-item="val" wx:key="ind">
+                            <block wx:if="{{order_info.order_status==30||order_info.order_status==40}}">
+                                <view class="ly-flex-center-between recovery_items_line" wx:if="{{order_info.has_type2&&val.order_item_type==2}}">
+                                    <view class="recovery_items_name min_length">{{val.recovery_category_str}}</view>
+                                    <view class="recovery_items_name">{{val.single_price+'元/'+val.unit_symbol}}</view>
+                                    <view class="recovery_items_name">{{val.weight+val.unit_symbol}}</view>
+                                    <view class="recovery_items_name">{{val.total_price+'元'}}</view>
+                                </view>
+                                <view class="ly-flex-center-between recovery_items_line" wx:if="{{!order_info.has_type2&&val.order_item_type==1}}">
+                                    <view class="recovery_items_name min_length">{{val.recovery_category_str}}</view>
+                                    <view class="recovery_items_name">{{val.single_price+'元/'+val.unit_symbol}}</view>
+                                    <view class="recovery_items_name">{{val.weight+val.unit_symbol}}</view>
+                                    <view class="recovery_items_name">{{val.total_price+'元'}}</view>
+                                </view>
+                            </block>
+                            <view class="ly-flex-center-between recovery_items_line" wx:else>
+                                <view class="recovery_items_name min_length">{{val.recovery_category_str}}</view>
+                                <view class="recovery_items_name">{{val.weight_remark}}</view>
+                                <view class="recovery_items_name" style="min-width:230rpx;padding-right:20rpx;" wx:if="{{val.price_remark}}">{{val.price_remark}}</view>
+                            </view>
+                        </block>
+                    </scroll-view>
+                </view>
+                <view class="remarks_msg">
+                    <view style="display:flex;background:#F5F5F5;border-radius:16rpx;">
+                        <view class="remarks">备注</view>
+                        <view class="remarks_content min_length">{{order_info.message}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="btn">
+        <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toPlayOrder',['$event'] ] ] ] ]}}" style="margin-right:20rpx;">继续下单</view>
+        <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'lookOrder',['$event'] ] ] ] ]}}">查看订单</view>
+    </view>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="popup" type="bottom" vueId="55f7285b-2" vueSlots="{{['default']}}">
+        <view class="contact">
+            <view class="contact_q">是否拨打骑手电话</view>
+            <view bindlongpress="__e" class="contact_phone" data-event-opts="{{[ [ 'longpress',[ [ 'copy',['$event'] ] ] ] ]}}">{{phoneNum}}</view>
+            <view class="contact_content">
+                <view>确定将自动跳转至拨号页面</view>
+                <view>如跳转失败请长按电话号码复制</view>
+            </view>
+            <view class="contact_btn">
+                <view bindtap="__e" class="contact_btn_l" data-event-opts="{{[ [ 'tap',[ [ 'e1',['$event'] ] ] ] ]}}">返回</view>
+                <view bindtap="__e" class="contact_btn_r" data-event-opts="{{[ [ 'tap',[ [ 'confirm1',['$event'] ] ] ] ]}}">确定</view>
+            </view>
+        </view>
+    </uni-popup>
+</view>

@@ -1,0 +1,203 @@
+<view>
+    <view class="top_bg" style="{{'padding-top: calc(32rpx + '+navHeight+'px + '+44+'px)'}}">
+        <view class="user_info">
+            <view class="container" wx:if="{{userStatus==1}}">
+                <view class="userInfo_pic">
+                    <image src="../../static/mine/defaultHeader.png"></image>
+                </view>
+                <view bindtap="__e" class="login_btn" data-event-opts="{{[ [ 'tap',[ ['toReg'] ] ] ]}}">
+                    <view class="user_name">登 陆</view>
+                </view>
+            </view>
+            <view class="container ly-flex-center-between" wx:if="{{userStatus==2}}">
+                <view class="ly-flex-center">
+                    <view class="userInfo_pic">
+                        <image src="../../static/mine/defaultHeader.png"></image>
+                    </view>
+                    <view>
+                        <button bindgetuserinfo="__e" class="mTop_nickName" data-event-opts="{{[ [ 'getuserinfo',[ [ 'bindGetUserInfo',['$event'] ] ] ] ]}}" openType="getUserInfo">请点此获取昵称头像</button>
+                    </view>
+                </view>
+                <view bindtap="__e" class="sign" data-event-opts="{{[ [ 'tap',[ [ 'toGiftsPage',['$event'] ] ] ] ]}}">签到有礼</view>
+            </view>
+            <view class="container ly-flex-center-between" wx:if="{{userStatus==3}}">
+                <view class="ly-flex-center">
+                    <view class="userInfo_pic">
+                        <image src="{{userInfo.pic}}"></image>
+                    </view>
+                    <view class="userInfo_name">
+                        <view class="user_name min_length">{{userInfo.nickname}}</view>
+                        <view class="user_phone">{{userInfo.user_name}}</view>
+                    </view>
+                </view>
+                <view bindtap="__e" class="sign" data-event-opts="{{[ [ 'tap',[ [ 'toGiftsPage',['$event'] ] ] ] ]}}">签到有礼</view>
+            </view>
+        </view>
+        <view class="mine_data ly-flex-center-between">
+            <view bindtap="__e" class="mine_data_item ly_flex_center_column" data-event-opts="{{[ [ 'tap',[ [ 'toMyCion',['$event'] ] ] ] ]}}">
+                <view class="mine_datas">{{coin}}</view>
+                <view>环保币</view>
+            </view>
+            <view class="mine_data_item ly_flex_center_column">
+                <view class="mine_datas">{{recovery_num}}</view>
+                <view>回收次数</view>
+            </view>
+            <view class="mine_data_item ly_flex_center_column">
+                <view class="mine_datas">{{recoveryMoney}}</view>
+                <view>回收金额</view>
+            </view>
+            <view bindtap="__e" class="mine_data_item ly_flex_center_column" data-event-opts="{{[ [ 'tap',[ [ 'toRankList',['$event'] ] ] ] ]}}">
+                <view class="mine_datas">{{allPeople||0}}</view>
+                <view>我的粉丝</view>
+            </view>
+        </view>
+    </view>
+    <view class="out_border">
+        <view class="raidus_bg">
+            <view class="ly-flex-center-center">
+                <view bindtap="__e" class="active_btn ly-flex-center-between" data-event-opts="{{[ [ 'tap',[ [ 'toExtensionCode',['$event'] ] ] ] ]}}">
+                    <view class="text_des ly_flex_center_column">
+                        <view>邀请有礼</view>
+                        <view style="color:#FF2C0C;margin-top:6rpx;font-weight:300;font-size:24rpx;">多邀多得></view>
+                    </view>
+                    <view class="ly-flex-center-center" style="width:90rpx;height:90rpx;">
+                        <frame-animation bind:__l="__l" count="60" duration="3" height="90" url="{{$root.g0}}" vueId="bae1c640-1" width="60"></frame-animation>
+                    </view>
+                </view>
+                <view class="lines ly-flex-center-center">
+                    <view></view>
+                </view>
+                <view bindtap="__e" class="active_btn ly-flex-center-between" data-event-opts="{{[ [ 'tap',[ [ 'toexTendsionMateriel',['$event'] ] ] ] ]}}">
+                    <view class="text_des ly_flex_center_column">
+                        <view>分享好友</view>
+                        <view style="color:#FF2C0C;margin-top:6rpx;font-weight:300;font-size:24rpx;">天天有钱></view>
+                    </view>
+                    <view class="ly-flex-center-center" style="width:90rpx;height:90rpx;">
+                        <frame-animation bind:__l="__l" count="60" duration="3" height="90" url="{{$root.g1}}" vueId="bae1c640-2" width="90"></frame-animation>
+                    </view>
+                </view>
+                <view class="lines ly-flex-center-center">
+                    <view></view>
+                </view>
+                <view bindtap="__e" class="active_btn ly-flex-center-between" data-event-opts="{{[ [ 'tap',[ [ 'integralShop',['$event'] ] ] ] ]}}">
+                    <view class="text_des ly_flex_center_column">
+                        <view>每日抽奖</view>
+                        <view style="color:#FF2C0C;margin-top:6rpx;font-weight:300;font-size:24rpx;">天天可领></view>
+                    </view>
+                    <view class="ly-flex-center-center" style="width:90rpx;height:90rpx;">
+                        <frame-animation bind:__l="__l" count="40" duration="3" height="90" url="{{$root.g2}}" vueId="bae1c640-3" width="90"></frame-animation>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="raidus_bg ly-flex-center-around order_layout" style="margin-bottom:0;">
+            <view bindtap="__e" class="flex_down_center" data-event-opts="{{[ [ 'tap',[ [ 'toOrderList',[10] ] ] ] ]}}">
+                <view class="order_icon">
+                    <image src="../../static/mine/icon_wjd.png"></image>
+                </view>
+                <view class="bottom_font">未接单</view>
+            </view>
+            <view bindtap="__e" class="flex_down_center" data-event-opts="{{[ [ 'tap',[ [ 'toOrderList',[20] ] ] ] ]}}">
+                <view class="order_icon">
+                    <image src="../../static/mine/icon_yjd.png"></image>
+                </view>
+                <view class="bottom_font">已接单</view>
+            </view>
+            <view bindtap="__e" class="flex_down_center" data-event-opts="{{[ [ 'tap',[ [ 'toOrderList',[30] ] ] ] ]}}">
+                <view class="order_icon">
+                    <image src="../../static/mine/icon_ywc.png"></image>
+                </view>
+                <view class="bottom_font">已完成</view>
+            </view>
+            <view bindtap="__e" class="flex_down_center" data-event-opts="{{[ [ 'tap',[ [ 'toOrderList',[50] ] ] ] ]}}">
+                <view class="order_icon">
+                    <image src="../../static/mine/icon_yqx.png"></image>
+                </view>
+                <view class="bottom_font">已取消</view>
+            </view>
+        </view>
+        <view bindtap="__e" class="invitation_img" data-event-opts="{{[ [ 'tap',[ [ 'toExtensionCode',['$event'] ] ] ] ]}}">
+            <view class="ly-flex-center-center" style="width:100%;height:100%;">
+                <frame-animation bind:__l="__l" count="75" duration="2.5" height="204" url="{{$root.g3}}" vueId="bae1c640-4" width="710"></frame-animation>
+            </view>
+        </view>
+        <view class="raidus_bg more_btn" style="margin-top:0;padding-bottom:36rpx;">
+            <view class="btns">
+                <view bindtap="__e" class="flex_down_center" data-event-opts="{{[ [ 'tap',[ [ 'toGiftsPage',['$event'] ] ] ] ]}}">
+                    <view class="order_icon">
+                        <view class="ly-flex-center-center" style="width:60rpx;height:60rpx;">
+                            <frame-animation bind:__l="__l" count="60" duration="3" height="60" url="{{$root.g4}}" vueId="bae1c640-5" width="40"></frame-animation>
+                        </view>
+                    </view>
+                    <view class="bottom_font">福利社</view>
+                </view>
+                <view bindtap="__e" class="flex_down_center" data-event-opts="{{[ [ 'tap',[ [ 'manageAddress',['$event'] ] ] ] ]}}">
+                    <view class="order_icon">
+                        <image src="../../static/mine/icon_dizhi.png"></image>
+                    </view>
+                    <view class="bottom_font">我的地址</view>
+                </view>
+                <button class="phone_btn" openType="contact">
+                    <view class="order_icon">
+                        <image src="../../static/mine/icon_kefu.png"></image>
+                    </view>
+                    <view class="bottom_font">我的客服</view>
+                </button>
+                <button class="phone_btn" openType="feedback">
+                    <view class="order_icon">
+                        <image src="../../static/mine/icon_yijian.png"></image>
+                    </view>
+                    <view class="bottom_font">意见反馈</view>
+                </button>
+            </view>
+            <view class="btns">
+                <view bindtap="__e" class="flex_down_center" data-event-opts="{{[ [ 'tap',[ [ 'toCarter',['$event'] ] ] ] ]}}">
+                    <view class="order_icon">
+                        <image src="../../static/mine/icon_huishouge.png"></image>
+                    </view>
+                    <view class="bottom_font">我是小哥</view>
+                </view>
+                <view bindtap="__e" class="flex_down_center" data-event-opts="{{[ [ 'tap',[ [ 'toTell',['$event'] ] ] ] ]}}">
+                    <view class="order_icon">
+                        <image src="../../static/mine/icon_zmhsg.png"></image>
+                    </view>
+                    <view class="bottom_font">招募回收哥</view>
+                </view>
+                <view bindtap="__e" class="flex_down_center" data-event-opts="{{[ [ 'tap',[ [ 'toTell',['$event'] ] ] ] ]}}">
+                    <view class="order_icon">
+                        <image src="../../static/mine/icon_zmhhr.png"></image>
+                    </view>
+                    <view class="bottom_font">加盟合作</view>
+                </view>
+                <view bindtap="__e" class="flex_down_center" data-event-opts="{{[ [ 'tap',[ [ 'toMerEnter',['$event'] ] ] ] ]}}">
+                    <view class="order_icon">
+                        <image src="../../static/mine/icon_sjrukou.png"></image>
+                    </view>
+                    <view class="bottom_font" wx:if="{{isEnterSuccess==false}}">商户入驻</view>
+                    <view class="bottom_font" wx:if="{{isEnterSuccess==true}}">商户中心</view>
+                </view>
+            </view>
+            <view class="btns" wx:if="{{userInfo.is_promoter==1}}">
+                <view bindtap="__e" class="flex_down_center" data-event-opts="{{[ [ 'tap',[ [ 'toEctend',['$event'] ] ] ] ]}}">
+                    <view class="order_icon">
+                        <image src="../../static/mine/icon_tgma.png"></image>
+                    </view>
+                    <view class="bottom_font">地推码</view>
+                </view>
+                <view class="flex_down_center">
+                    <view class="order_icon"></view>
+                    <view class="bottom_font"></view>
+                </view>
+                <view class="flex_down_center">
+                    <view class="order_icon"></view>
+                    <view class="bottom_font"></view>
+                </view>
+                <view class="flex_down_center">
+                    <view class="order_icon"></view>
+                    <view class="bottom_font"></view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <pick-uping bind:__l="__l" pickUpIngOrderId="{{pickUpIngOrderId}}" vueId="bae1c640-6" wx:if="{{pickUpIng}}"></pick-uping>
+</view>

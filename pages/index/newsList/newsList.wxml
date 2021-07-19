@@ -1,0 +1,14 @@
+<view>
+    <view class="index">
+        <view bindtap="__e" class="news_list_box" data-event-opts="{{[ [ 'tap',[ [ 'toLookNews',['$0'],[ [ ['news','id',item.id] ] ] ] ] ] ]}}" wx:for="{{news}}" wx:for-index="__i0__" wx:key="id">
+            <view class="news_list_l">
+                <image src="{{item.news_image}}"></image>
+            </view>
+            <view class="news_list_r">
+                <view class="title">{{item.news_title}}</view>
+                <view class="content">{{item.news_summary}}</view>
+                <view class="create_time">{{item.create_time_str}}</view>
+            </view>
+        </view>
+    </view>
+</view>

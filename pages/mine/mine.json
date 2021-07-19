@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "我的",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white",
+    "usingComponents": {
+        "frame-animation": "/components/common/frameAnimation",
+        "uni-popup": "/components/uni-popup/uni-popup",
+        "uni-popup-message": "/components/uni-popup/uni-popup-message",
+        "uni-popup-dialog": "/components/uni-popup/uni-popup-dialog",
+        "common-login": "/components/common/login",
+        "pick-uping": "/components/common/pickUpingBtn",
+        "notices": "/components/common/notices"
+    }
+}

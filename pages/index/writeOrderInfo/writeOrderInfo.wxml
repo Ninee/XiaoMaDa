@@ -1,0 +1,182 @@
+<view>
+    <view class="out_padding">
+        <view class="user_info">
+            <image src="../../../static/index/icon_logo.png"></image>
+            <view bindtap="__e" class="infos" data-event-opts="{{[ [ 'tap',[ [ 'toSelAdd',['$event'] ] ] ] ]}}" wx:if="{{user_name}}">
+                <view class="name_tell">
+                    <view class="names min_length">{{user_name}}</view>
+                    <view style="width:200rpx;">
+                        <text hidden="{{!is_show_phone}}">{{user_phone_num}}</text>
+                        <text hidden="{{!!is_show_phone}}">{{privacy_number}}</text>
+                    </view>
+                    <image catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'e0',['$event'] ] ] ] ]}}" src="../../../static/garbageSelet/attention.png" wx:if="{{is_show_phone}}"></image>
+                    <image catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'e1',['$event'] ] ] ] ]}}" src="../../../static/garbageSelet/attention_forbid.png" wx:else></image>
+                </view>
+                <view class="address min_length" style="-webkit-line-clamp:2;">{{poi_address+choose_addr+address}}</view>
+            </view>
+            <view class="none_address" wx:else>请选择下单地址</view>
+            <view bindtap="__e" class="sel_add_img" data-event-opts="{{[ [ 'tap',[ [ 'toAddList',['$event'] ] ] ] ]}}">
+                <image src="../../../static/index/icon_dizhi.png"></image>
+                <view>地址簿</view>
+            </view>
+        </view>
+        <view class="recovery_goods">
+            <view class="ly-flex-center recovery_ask">
+                <view class="recovery_ask_l">
+                    <view>回收物品</view>
+                    <view bindtap="__e" class="requires" data-event-opts="{{[ [ 'tap',[ [ 'toOpenTips',['$event'] ] ] ] ]}}">要求</view>
+                </view>
+                <view bindtap="__e" class="recovery_ask_r" data-event-opts="{{[ [ 'tap',[ [ 'clearOrderItems',['$event'] ] ] ] ]}}">
+                    <image src="../../../static/garbageSelet/delete.png"></image>清除</view>
+            </view>
+            <view bindtap="__e" class="recovery_goods_items" data-event-opts="{{[ [ 'tap',[ [ 'toAdd',['$event'] ] ] ] ]}}" wx:for="{{order_items}}" wx:key="index">
+                <view class="recovery_goods_items_l">
+                    <image src="{{item.imgs}}"></image>
+                    <view>
+                        <view>{{item.name}}</view>
+                        <view class="weight_num">{{item.weight}}</view>
+                    </view>
+                </view>
+                <view class="recovery_goods_items_r">
+                    <view>{{'￥'+(item.min==0?'':item.min+'-')+item.max}}</view>
+                    <image catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toDeleteOrderItems',['$0'],[ [ ['order_items','',index] ] ] ] ] ] ]}}" src="../../../static/index/icon-shanchu.png"></image>
+                </view>
+            </view>
+            <view bindtap="__e" class="continue_add" data-event-opts="{{[ [ 'tap',[ [ 'toAdd',['$event'] ] ] ] ]}}" wx:if="{{order_items.length>0}}">继续添加</view>
+            <view class="now_add" wx:else>
+                <view bindtap="__e" class="ly_flex_center_column" data-event-opts="{{[ [ 'tap',[ [ 'toAdd',['$event'] ] ] ] ]}}" style="width:400rpx;">
+                    <image src="/static/firstPage/icon_tianjia.png"></image>
+                    <view class="now_add_content">请添加您需要上门回收的物品</view>
+                </view>
+            </view>
+        </view>
+        <view class="order_day">
+            <view class="titles">预约日期</view>
+            <view class="order_day_items_box" wx:if="{{user_name}}">
+                <view bindtap="__e" class="{{['order_day_items',item.day_str==select_day_str?'sel_day':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'toSelDay',['$0','$1'],[ [ ['time_area','',index,'day_str'] ],[ ['time_area','',index,'hours'] ] ] ] ] ] ]}}" wx:if="{{item.is_working&&item.hours&&item.hours.length>0}}" wx:for="{{time_area}}" wx:key="index">{{item.date}}</view>
+            </view>
+            <view class="today_rest" wx:if="{{!user_name}}">请先选择地址</view>
+        </view>
+        <view class="order_day">
+            <view class="titles">预约时间</view>
+            <view class="order_day_items_box" wx:if="{{user_name}}">
+                <view bindtap="__e" class="{{['order_day_items',item.hour_str==select_hour_str?'sel_day':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'toSelTimeArea',['$0'],[ [ ['now_play_order_housr','',index,'hour_str'] ] ] ] ] ] ]}}" wx:for="{{now_play_order_housr}}" wx:key="index">{{item.hour_str}}</view>
+            </view>
+            <view class="today_rest" wx:if="{{!user_name}}">请先选择地址</view>
+        </view>
+        <view class="order_day">
+            <view class="remarks" style="border-bottom:2rpx solid #F5F5F5;">
+                <view style="width:160rpx;">留言备注</view>
+                <view bindtap="__e" class="remarks_r" data-event-opts="{{[ [ 'tap',[ [ 'toLeaveMsg',['$event'] ] ] ] ]}}" style="width:500rpx;height:90rpx;display:flex;justify-content:flex-end;">
+                    <view class="remarks_r_content min_length">
+                        <text>{{leave_msg||'可描述物品状态和特殊要求'}}</text>
+                    </view>
+                    <image src="../../../static/index/icon_jt.png"></image>
+                </view>
+            </view>
+            <view class="remarks">
+                <view>
+                    <view>号码保护</view>
+                    <view class="privacy_content">对骑手隐藏您的真实手机号，保护您的隐私</view>
+                </view>
+                <view class="remarks_r" style="font-weight:400;">
+                    <label>隐私保护中<radio checked="{{true}}" style="transform:scale(0.5);" value=""></radio>
+                    </label>
+                </view>
+            </view>
+        </view>
+        <view class="agreement" style="margin-bottom:50rpx;">
+            <label bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'e2',['$event'] ] ] ] ]}}">
+                <radio checked="{{is_agree_agreement}}" style="transform:scale(0.5);" value="{{is_agree_agreement}}"></radio>请同意</label>
+            <text bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'lookAgreement',['$event'] ] ] ] ]}}" style="color:#09D334;">用户使用协议</text>
+        </view>
+        <view class="play_order_btn_box">
+            <view class="over_reduce_tips_box ly_flex_center_column" wx:if="{{activities.length>0}}">
+                <view animation="{{animationData}}" class="ly_flex_center_column" style="position:absolute;">
+                    <view class="over_reduce_tips">{{activities[0].sub_rule}}</view>
+                    <view class="sanjiao"></view>
+                </view>
+            </view>
+            <view class="play_order_btn">
+                <view class="play_order_l">
+                    <view class="play_order_img">
+                        <view class="play_order_type_num min_length" wx:if="{{order_items.length}}">{{order_items.length>99?'99+':order_items.length}}</view>
+                    </view>
+                    <view class="play_order_content">
+                        <view>
+                            <text style="color:#41414D;font-weight:800;">预估</text>
+                            <text style="font-size:24rpx;">￥</text>
+                            <text wx:if="{{total_price.min==total_price.max}}">0.00</text>
+                            <text wx:else>{{(total_price.min==0?'':total_price.min+'-')+total_price.max}}</text>
+                        </view>
+                        <view class="play_order_tips">成交价格以实际评估为准</view>
+                    </view>
+                </view>
+                <view bindtap="__e" class="play_order_r" data-event-opts="{{[ [ 'tap',[ [ 'pushAuthor',['$event'] ] ] ] ]}}">去下单</view>
+            </view>
+        </view>
+    </view>
+    <uni-popup bind:__l="__l" catch:touchmove="__e" class="vue-ref" data-event-opts="{{[ [ '^touchmove',[ ['e3'] ] ] ]}}" data-ref="addRecoveryType" maskClick="{{false}}" type="bottom" vueId="2cad2786-1" vueSlots="{{['default']}}">
+        <view catchtouchmove="__e" class="add_recovery_type" data-event-opts="{{[ [ 'touchmove',[ [ 'e4',['$event'] ] ] ] ]}}">
+            <view class="add_recovery_titles">
+                <view class="add_recovery_titles_l">添加废品</view>
+                <view bindtap="__e" class="add_recovery_titles_r" data-event-opts="{{[ [ 'tap',[ [ 'closeAddRecoveryType',['$event'] ] ] ] ]}}">
+                    <image src="../../../static/mine/close@2x.png"></image>
+                </view>
+            </view>
+            <view class="sel_recovery_type">
+                <view class="goods_name">物品</view>
+                <view class="goods_box">
+                    <view wx:for="{{first_recovery_name}}" wx:key="index">
+                        <view bindtap="__e" class="{{['goods_items',item.id==recovery_category_id?'sel_goods_items':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'toSelFirstRecovery',['$0','$1','$2'],[ [ ['first_recovery_name','',index,'id'] ],[ ['first_recovery_name','',index,'data'] ],[ ['first_recovery_name','',index,'value'] ] ] ] ] ] ]}}" wx:if="{{item.is_on==1}}">{{item.value}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="sel_recovery_type" style="margin-top:16rpx;">
+                <view class="goods_name">{{unit_name}}</view>
+                <view class="goods_box">
+                    <view bindtap="__e" class="{{['goods_items',item.min==min_weight?'sel_goods_items':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'toSelWeightArea',['$0','$1'],[ [ ['unit_option_list','',index,'min'] ],[ ['unit_option_list','',index,'max'] ] ] ] ] ] ]}}" wx:for="{{unit_option_list}}" wx:key="index">
+                        <text wx:if="{{item.min==0}}">{{item.max+unit_symbol+'以上'}}</text>
+                        <text wx:else>{{item.min+'-'+item.max+unit_symbol}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="add_recovery_tips">
+                <view>注意事项</view>
+                <view>1. 拒绝掺水、拒绝掺杂</view>
+                <view>2. 小于10公斤，暂不保证上门回收</view>
+                <view>3. 因回收成本原因，成交价格以骑手评估后为准</view>
+            </view>
+            <view class="add_to_car">
+                <view class="add_to_car_l">
+                    <view class="add_to_car_img">
+                        <view class="add_to_car_type_num min_length"></view>
+                    </view>
+                    <view class="add_to_car_content">
+                        <view>
+                            <text style="color:#41414D;font-weight:800;">预估</text>
+                            <text style="font-size:24rpx;">￥</text>
+                            <text>{{(price_area.min==0?'':price_area.min+'-')+price_area.max}}</text>
+                        </view>
+                        <view class="add_to_car_tips">成交价格以实际评估为准</view>
+                    </view>
+                </view>
+                <view bindtap="__e" class="add_to_car_r" data-event-opts="{{[ [ 'tap',[ [ 'toAddCar',['$event'] ] ] ] ]}}">添加</view>
+            </view>
+            <view style="height:30rpx;background:#FFFFFF;width:100%;"></view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="tipsPopup" maskClick="{{false}}" type="center" vueId="2cad2786-2" vueSlots="{{['default']}}">
+        <view class="tips_popup">
+            <view class="tips_popup_box">
+                <view class="titles">注意事项</view>
+                <view class="tips">
+                    <view>1. 拒绝掺水、拒绝掺杂</view>
+                    <view>2. 小于10公斤，暂不保证上门回收</view>
+                    <view>3. 因回收成本原因，成交价格以骑 手评估后为准</view>
+                </view>
+                <view bindtap="__e" class="i_konw" data-event-opts="{{[ [ 'tap',[ [ 'toCloseTips',['$event'] ] ] ] ]}}">知道了</view>
+            </view>
+        </view>
+    </uni-popup>
+</view>

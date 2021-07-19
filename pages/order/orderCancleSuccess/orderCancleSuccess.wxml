@@ -1,0 +1,22 @@
+<view class="out_padding">
+    <view class="ok_img">
+        <image src="../../../static/order/icon_success.png"></image>
+    </view>
+    <view class="msg">订单取消成功</view>
+    <view class="white_bg">
+        <view class="title">请告诉我们取消订单的原因</view>
+        <view class="sorry">我们会为您提供更好的服务</view>
+        <view class="radios">
+            <radio-group bindchange="__e" data-event-opts="{{[ [ 'change',[ [ 'radioChange',['$event'] ] ] ] ]}}">
+                <label class="radios_item" wx:for="{{items}}" wx:key="value">
+                    <view>
+                        <radio checked="{{index===current}}" style="transform:scale(0.7);" value="{{item.value}}"></radio>
+                    </view>
+                    <view class="system_reson">{{item.name}}</view>
+                </label>
+            </radio-group>
+            <input hidden="{{!(current==6)}}" value="{{input_val}}"></input>
+        </view>
+    </view>
+    <view bindtap="__e" class="submit_btn" data-event-opts="{{[ [ 'tap',[ [ 'cancelOrderForReasonOfCancel',['$event'] ] ] ] ]}}">提交</view>
+</view>

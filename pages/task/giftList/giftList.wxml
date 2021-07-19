@@ -1,0 +1,13 @@
+<view>
+    <view class="out_borser">
+        <view class="none" wx:if="{{list.length==0}}">暂无获得的礼品~</view>
+        <block wx:else>
+            <view class="list_item" wx:for="{{list}}" wx:key="index">
+                <view class="list_item_img">
+                    <image src="../../../static/task/bg1.png"></image>
+                </view>
+                <view class="describ">{{item.value+'环保币'}}</view>
+            </view>
+        </block>
+    </view>
+</view>

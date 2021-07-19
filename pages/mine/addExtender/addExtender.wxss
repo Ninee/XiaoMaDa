@@ -1,0 +1,36 @@
+.box {
+    margin: 30rpx;
+    background-color: #fff;
+    border-radius: 20rpx;
+    padding: 0 24rpx;
+}
+
+.bot_line {
+    border-bottom: 2rpx solid #e7e7e7;
+}
+
+.bot_line,.phone {
+    height: 102rpx;
+    font-size: 30rpx;
+}
+
+.btn_bg {
+    width: 100%;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    position: absolute;
+    bottom: 30rpx;
+    left: 0rpx;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.btn {
+    width: 690rpx;
+    background-color: #028036;
+    border-radius: 20rpx;
+    font-size: 36rpx;
+    color: #fff;
+}

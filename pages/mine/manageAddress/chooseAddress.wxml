@@ -1,0 +1,97 @@
+<view class="out_padding">
+    <view class="voice" wx:if="{{!show_input_box}}">
+        <view bindtap="__e" class="voice_title" data-event-opts="{{[ [ 'tap',[ [ 'toShowInputBox',['$event'] ] ] ] ]}}">智能识别，请粘贴或输入地址信息</view>
+        <view class="voice_r">
+            <view bindtap="__e" class="voice_img" data-event-opts="{{[ [ 'tap',[ [ 'toOpenVoicePopup',['$event'] ] ] ] ]}}">
+                <image src="../../../static/index/icon_yuyin2.png"></image>
+            </view>
+            <view bindtap="__e" class="voice_img" data-event-opts="{{[ [ 'tap',[ [ 'toChooseImg',['$event'] ] ] ] ]}}">
+                <image src="../../../static/index/icon_paizhao2.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="voice_input" wx:else>
+        <textarea bindinput="__e" class="voice_input_text" data-event-opts="{{[ [ 'input',[ [ 'textInput',['$event'] ] ] ] ]}}" placeholder="请粘贴或输入地址信息，点击“识别”自动拆分姓名、电话和地址 示例：张三，1388888888，杭州市萧山区每日一收总部" placeholderStyle="#666666" value="{{messages}}"></textarea>
+        <view class="voice_input_bottom">
+            <view class="not_distinguish" wx:if="{{!messages}}">识别</view>
+            <view bindtap="__e" class="not_distinguish distinguish" data-event-opts="{{[ [ 'tap',[ [ 'addressTextToAddress',['$0'],['messages'] ] ] ] ]}}" wx:else>识别</view>
+            <view class="voice_input_bottom_r">
+                <view bindtap="__e" class="voice_btn" data-event-opts="{{[ [ 'tap',[ [ 'toClearMessages',['$event'] ] ] ] ]}}">
+                    <image src="../../../static/garbageSelet/delete.png"></image>
+                    <text>清空</text>
+                </view>
+                <view bindtap="__e" class="voice_btn" data-event-opts="{{[ [ 'tap',[ [ 'toOpenVoicePopup',['$event'] ] ] ] ]}}">
+                    <image src="../../../static/index/icon_yuyin2.png"></image>
+                    <text>语音输入</text>
+                </view>
+                <view bindtap="__e" class="voice_btn" data-event-opts="{{[ [ 'tap',[ [ 'toChooseImg',['$event'] ] ] ] ]}}">
+                    <image src="../../../static/index/icon_paizhao2.png"></image>
+                    <text>拍照识别</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="white_bg">
+        <view bindtap="__e" class="line_height" data-event-opts="{{[ [ 'tap',[ [ 'addAdd',['$event'] ] ] ] ]}}">
+            <text style="margin-right:88rpx;font-weight:bold;">地址</text>
+            <text class="min_length" style="flex:1;">{{choose_addr||'选择地址'}}</text>
+            <text class="little_color">></text>
+        </view>
+        <view class="line_height">
+            <text style="margin-right:62rpx;font-weight:bold;">门牌号</text>
+            <input bindinput="__e" class="little_color" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','address','$event',[] ] ] ] ] ]}}" placeholder="单元、门牌号，如：6单元606" style="flex:1;line-height:88rpx;height:88rpx;" value="{{address}}"></input>
+        </view>
+        <view class="line_height">
+            <text style="margin-right:62rpx;font-weight:bold;">联系人</text>
+            <input bindinput="__e" class="little_color" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','user_name','$event',[] ] ] ] ] ]}}" maxlength="{{5}}" placeholder="姓名" style="flex:1;height:88rpx;line-height:88rpx;" value="{{user_name}}"></input>
+            <radio-group bindchange="__e" data-event-opts="{{[ [ 'change',[ [ 'chooseSex',['$event'] ] ] ] ]}}" style="height:88rpx;line-height:88rpx;">
+                <label wx:for="{{items}}" wx:key="value">
+                    <radio checked="{{item.value==sexVal}}" style="transform:scale(0.5);" value="{{item.value}}"></radio>{{''+item.name+''}}</label>
+            </radio-group>
+        </view>
+        <view class="line_height">
+            <text style="margin-right:88rpx;font-weight:bold;">电话</text>
+            <input bindinput="__e" class="little_color" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','phone_num','$event',[] ] ] ] ] ]}}" placeholder="手机号" style="line-height:88rpx;height:88rpx;" value="{{phone_num}}"></input>
+        </view>
+        <view class="line_height" style="display:flex;justify-content:space-between;">
+            <view style="font-weight:bold;">设为默认地址<switch bindchange="__e" checked="{{sel_switch==1}}" color="#09D334" data-event-opts="{{[ [ 'change',[ [ 'switchChange',['$event'] ] ] ] ]}}" style="transform:scale(0.8);"></switch>
+            </view>
+            <view bindtap="__e" class="delete_form" data-event-opts="{{[ [ 'tap',[ [ 'toClearUserInfo',['$event'] ] ] ] ]}}">
+                <image src="../../../static/garbageSelet/delete.png"></image>
+                <view>清空</view>
+            </view>
+        </view>
+        <view bindtap="__e" class="btn" data-event-opts="{{[ [ 'tap',[ [ 'saveAddres',['$event'] ] ] ] ]}}">保存并使用</view>
+    </view>
+    <view class="old_address" style="margin-top:32rpx;">
+        <view class="often_address">常用地址</view>
+        <uni-swipe-action bind:__l="__l" vueId="7a10b128-1" vueSlots="{{['default']}}">
+            <uni-swipe-action-item bind:__l="__l" bind:click="__e" class="address" data-event-opts="{{[ [ '^click',[ [ 'toDelAddress',['$0'],[ [ ['address_list','',index,'id'] ] ] ] ] ] ]}}" rightOptions="{{options}}" vueId="{{'7a10b128-2-'+index+','+'7a10b128-1'}}" vueSlots="{{['default']}}" wx:for="{{address_list}}" wx:key="index">
+                <view bindtap="__e" class="address_l" data-event-opts="{{[ [ 'tap',[ [ 'goBack',['$0'],[ [ ['address_list','',index] ] ] ] ] ] ]}}">
+                    <view class="min_length" style="width:600rpx;">{{item.poi_name}}</view>
+                    <view class="ly-flex-center" style="font-size:26rpx;color:#666666;">
+                        <view class="min_length" style="margin-right:10rpx;width:130rpx;">{{item.name}}</view>
+                        <view>{{item.phone}}</view>
+                    </view>
+                    <view class="sel_add" wx:if="{{item.is_default==1}}"></view>
+                </view>
+                <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'changeAddress',['$0','$1','$2','$3'],[ [ ['address_list','',index,'id'] ],[ ['address_list','',index,'lat'] ],[ ['address_list','',index,'lng'] ],'area_code' ] ] ] ] ]}}" style="padding:50rpx 20rpx 50rpx 40rpx;">
+                    <image src="../../../static/mine/xiugai@2x.png" style="width:24rpx;height:24rpx;margin-right:36rpx;"></image>
+                </view>
+            </uni-swipe-action-item>
+        </uni-swipe-action>
+    </view>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="voicePropu" maskClick="{{false}}" type="center" vueId="7a10b128-3" vueSlots="{{['default']}}">
+        <view class="voice_input_popup">
+            <view class="voice_input_popup_box">
+                <view>语音识别</view>
+                <view class="voice_popup_imgs">
+                    <image class="voice_popup_imgs_a" src="../../../static/index/yuyin.png"></image>
+                    <image class="{{['voice_popup_imgs_b',is_speaking==true?'voice_run':'']}}" src="../../../static/index/yuyin2.png"></image>
+                </view>
+                <view class="voice_popup_tips">请说出姓名、电话和地址</view>
+                <view bindtap="__e" class="voice_over" data-event-opts="{{[ [ 'tap',[ [ 'toClosePopup',['$event'] ] ] ] ]}}">说好了</view>
+            </view>
+        </view>
+    </uni-popup>
+</view>

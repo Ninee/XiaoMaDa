@@ -1,0 +1,306 @@
+.top_bg {
+    background: #00b62a;
+    width: 100%;
+    padding-bottom: 100rpx;
+}
+
+.top_bg .user_info {
+    padding-left: 40rpx;
+}
+
+.top_bg .user_info .container {
+    display: flex;
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #fff;
+}
+
+.top_bg .user_info .container .login_btn {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.top_bg .user_info .container .login_btn .user_name {
+    padding: 10rpx 30rpx 10rpx 0;
+    font-size: 36rpx;
+    font-weight: 700;
+    color: #fff;
+}
+
+.top_bg .user_info .container .userInfo_pic {
+    width: 100rpx;
+    height: 100rpx;
+    margin-right: 24rpx;
+    border-radius: 50%;
+}
+
+.top_bg .user_info .container .userInfo_pic image {
+    border-radius: 50%;
+}
+
+.top_bg .user_info .container .userInfo_name {
+    padding: 0rpx 0;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    font-weight: 700;
+}
+
+.top_bg .user_info .container .userInfo_name .user_name {
+    max-width: 300rpx;
+}
+
+.top_bg .user_info .container .userInfo_name .user_phone {
+    font-size: 24rpx;
+    font-weight: 300;
+    margin-top: 6rpx;
+}
+
+.top_bg .user_info .container .mTop_nickName {
+    font-size: 30rpx;
+    font-weight: 700;
+    color: #fff;
+    height: 100rpx;
+    line-height: 100rpx;
+    background-color: hsla(0,0%,88.2%,0);
+    padding-left: 0;
+}
+
+.top_bg .user_info .container .sign {
+    width: 180rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    background: #fff;
+    border-radius: 30rpx;
+    font-size: 28rpx;
+    color: #00b62a;
+    margin-right: 40rpx;
+}
+
+.top_bg .mine_data {
+    width: 100%;
+    padding: 0 20rpx;
+    color: #fff;
+    font-size: 24rpx;
+    margin-top: 20rpx;
+}
+
+.top_bg .mine_data .mine_data_item {
+    width: 170rpx;
+    padding: 8rpx 0;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.top_bg .mine_data .mine_data_item .mine_datas {
+    font-size: 32rpx;
+}
+
+.top_bg .mine_data .mine_data_item view {
+    width: 100%;
+    text-align: center;
+}
+
+button::after {
+    border: none;
+}
+
+.out_border {
+    width: 100%;
+    margin-top: -80rpx;
+    padding: 0 20rpx 20rpx;
+}
+
+.out_border .raidus_bg {
+    border-radius: 16rpx;
+    background-color: #fff;
+    margin-bottom: 20rpx;
+    padding: 16rpx 0;
+}
+
+.out_border .raidus_bg .active_btn {
+    width: 230rpx;
+    height: 90rpx;
+    color: #333;
+    font-size: 28rpx;
+    padding: 0 10rpx 0 14rpx;
+    font-weight: 700;
+}
+
+.out_border .raidus_bg .active_btn .text_des {
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 120rpx;
+    -webkit-box-align: start;
+    align-items: flex-start;
+}
+
+.out_border .raidus_bg .active_btn image {
+    width: 90rpx;
+    height: 90rpx;
+}
+
+.out_border .raidus_bg .lines {
+    width: 10rpx;
+}
+
+.out_border .raidus_bg .lines view {
+    width: 2rpx;
+    height: 60rpx;
+    background: #eee;
+}
+
+.flex_down_center {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-flex: 1;
+    flex: 1;
+    font-size: 32rpx;
+    color: #414c41;
+}
+
+.flex_down_center,.mflex {
+    display: flex;
+}
+
+.mflex {
+    padding: 20rpx 0;
+}
+
+.order_layout {
+    display: flex;
+    padding: 35rpx 0 30rpx;
+}
+
+.order_icon {
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.bottom_font {
+    font-size: 24rpx;
+    color: #414c41;
+}
+
+.invitation_img {
+    height: 200rpx;
+    width: 100%;
+}
+
+.more_btn {
+    padding: 30rpx 0;
+    margin-top: 20rpx;
+    color: #414d41;
+}
+
+.more_btn .btns {
+    display: flex;
+    margin-top: 20rpx;
+}
+
+.shareMask {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.shareMask .s_box {
+    width: 580rpx;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.shareMask .s_box .s_boxTop {
+    padding: 30rpx 40rpx 40rpx;
+    background: #fff;
+    border-radius: 32rpx;
+    font-size: 30rpx;
+}
+
+.shareMask .s_box .s_boxTop .s_boxTopSub {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.shareMask .s_box .s_boxTop .s_boxTopCon {
+    margin: 30rpx 0 60rpx;
+    text-align: center;
+}
+
+.shareMask .s_box .s_boxTop .s_boxTopCode {
+    width: 500rpx;
+    height: 500rpx;
+}
+
+.shareMask .s_box .btn_box {
+    margin-top: 58rpx;
+}
+
+.shareMask .s_box .btn_box button {
+    background: transparent;
+    color: #fff;
+    font-size: 26rpx;
+}
+
+.shareMask .s_box .btn_box button image {
+    width: 80rpx;
+    height: 80rpx;
+    margin-bottom: 22rpx;
+}
+
+.shareMask .s_box .btn_box button text {
+    line-height: 24rpx;
+}
+
+.phone_btn,.shareMask .s_box .btn_box button::after {
+    border: none;
+}
+
+.phone_btn {
+    background: none;
+    line-height: 1;
+    font-size: 24rpx;
+    display: flex;
+    -webkit-box-flex: 1;
+    flex: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0 0 4rpx;
+}
+
+.phone_btn:after {
+    border: none;
+}
+
+.min_length {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal!important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}

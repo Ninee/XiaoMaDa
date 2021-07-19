@@ -1,0 +1,64 @@
+<view>
+    <view class="none_add_lists ly_flex_center_column" wx:if="{{!address||address.length<=0}}">
+        <view class="no_address">空空如也~请添加地址</view>
+        <button bindtap="__e" class="new_add_address" data-event-opts="{{[ [ 'tap',[ [ 'toAddAddr',['$event'] ] ] ] ]}}">新增地址</button>
+    </view>
+    <view style="width:100%;padding:20rpx 0rpx 180rpx 20rpx;" wx:if="{{is_editing&&address.length>0}}">
+        <view style="width:800rpx;">
+            <label bindtap="__e" class="ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'selOperationAddr',['$0'],[ [ ['address','',index,'id'] ] ] ] ] ] ]}}" wx:for="{{$root.l0}}" wx:key="index">
+                <view>
+                    <radio checked="{{item.g0!=-1}}" color="#09D334" style="transform:scale(0.7);margin-right:26rpx;"></radio>
+                </view>
+                <view class="list_items">
+                    <view class="user_info ly-flex-center">
+                        <view class="user_name min_length">{{item[$orig].name}}</view>
+                        <view class="user_phone">{{item[$orig].phone}}</view>
+                    </view>
+                    <view class="user_addr">{{item[$orig].poi_address+item[$orig].poi_name+item[$orig].address}}</view>
+                    <view class="operation ly-flex-center-between">
+                        <view class="ly-flex-center">
+                            <view class="ly-flex-center" style="height:100%;margin-right:10rpx;" wx:if="{{item[$orig].is_default==1}}">
+                                <image src="../../../static/mine/icon_yxz.png" style="width:30rpx;height:30rpx;margin-right:10rpx;"></image>
+                            </view>
+                            <view style="width:30rpx;height:30rpx;margin-right:10rpx;border:2rpx solid #A9A9A9;border-radius:50%;" wx:else></view>设为默认地址</view>
+                        <view class="edits ly-flex-center-center">
+                            <view class="ly-flex-center-center">
+                                <image src="../../../static/mine/xiugai@2x.png"></image>编辑</view>
+                            <view class="ly-flex-center-center">
+                                <image src="../../../static/garbageSelet/delete.png"></image>删除</view>
+                        </view>
+                    </view>
+                </view>
+            </label>
+        </view>
+    </view>
+    <view style="width:100%;padding:20rpx 0rpx 180rpx 20rpx;" wx:if="{{!is_editing&&address.length>0}}">
+        <view bindtap="__e" class="list_items" data-event-opts="{{[ [ 'tap',[ [ 'choose',['$0'],[ [ ['address','',index] ] ] ] ] ] ]}}" wx:for="{{address}}" wx:key="index">
+            <view class="user_info ly-flex-center">
+                <view class="user_name min_length">{{item.name}}</view>
+                <view class="user_phone">{{item.phone}}</view>
+            </view>
+            <view class="user_addr">{{item.poi_address+item.poi_name+item.address}}</view>
+            <view class="operation ly-flex-center-between">
+                <view catchtap="__e" class="ly-flex-center" data-event-opts="{{[ [ 'tap',[ [ 'setDefaultAddr',['$0'],[ [ ['address','',index] ] ] ] ] ] ]}}">
+                    <view class="ly-flex-center" style="height:100%;margin-right:10rpx;" wx:if="{{item.is_default==1}}">
+                        <image src="../../../static/mine/icon_yxz.png" style="width:30rpx;height:30rpx;"></image>
+                    </view>
+                    <view style="width:30rpx;height:30rpx;margin-right:10rpx;border:2rpx solid #A9A9A9;border-radius:50%;" wx:else></view>设为默认地址</view>
+                <view class="edits ly-flex-center-center">
+                    <view catchtap="__e" class="ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'toEdit',['$0'],[ [ ['address','',index,'id'] ] ] ] ] ] ]}}">
+                        <image src="../../../static/mine/xiugai@2x.png"></image>编辑</view>
+                    <view catchtap="__e" class="ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'toDel',['$0',1],[ [ ['address','',index,'id'] ] ] ] ] ] ]}}">
+                        <image src="../../../static/garbageSelet/delete.png"></image>删除</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="bottom_btns ly-flex-center-center" wx:if="{{address.length>0}}">
+        <view bindtap="__e" class="btns manage" data-event-opts="{{[ [ 'tap',[ [ 'e0',['$event'] ] ] ] ]}}" wx:if="{{!is_editing}}">管理地址</view>
+        <view bindtap="__e" class="btns new_addr" data-event-opts="{{[ [ 'tap',[ [ 'toAddAddr',['$event'] ] ] ] ]}}" wx:if="{{!is_editing}}">新增地址</view>
+        <view bindtap="__e" class="btns manage" data-event-opts="{{[ [ 'tap',[ [ 'overOperation',['$event'] ] ] ] ]}}" wx:if="{{is_editing}}">完成</view>
+        <view bindtap="__e" class="btns del_addr" data-event-opts="{{[ [ 'tap',[ [ 'toDel',['$0'],['sel_addr_id_arr'] ] ] ] ]}}" wx:if="{{is_editing&&sel_addr_id_arr.length>0}}">删除</view>
+        <view class="btns can_not_del_addr" wx:if="{{is_editing&&sel_addr_id_arr.length==0}}">删除</view>
+    </view>
+</view>

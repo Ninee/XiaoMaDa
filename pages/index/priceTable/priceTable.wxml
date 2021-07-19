@@ -1,0 +1,139 @@
+<view style="background-color:#FFFFFF;">
+    <view class="topNav" style="{{'height:'+navHeight+'px'+';'}}"></view>
+    <view class="top" style="{{'top:'+navHeight+'px'+';'}}">
+        <view style="width:100%;display:flex;">
+            <view bindtap="__e" class="ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'goBack',['$event'] ] ] ] ]}}" style="width:88rpx;height:88rpx;">
+                <image src="../../../static/index/icon_blackb.png" style="width:30rpx;height:30rpx;"></image>
+            </view>
+            <view style="font-size:36rpx;color:#333;position:absolute;top:0;left:41%;">分类</view>
+        </view>
+    </view>
+    <scroll-view class="kite-classify-scroll" scrollIntoView="{{'T'+recovery_category_id}}" scrollX="true" style="{{'top:calc('+navHeight+'px + 88rpx);'}}">
+        <view bindtap="__e" class="kite-classify-cell" data-event-opts="{{[ [ 'tap',[ [ 'showSon',['$0'],[ [ ['lookPriceLists','',index] ] ] ] ] ] ]}}" id="{{'T'+item.id}}" wx:for="{{lookPriceLists}}" wx:key="index">
+            <view class="{{['kite-classify-cell-item',recovery_category_id==item.id?'sel_kite-classify-cell-item':'']}}">
+                <view class="{{['type_imgs','ly-flex-center-center',recovery_category_id==item.id?'select_imgs':'']}}">
+                    <image src="{{item.logo_url}}"></image>
+                </view>
+                <view class="{{['type_title','min_length',recovery_category_id==item.id?'select_title':'']}}">{{item.title}}</view>
+            </view>
+        </view>
+    </scroll-view>
+    <view style="{{'height:calc('+navHeight+'px + 88rpx + '+'160rpx);'}}"></view>
+    <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toGiftsPage',['$event'] ] ] ] ]}}" style="padding-left:20rpx;" wx:if="{{msgs.length>0}}">
+        <notices bind:__l="__l" msgs="{{msgs}}" style="width:100%;" vueId="5faae63d-1"></notices>
+    </view>
+    <view class="recover_type" style="{{'height:calc(100vh - '+navHeight+'px - 88rpx - '+'160rpx - '+list_height+');'}}">
+        <scroll-view class="left_list" scrollIntoView="{{'T'+recovery_category_id}}" scrollY="true">
+            <view bindtap="__e" class="{{['left_list_item','ly-flex-center',recovery_category_id==item.id?'sel_color':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'showSon',['$0'],[ [ ['lookPriceLists','',index] ] ] ] ] ] ]}}" id="{{'T'+item.id}}" wx:for="{{lookPriceLists}}" wx:key="index">
+                <view class="{{[recovery_category_id==item.id?'type_imgs':'not_type_imgs']}}"></view>
+                <view>{{item.title}}</view>
+            </view>
+        </scroll-view>
+        <scroll-view class="right_list" scrollY="true">
+            <view class="list_con" wx:if="{{lookPriceListSon.length>0}}">
+                <view class="list_img">
+                    <swiper autoplay="{{true}}" circular="{{true}}" duration="{{1000}}" interval="{{3000}}" style="width:100%;height:100%;">
+                        <swiper-item>
+                            <image src="https://files.pay.dianjishenghuo.cn/mrys_category_scroll_1.png"></image>
+                        </swiper-item>
+                        <swiper-item>
+                            <image src="https://files.pay.dianjishenghuo.cn/mrys_category_scroll_2.png"></image>
+                        </swiper-item>
+                    </swiper>
+                </view>
+                <view class="list_item" wx:for="{{lookPriceListSon}}" wx:for-index="ind" wx:key="ind">
+                    <image src="{{item.logo_url}}" style="width:140rpx;height:140rpx;display:block;border-radius:10rpx;"></image>
+                    <view style="margin-left:20rpx;display:flex;flex-direction:column;flex:1;justify-content:space-between;">
+                        <view>
+                            <view class="list_item_title min_length">{{item.title}}</view>
+                            <view class="play_tips">
+                                <view wx:for="{{item.slogan}}" wx:for-index="ind" wx:for-item="val" wx:key="ind">
+                                    <text>{{val}}</text>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="btns">
+                            <view class="list_item_price" wx:if="{{item.min_price!=-1&&item.max_price!=-1}}">{{item.min_price==item.max_price?item.max_price+'元/'+item.unit_symbol:'预估价 '+item.min_price+'-'+item.max_price+'元/'+item.unit_symbol}}</view>
+                            <view class="list_item_price" style="color:#BEBEBE;" wx:else>暂未开放</view>
+                            <view bindtap="__e" class="play_order ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ ['sel_weight'] ] ] ]}}" wx:if="{{item.price!=-1}}">+</view>
+                            <view class="play_order ly-flex-center-center" style="background-color:#BEBEBE;" wx:else>+</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="ly-flex-center-center" style="height:100%;" wx:if="{{lookPriceListSon.length<=0&&recovery_category_id}}">该区域暂未开放~</view>
+            <view class="ly-flex-center-center" style="height:100%;flex-direction:column;" wx:if="{{lookPriceListSon.length<=0&&!recovery_category_id}}">
+                <image src="../../../static/index/noresult.png" style="display:block;width:100rpx;height:100rpx;margin-bottom:20rpx;"></image>
+                <view>该分类暂未开放~</view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="play_order_btn_box">
+        <view wx:if="{{is_show_car}}">
+            <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toGiftsPage',['$event'] ] ] ] ]}}" wx:if="{{msgs.length>0}}">
+                <notices bind:__l="__l" msgs="{{msgs}}" style="width:100%;" vueId="5faae63d-2"></notices>
+            </view>
+            <view class="play_order_top ly-flex-center-between">
+                <view>回收物品</view>
+                <view bindtap="__e" class="ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'clearOrderItems',['$event'] ] ] ] ]}}" style="color:#999999;font-size:24rpx;">
+                    <image src="../../../static/garbageSelet/delete.png" style="margin-right:6rpx;"></image>
+                    <view style="padding-bottom:2rpx;">清除</view>
+                </view>
+            </view>
+        </view>
+        <view catchtouchmove="__e" data-event-opts="{{[ [ 'touchmove',[ [ 'e0',['$event'] ] ] ] ]}}" style="max-height:60vh;overflow:auto;padding:0 20rpx;">
+            <view class="recovery_goods_items" wx:if="{{is_show_car}}" wx:for="{{order_items}}" wx:key="index">
+                <view class="recovery_goods_items_l">
+                    <image src="{{item.imgs}}"></image>
+                    <view>
+                        <view>{{item.name}}</view>
+                        <view class="weight_num">{{item.weight}}</view>
+                    </view>
+                </view>
+                <view class="recovery_goods_items_r">
+                    <view>{{'￥'+(item.min==0?'':item.min+'-')+item.max}}</view>
+                    <image bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toDeleteOrderItems',['$0'],[ [ ['order_items','',index] ] ] ] ] ] ]}}" src="../../../static/index/icon-shanchu.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="play_order_btn">
+            <view class="over_reduce_tips_box ly_flex_column" wx:if="{{activity.length>0&&is_show_active}}">
+                <view animation="{{animationData}}" class="ly_flex_center_column" style="position:absolute;">
+                    <view class="over_reduce_tips">{{activity[0].sub_rule}}</view>
+                    <view class="sanjiao"></view>
+                </view>
+            </view>
+            <view class="play_order_l">
+                <view bindtap="__e" class="play_order_img" data-event-opts="{{[ [ 'tap',[ [ 'playOrderImg',['$event'] ] ] ] ]}}">
+                    <view class="play_order_type_num min_length" wx:if="{{order_items.length}}">{{order_items.length>99?'99+':order_items.length}}</view>
+                </view>
+                <view class="play_order_content">
+                    <view>
+                        <text style="color:#41414D;font-weight:800;">预估</text>
+                        <text style="font-size:24rpx;">￥</text>
+                        <text wx:if="{{total_price.min==total_price.max}}">0.00</text>
+                        <text wx:else>{{(total_price.min==0?'':total_price.min+'-')+total_price.max}}</text>
+                    </view>
+                    <view class="play_order_tips">成交价格以实际评估为准</view>
+                </view>
+            </view>
+            <view bindtap="__e" class="play_order_r" data-event-opts="{{[ [ 'tap',[ [ 'toPlayOrder',['$event'] ] ] ] ]}}">去下单</view>
+        </view>
+    </view>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="selWeightPopup" maskClick="{{false}}" type="center" vueId="5faae63d-3" vueSlots="{{['default']}}">
+        <view class="sel_weight_popup_box">
+            <view class="titles1">{{content_title}}</view>
+            <view class="titles2">规格</view>
+            <view class="weight_btns ly-flex-center-between">
+                <view bindtap="__e" class="{{['goods_items',item.min==min_weight?'sel_goods_items':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'toSelWeightArea',['$0','$1'],[ [ ['unit_option_list','',index,'min'] ],[ ['unit_option_list','',index,'max'] ] ] ] ] ] ]}}" wx:for="{{unit_option_list}}" wx:key="index">
+                    <text wx:if="{{item.min==0}}">{{item.max+unit_symbol+'以上'}}</text>
+                    <text wx:else>{{item.min+'-'+item.max+unit_symbol}}</text>
+                </view>
+            </view>
+            <view class="confirm_cancle">
+                <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'e1',['$event'] ] ] ] ]}}" style="border-right:2rpx solid #E6E6E6;">取消</view>
+                <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toAddCar',['$event'] ] ] ] ]}}">添加</view>
+            </view>
+        </view>
+    </uni-popup>
+</view>

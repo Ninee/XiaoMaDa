@@ -1,0 +1,72 @@
+<view style="overflow-x:hidden;">
+    <view class="topNav" style="{{'height:'+navHeight+'px'+';'}}"></view>
+    <view class="top" style="{{'top:'+navHeight+'px'+';'}}">
+        <view style="width:100%;display:flex;">
+            <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'goIndex',['$event'] ] ] ] ]}}" style="margin-left:30rpx;">
+                <view style="display:flex;justify-content:center;">
+                    <view style="width:100rpx;">
+                        <image src="../../static/index/icon_blackb.png" style="width:30rpx;height:30rpx;vertical-align:middle;"></image>
+                    </view>
+                </view>
+            </view>
+            <view style="font-size:36rpx;color:#333333;position:absolute;top:0;left:41%;font-weight:400;">每日一收</view>
+        </view>
+    </view>
+    <map bindregionchange="__e" class="map vue-ref" data-event-opts="{{[ [ 'regionchange',[ [ 'bindregionchangeEvent',['$event'] ] ] ] ]}}" data-ref="myMap" id="myMap" latitude="{{latitude}}" longitude="{{longitude}}" showLocation="{{false}}" style="{{'margin-top:calc('+navHeight+'px + 88rpx);height: calc(100vh - 542rpx - '+navHeight+'px)'}}">
+        <cover-view style="position:absolute;top:calc(50% - 100rpx);left:calc(50% - 100rpx);z-index:0;">
+            <cover-image hidden="{{!!is_more_info}}" src="/static/index/icon_dingwei.png" style="width:200rpx;height:100rpx;"></cover-image>
+        </cover-view>
+        <cover-image bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'goZero',['$event'] ] ] ] ]}}" hidden="{{!!is_more_info}}" src="/static/index/icon_sddingwei.png" style="width:80rpx;height:80rpx;position:absolute;bottom:100rpx;right:20rpx;background-color:#FFFFFF;border-radius:50%;box-shadow:0px 0px 10px 0px rgba(0, 0, 0, 0.1);z-index:200;"></cover-image>
+    </map>
+    <view catchtouchmove="__e" class="index_bottom" data-event-opts="{{[ [ 'touchmove',[ [ 'e0',['$event'] ] ] ] ]}}" style="{{'margin-bottom:'+input_bottom+'rpx;'}}">
+        <view class="tips_text ly-flex-center" wx:if="{{msgs.length==0}}">
+            <view class="ly-flex-center">
+                <image src="../../static/index/icon_laba.png" style="width:30rpx;height:30rpx;margin:-4rpx 22rpx 0 26rpx;vertical-align:middle;"></image>
+                <text>填写地址，立即预约上门回收~~</text>
+            </view>
+        </view>
+        <view bindtap="__e" class="tips_text ly-flex-center" data-event-opts="{{[ [ 'tap',[ [ 'toGiftsPage',['$event'] ] ] ] ]}}" style="padding-left:0;" wx:else>
+            <notices bind:__l="__l" msgs="{{msgs}}" style="width:100%;" vueId="1a680fa6-1"></notices>
+        </view>
+        <view class="address_time">
+            <view class="show_address">
+                <view class="addr_pop" wx:if="{{show_min_addr}}">
+                    <view class="addr_pop_bg"></view>
+                    <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'myAddr',['$event'] ] ] ] ]}}" style="background-color:#474747;padding:20rpx;border-radius:10px 0 0 10px;">
+                        <text class="min_length">{{(min_distence_addr.poi_name||'')+(min_distence_addr.address||'')}}</text>
+                        <view class="_br"></view>{{(min_distence_addr.name||'')+' '+(min_distence_addr.phone||'')}}</view>
+                    <view bindtap="__e" class="cacle" data-event-opts="{{[ [ 'tap',[ [ 'e1',['$event'] ] ] ] ]}}">
+                        <text>×</text>
+                    </view>
+                </view>
+                <view bindtap="__e" class="choose_address" data-event-opts="{{[ [ 'tap',[ [ 'chooseAddress',['$event'] ] ] ] ]}}">
+                    <view style="width:10rpx;height:10rpx;border-radius:50%;border:2rpx solid #09D334;"></view>
+                    <view class="address">
+                        <text class="min_length">{{choose_addr}}</text>
+                        <image src="../../static/index/icon_local.png" style="width:30rpx;height:30rpx;"></image>
+                    </view>
+                </view>
+                <view class="detailed_address">
+                    <view style="width:10rpx;height:10rpx;border-radius:50%;border:2rpx solid #09D334;"></view>
+                    <view class="detailed">
+                        <input bindinput="__e" cursorSpacing="{{20}}" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','address','$event',[] ] ] ] ] ]}}" placeholder="单元、门牌号，如：6单元606" style="flex:1;" value="{{address}}"></input>
+                    </view>
+                </view>
+                <view class="name_tell">
+                    <view class="name_tell_left">
+                        <view style="width:10rpx;height:10rpx;border-radius:50%;border:2rpx solid #09D334;"></view>
+                        <input bindinput="__e" cursorSpacing="{{20}}" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','user_name','$event',[] ] ] ] ] ]}}" placeholder="姓名" value="{{user_name}}"></input>
+                    </view>
+                    <view class="name_tell_right">
+                        <view style="width:10rpx;height:10rpx;border-radius:50%;border:2rpx solid #09D334;"></view>
+                        <input bindinput="__e" cursorSpacing="{{20}}" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','user_phone_num','$event',[] ] ] ] ] ]}}" placeholder="手机号" value="{{user_phone_num}}"></input>
+                    </view>
+                    <view bindtap="__e" class="one_get" data-event-opts="{{[ [ 'tap',[ [ 'getUserPhoneNum',['$event'] ] ] ] ]}}">自动获取</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view style="position:fixed;left:0rpx;bottom:50rpx;width:100%;padding:0 20rpx;" wx:if="{{!is_more_info}}">
+        <view bindtap="__e" class="play_order_btn" data-event-opts="{{[ [ 'tap',[ [ 'next',['$event'] ] ] ] ]}}">立刻下单</view>
+    </view>
+</view>

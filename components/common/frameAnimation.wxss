@@ -1,0 +1,27 @@
+.frame_wrap {
+    width: var(--width);
+    height: var(--height);
+    animation: frames calc(var(--duration) * 1s) steps(var(--count)) var(--playNumber);
+    background-position: 0 0;
+    background-size: calc(var(--width) * var(--count)) var(--height);
+}
+
+@-webkit-keyframes frames {
+    from {
+        background-position-x: calc(var(--width) * var(--count));
+    }
+
+    to {
+        background-position-x: 0;
+    }
+}
+
+@keyframes frames {
+    from {
+        background-position-x: calc(var(--width) * var(--count));
+    }
+
+    to {
+        background-position-x: 0;
+    }
+}

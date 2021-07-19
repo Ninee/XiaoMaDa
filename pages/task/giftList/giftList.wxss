@@ -1,0 +1,40 @@
+page {
+    background-color: #b31a14;
+}
+
+.out_borser {
+    padding: 20rpx;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.out_borser .list_item {
+    width: 350rpx;
+    height: 400rpx;
+    background: #fff;
+    border-radius: 10rpx;
+    margin-bottom: 20rpx;
+}
+
+.out_borser .list_item .list_item_img {
+    width: 300rpx;
+    height: 300rpx;
+    margin: 0 26rpx 18rpx;
+}
+
+.out_borser .describ {
+    color: #202020;
+    font-size: 32rpx;
+    padding: 0 16rpx;
+}
+
+.none {
+    color: #fff;
+    text-align: center;
+    font-size: 26rpx;
+    width: 100%;
+    height: 100vh;
+    line-height: 100vh;
+}

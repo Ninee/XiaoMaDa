@@ -1,0 +1,34 @@
+.imgs {
+    padding-bottom: 148rpx;
+    width: 100%;
+}
+
+.imgs image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin-top: -2rpx;
+}
+
+.out_padding {
+    padding: 0 20rpx;
+    width: 100%;
+}
+
+.btn_position {
+    position: fixed;
+    bottom: 0;
+    padding: 20rpx 20rpx 50rpx;
+    background: #fff;
+    box-shadow: 0 0 10rpx 0 rgba(0,0,0,.1);
+}
+
+.play_order_btn {
+    font-size: 36rpx;
+    color: #fff;
+    text-align: center;
+    height: 80rpx;
+    line-height: 80rpx;
+    background: #09d334;
+    border-radius: 40rpx;
+}

@@ -1,0 +1,68 @@
+<view style="background-color:#F7F7F7;">
+    <view class="forms">
+        <form bindsubmit="__e" data-event-opts="{{[ [ 'submit',[ [ 'formSubmit',['$event'] ] ] ] ]}}">
+            <view class="form_item mine_flex_c border_bottom">
+                <view class="title">店铺名称</view>
+                <input bindinput="__e" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','mer_name','$event',[] ] ] ] ] ]}}" placeholder="请输入企业名称" value="{{mer_name}}"></input>
+            </view>
+            <view bindtap="__e" class="form_item border_bottom mine_flex_jb" data-event-opts="{{[ [ 'tap',[ [ 'choose_address',['$event'] ] ] ] ]}}">
+                <view class="mine_flex_c">
+                    <view class="title">经营地址</view>
+                    <view wx:if="{{!choose_addr}}">请选择地址</view>
+                    <view wx:else>{{choose_addr}}</view>
+                </view>
+                <view style="padding-right:30rpx;">></view>
+            </view>
+            <view class="form_item mine_flex_c border_bottom">
+                <view class="title">门牌号</view>
+                <input bindinput="__e" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','mer_store_number','$event',[] ] ] ] ] ]}}" placeholder="单元、门牌号，如：2单元2304" value="{{mer_store_number}}"></input>
+            </view>
+            <view class="form_chooseImg mine_flex_c border_bottom" style="background-color:#FFFFFF;">
+                <view style="height:100%;width:174rpx;">
+                    <view class="img_title" style="height:26rpx;line-height:26rpx;margin-top:34rpx;">营业执照</view>
+                </view>
+                <view class="take_phone_index" style="display:flex;">
+                    <view bindtap="__e" class="take_phone1" data-event-opts="{{[ [ 'tap',[ [ 'chooseImage',['upImg1'] ] ] ] ]}}">
+                        <text class="img_center" wx:if="{{upImg1.show}}">+</text>
+                        <image src="{{upImg1.url}}" wx:else></image>
+                    </view>
+                </view>
+            </view>
+            <view class="form_item mine_flex_c border_bottom">
+                <view class="title">企业法人</view>
+                <input bindinput="__e" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','legal_name','$event',[] ] ] ] ] ]}}" placeholder="请输入企业法人姓名" value="{{legal_name}}"></input>
+            </view>
+            <view class="form_item mine_flex_c border_bottom">
+                <view class="title">联系方式</view>
+                <input bindinput="__e" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','phone','$event',[] ] ] ] ] ]}}" placeholder="请输入法人联系方式" value="{{phone}}"></input>
+            </view>
+            <view class="form_item mine_flex_c border_bottom">
+                <view class="title">经营范围</view>
+                <input bindinput="__e" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','business_content','$event',[] ] ] ] ] ]}}" placeholder="请输入业务内容" value="{{business_content}}"></input>
+            </view>
+            <view class="form_chooseImg mine_flex_c border_bottom" style="background-color:#FFFFFF;">
+                <view style="height:100%;width:174rpx;">
+                    <view class="img_title" style="height:26rpx;line-height:26rpx;margin-top:34rpx;">门头照片</view>
+                </view>
+                <view class="take_phone_index" style="display:flex;">
+                    <view bindtap="__e" class="take_phone1" data-event-opts="{{[ [ 'tap',[ [ 'chooseImage',['upImg3'] ] ] ] ]}}">
+                        <text class="img_center" wx:if="{{upImg3.show}}">+</text>
+                        <image src="{{upImg3.url}}" wx:else></image>
+                    </view>
+                    <view bindtap="__e" class="take_phone1" data-event-opts="{{[ [ 'tap',[ [ 'chooseImage',['upImg4'] ] ] ] ]}}">
+                        <text class="img_center" wx:if="{{upImg4.show}}">+</text>
+                        <image src="{{upImg4.url}}" wx:else></image>
+                    </view>
+                </view>
+            </view>
+            <view class="agreement">
+                <label bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'e0',['$event'] ] ] ] ]}}">
+                    <radio checked="{{isChecked}}" style="transform:scale(0.5);" value=""></radio>请先阅读并同意<text style="color:#108EE9;">《用户协议》</text>
+                </label>
+            </view>
+            <view class="submit_btn">
+                <button class="phone_btn" formType="submit">提交申请</button>
+            </view>
+        </form>
+    </view>
+</view>

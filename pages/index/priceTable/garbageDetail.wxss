@@ -1,0 +1,121 @@
+page {
+    background-color: #fff;
+}
+
+.content {
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: #333;
+}
+
+.content .bg_colors1 {
+    background-color: #3b91ce;
+}
+
+.content .bg_colors2 {
+    background-color: #da2d10;
+}
+
+.content .bg_colors3 {
+    background-color: #017f36;
+}
+
+.content .bg_colors4 {
+    background-color: #333;
+}
+
+.content .topNav {
+    width: 100vh;
+    top: 0;
+}
+
+.content .top,.content .topNav {
+    color: #fff;
+    position: fixed;
+    left: 0;
+    z-index: 100;
+}
+
+.content .top {
+    width: 100vw;
+    height: 88rpx;
+    line-height: 88rpx;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.content .top_content {
+    padding: 46rpx 0 28rpx;
+    width: 100%;
+    color: #fff;
+}
+
+.content .top_content .garbage_name {
+    font-size: 52rpx;
+    text-align: center;
+}
+
+.content .top_content .imgs {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.content .top_content .imgs image {
+    width: 120rpx;
+    height: 120rpx;
+    margin: 54rpx 0 36rpx;
+    display: block;
+}
+
+.content .top_content .garbage_titlesF {
+    font-size: 32rpx;
+    text-align: center;
+}
+
+.content .garbage_contentF {
+    font-size: 28rpx;
+    font-weight: 300;
+    margin-top: 20rpx;
+    line-height: 36rpx;
+    text-align: justify;
+    padding: 0 118rpx 0 132rpx;
+}
+
+.content .bottom_content {
+    width: 580rpx;
+    text-align: center;
+    background-color: #f7f7f7;
+    margin-top: 60rpx;
+    padding-bottom: 76rpx;
+}
+
+.content .bottom_content .garbage_titlesS {
+    font-size: 32rpx;
+    font-weight: 700;
+    margin: 42rpx 0 30rpx;
+    text-align: center;
+}
+
+.content .bottom_content .garbage_contentS {
+    font-size: 28rpx;
+    font-weight: 300;
+    margin-top: 20rpx;
+    line-height: 36rpx;
+    text-align: justify;
+    padding: 0 40rpx;
+}
+
+.icon_type {
+    width: 20rpx;
+    height: 30rpx;
+    vertical-align: middle;
+}

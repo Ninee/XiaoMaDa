@@ -1,0 +1,135 @@
+<view class="content">
+    <view class="order_content">
+        <view class="ly-flex-center-between order_title">
+            <view class="order_title_l" wx:if="{{orderData.order_status==10}}">未接单</view>
+            <view class="order_title_l" style="color:#017F35;" wx:if="{{orderData.order_status==20}}">已接单</view>
+            <view class="order_title_l" style="color:#017F35;" wx:if="{{orderData.order_status==25}}">上门取件中</view>
+            <view class="order_title_l" style="color:rgba(102,102,102,1);" wx:if="{{orderData.order_status==30||orderData.order_status==40}}">已完成</view>
+            <view class="order_title_l" style="color:rgba(153,153,153,1);" wx:if="{{orderData.order_status==50}}">已取消</view>
+            <view bindtap="__e" class="order_title_r" data-event-opts="{{[ [ 'tap',[ [ 'detailOrder',['$0'],['ids'] ] ] ] ]}}" wx:if="{{orderData.order_status==10||orderData.order_status==20}}">取消订单</view>
+            <view bindtap="__e" class="order_title_r" data-event-opts="{{[ [ 'tap',[ [ 'toEvaluate',['$event'] ] ] ] ]}}" style="background:rgba(245,156,18,1);" wx:if="{{order_status==30}}">待评价</view>
+        </view>
+        <view class="map" wx:if="{{orderData.order_status==25}}">
+            <map class="{{['maps',isPull?'maps_h':'']}}" id="maps" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{covers}}" scale="{{20}}"></map>
+            <view bindtap="__e" class="fresh" data-event-opts="{{[ [ 'tap',[ [ 'flushCater',['$event'] ] ] ] ]}}">
+                <image src="../../../static/order/icon-sx@2x.png"></image>
+            </view>
+            <view bindtap="__e" class="changeBig" data-event-opts="{{[ [ 'tap',[ [ 'e0',['$event'] ] ] ] ]}}" hidden="{{!!isPull}}">
+                <image src="../../../static/order/jt@2x.png"></image>
+            </view>
+            <view bindtap="__e" class="changeSmall" data-event-opts="{{[ [ 'tap',[ [ 'e1',['$event'] ] ] ] ]}}" hidden="{{!isPull}}">
+                <image src="../../../static/order/jt@2x.png"></image>
+            </view>
+        </view>
+        <view class="order_contents ly-flex-start-between">
+            <view class="order_contents_l">订单编号:</view>
+            <view class="order_contents_r">{{orderData.order_no}}</view>
+        </view>
+        <view class="order_contents ly-flex-start-between">
+            <view class="order_contents_l">预约时间:</view>
+            <view class="order_contents_r">{{orderData.appointment_time_str}}</view>
+        </view>
+        <view class="order_contents ly-flex-start-between">
+            <view class="order_contents_l">回收地址:</view>
+            <view class="order_contents_r">{{orderData.terminal_user_address}}</view>
+        </view>
+        <view class="order_contents ly-flex-start-between">
+            <view class="order_contents_l">预约分类:</view>
+            <view class="order_contents_r">{{orderData.recovery_category_str}}</view>
+        </view>
+        <view class="order_contents ly-flex-start-between">
+            <view class="order_contents_l">预约重量:</view>
+            <view class="order_contents_r">{{orderData.weight_remark}}</view>
+        </view>
+        <view class="order_contents ly-flex-start-between" wx:if="{{orderData.order_status==30||orderData.order_status==40}}">
+            <view class="order_contents_l">回收价格:</view>
+            <view class="order_contents_r">{{orderData.total_price+'元'}}</view>
+        </view>
+        <view class="order_contents ly-flex-start-between" wx:if="{{orderData.order_status==30||orderData.order_status==40}}">
+            <view class="order_contents_l">回收重量:</view>
+            <view class="order_contents_r">{{orderData.weight+'kg'}}</view>
+        </view>
+        <view class="order_contents ly-flex-start-between" wx:if="{{orderData.order_status!=10&&orderData.carter_name}}">
+            <view class="order_contents_l">骑手姓名:</view>
+            <view class="order_contents_r">{{orderData.carter_name}}</view>
+        </view>
+        <view class="order_contents ly-flex-start-between" style="margin-bottom:16rpx;" wx:if="{{orderData.order_status!=10&&orderData.carter_phone}}">
+            <view class="order_contents_l">骑手电话:</view>
+            <view class="order_contents_r ly-flex-center-between" style="align-items:flex-start;">
+                <view style="font-weight:bold;">{{orderData.carter_phone}}</view>
+                <view bindtap="__e" class="call_rider" data-event-opts="{{[ [ 'tap',[ [ 'toTell',['$0'],['orderData.carter_phone'] ] ] ] ]}}" wx:if="{{orderData.order_status==20||orderData.order_status==25}}">联系骑手</view>
+            </view>
+        </view>
+        <view class="order_contents" style="display:flex;font-size:30rpx;margin-bottom:16rpx;" wx:if="{{orderData.order_status==30||orderData.order_status==40}}">
+            <view class="order_contents_l" style="min-width:130rpx;">服务评价:</view>
+            <view hidden="{{!(orderData.order_status==30)}}">暂未评价</view>
+            <view hidden="{{!(orderData.order_status==40)}}" style="font-weight:bold;">
+                <view hidden="{{!(orderData.carter_satisfied==1)}}" style="color:#017F36;">满意</view>
+                <view hidden="{{!(orderData.carter_satisfied==0)}}" style="color:#FF0000;">不满意</view>
+            </view>
+        </view>
+        <view class="order_contents" style="display:flex;font-size:30rpx;margin-bottom:16rpx;" wx:if="{{orderData.order_status==40}}">
+            <view style="font-weight:300;text-align:justify;text-align-last:left;color:#999999;">{{orderData.content}}</view>
+        </view>
+        <view class="phone_title" wx:if="{{photos!=''}}">实拍照片:</view>
+        <view class="take_phone_index" wx:if="{{photos!=''}}">
+            <image bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ '_previewImage',[index] ] ] ] ]}}" src="{{item}}" wx:for="{{photos}}" wx:key="index"></image>
+        </view>
+        <view class="message" style="color:#666666;" wx:if="{{orderData.message}}">
+            <view class="order_contents_l" style="margin-right:24rpx;">备注留言:</view>
+            <view class="order_contents_r">{{orderData.message}}</view>
+        </view>
+        <view class="order_contents ly-flex-start-between" wx:if="{{orderData.order_status==50}}">
+            <view class="order_contents_l">取消原因:</view>
+            <view class="order_contents_r">{{orderData.reason_of_cancel}}</view>
+        </view>
+        <view class="take_phone_l" style="margin-top:28rpx;border-top:2rpx solid rgba(230, 230, 230, 1);padding-top:10rpx;">{{'下单时间:\n\t\t\t'+orderData.create_time_str}}</view>
+        <view class="take_phone_l">请保持电话通畅，方便回收员沟通</view>
+    </view>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="popup" type="bottom" vueId="84d42cbe-1" vueSlots="{{['default']}}">
+        <view class="contact">
+            <view class="contact_q">是否拨打骑手电话</view>
+            <view class="contact_phone">{{orderData.carter_phone}}</view>
+            <view class="contact_content">
+                <view>确定将自动跳转至拨号页面</view>
+                <view>如跳转失败请长按电话号码复制</view>
+            </view>
+            <view class="contact_btn">
+                <view bindtap="__e" class="contact_btn_l" data-event-opts="{{[ [ 'tap',[ [ 'e2',['$event'] ] ] ] ]}}">返回</view>
+                <view bindtap="__e" class="contact_btn_r" data-event-opts="{{[ [ 'tap',[ [ 'confirm1',['$event'] ] ] ] ]}}">确定</view>
+            </view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="popup1" type="dialog" vueId="84d42cbe-2" vueSlots="{{['default']}}">
+        <uni-popup-dialog beforeClose="{{true}}" bind:__l="__l" bind:close="__e" bind:confirm="__e" data-event-opts="{{[ [ '^close',[ ['close'] ] ],[ '^confirm',[ ['confirm'] ] ] ]}}" duration="{{2000}}" message="成功消息" mode="input" placeholder="请输入取消原因" title="取消原因" type="input" vueId="{{'84d42cbe-3'+','+'84d42cbe-2'}}" wx:if="{{showPopup1}}"></uni-popup-dialog>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="popup2" type="bottom" vueId="84d42cbe-4" vueSlots="{{['default']}}">
+        <view class="order_evaluate">
+            <view class="evaluate_con">
+                <view class="evaluate_title">请对小哥本次服务进行评价</view>
+                <view class="evaluate_man">
+                    <image class="evaluate_head" src="../../../static/index/icon-zhuye-1@2x.png"></image>
+                    <view class="evaluate_name">{{orderData.carter_name}}</view>
+                </view>
+            </view>
+            <view class="feel_good">
+                <view bindtap="__e" class="feel_goods" data-event-opts="{{[ [ 'tap',[ [ 'bad',['$event'] ] ] ] ]}}">
+                    <image class="feel_good_img" src="../../../static/order/icon-bmy@2x.png"></image>
+                    <text class="{{['feel_good_msg',carter_satisfied==2?'huise':carter_satisfied==0?'hongse':'huise']}}">不满意</text>
+                </view>
+                <view bindtap="__e" class="feel_not" data-event-opts="{{[ [ 'tap',[ [ 'good',['$event'] ] ] ] ]}}">
+                    <image class="feel_nots" src="../../../static/order/icon-my@2x.png"></image>
+                    <text class="{{['feel_not_msg',carter_satisfied==2?'huise':carter_satisfied==1?'bgyellow':'huise']}}">满意</text>
+                </view>
+            </view>
+            <view class="to_evaluate">
+                <view class="write_evaluate">写评价</view>
+                <view class="evaluate_input">
+                    <textarea bindinput="__e" class="evaluate_tex" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','content','$event',[] ] ] ] ] ]}}" placeholder="请留下您的建议或者鼓励，感谢您的支持！" placeholderStyle="text-align:center;padding-top:40rpx" value="{{content}}" wx:if="{{showTextArea}}"></textarea>
+                </view>
+                <button bindtap="__e" class="btn" data-event-opts="{{[ [ 'tap',[ [ 'toSubmit',['$event'] ] ] ] ]}}">提交</button>
+            </view>
+        </view>
+    </uni-popup>
+    <view bindtap="__e" class="play_order_btn_two" data-event-opts="{{[ [ 'tap',[ [ 'goIndexs',['$event'] ] ] ] ]}}" wx:if="{{wxVersion=='old'}}">返回</view>
+</view>

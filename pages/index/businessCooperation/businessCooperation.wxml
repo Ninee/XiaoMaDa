@@ -1,0 +1,15 @@
+<view>
+    <view class="imgs">
+        <image mode="widthFix" src="{{$root.g0}}"></image>
+        <image mode="widthFix" src="{{$root.g1}}"></image>
+        <image mode="widthFix" src="{{$root.g2}}"></image>
+        <image mode="widthFix" src="{{$root.g3}}"></image>
+        <image mode="widthFix" src="{{$root.g4}}"></image>
+        <image mode="widthFix" src="{{$root.g5}}"></image>
+        <image mode="widthFix" src="{{$root.g6}}"></image>
+        <image mode="widthFix" src="{{$root.g7}}"></image>
+    </view>
+    <view class="out_padding btn_position">
+        <view bindtap="__e" class="play_order_btn" data-event-opts="{{[ [ 'tap',[ [ 'next',['$event'] ] ] ] ]}}">申请加入</view>
+    </view>
+</view>

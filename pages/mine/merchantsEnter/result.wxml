@@ -1,0 +1,36 @@
+<view>
+    <view class="top_border">
+        <view class="top_img" hidden="{{!(status==0)}}">
+            <image src="../../../static/mine/wait.png"></image>
+        </view>
+        <view class="top_img" hidden="{{!(status==1)}}">
+            <image src="../../../static/mine/pass.png"></image>
+        </view>
+        <view class="top_img" hidden="{{!(status==2)}}">
+            <image src="../../../static/mine/failed.png"></image>
+        </view>
+        <view class="top_title" hidden="{{!(status==0)}}">资料审核中!</view>
+        <view class="top_title" hidden="{{!(status==1)}}">资料审核已通过!</view>
+        <view class="top_title" hidden="{{!(status==2)}}">资料审核未通过!</view>
+        <view hidden="{{!(status==2)}}" style="color:#666666;">{{'拒绝原因:'+value}}</view>
+    </view>
+    <view class="step">
+        <image src="../../../static/mine/icon-py.png"></image>
+        <view class="line_out">
+            <view class="line"></view>
+        </view>
+        <image src="../../../static/mine/icon-py.png"></image>
+        <view class="line_out">
+            <view class="line"></view>
+        </view>
+        <image src="../../../static/mine/icon-py.png" wx:if="{{status==1||status==2}}"></image>
+        <image src="../../../static/mine/icon-pn.png" wx:else></image>
+        <view class="step_one">已提交</view>
+        <view class="step_two">审核中</view>
+        <view class="step_three">审核结果</view>
+    </view>
+    <view bindtap="__e" class="btns" data-event-opts="{{[ [ 'tap',[ [ 'goBack',['$event'] ] ] ] ]}}" style="margin-top:176rpx;" wx:if="{{status==0}}">返回</view>
+    <view bindtap="__e" class="btns" data-event-opts="{{[ [ 'tap',[ [ 'toMerCenter',['$event'] ] ] ] ]}}" style="margin-top:176rpx;" wx:if="{{status==1}}">进入商户主页</view>
+    <view bindtap="__e" class="btns" data-event-opts="{{[ [ 'tap',[ [ 'resWriter',['$event'] ] ] ] ]}}" style="margin-top:176rpx;background-color:#FF6600;" wx:if="{{status==2}}">重新填写资料</view>
+    <view bindtap="__e" class="btns" data-event-opts="{{[ [ 'tap',[ [ 'goBack',['$event'] ] ] ] ]}}" style="margin-top:30rpx;" wx:if="{{status==2}}">返回</view>
+</view>

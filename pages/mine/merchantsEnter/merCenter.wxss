@@ -1,0 +1,67 @@
+page {
+    background-color: #108ee9;
+}
+
+.top_content {
+    padding-left: 68rpx;
+    color: #fff;
+    padding-top: 36rpx;
+}
+
+.top_content .mer_name {
+    font-size: 24rpx;
+}
+
+.top_content .confirm_name {
+    font-size: 36rpx;
+}
+
+.top_content .energy {
+    font-size: 24rpx;
+    margin-top: 32rpx;
+}
+
+.top_content .energy_num {
+    font-size: 60rpx;
+}
+
+.advertisement {
+    margin: 40rpx 20rpx 0;
+    height: 120rpx;
+    line-height: 120rpx;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10rpx;
+}
+
+.advertisement image {
+    width: 60rpx;
+    height: 60rpx;
+    margin: 0 68rpx 0 30rpx;
+}
+
+.advertisement .text_one {
+    font-size: 36rpx;
+    color: #333;
+}
+
+.advertisement .text_two {
+    font-size: 26rpx;
+    color: #108ee9;
+    margin-left: 22rpx;
+}
+
+.none {
+    margin: 20rpx 20rpx 0;
+    height: 400rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+}
+
+.charts,.qiun-charts {
+    width: 710rpx;
+    height: 400rpx;
+    background-color: #fff;
+}

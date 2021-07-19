@@ -1,0 +1,108 @@
+.forms {
+    background-color: #f7f7f7;
+    color: #41414d;
+}
+
+.forms .form_item {
+    background-color: #fff;
+    padding-left: 30rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    font-size: 26rpx;
+}
+
+.forms .form_item .title {
+    margin-right: 34rpx;
+    font-weight: 700;
+    width: 110rpx;
+}
+
+.forms .form_chooseImg {
+    height: 178rpx;
+    line-height: 178rpx;
+}
+
+.forms .agreement {
+    height: 90rpx;
+    line-height: 90rpx;
+    display: flex;
+    font-size: 24rpx;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.forms .submit_btn {
+    padding: 0 30rpx;
+    text-align: center;
+    font-size: 36rpx;
+}
+
+.phone_btn {
+    background: none;
+    line-height: 1;
+    display: flex;
+    -webkit-box-flex: 1;
+    flex: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0 0 4rpx;
+    color: #fff;
+    height: 90rpx;
+    line-height: 90rpx;
+    background-color: #108ee9;
+}
+
+.phone_btn,.phone_btn:after {
+    border: none;
+}
+
+.mine_flex_c {
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.mine_flex_c,.mine_flex_jb {
+    display: flex;
+}
+
+.mine_flex_jb {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.border_bottom {
+    border-bottom: 2rpx solid #e6e6e6;
+}
+
+.take_phone1 {
+    width: 140rpx;
+    height: 140rpx;
+    line-height: 140rpx;
+    text-align: center;
+    background: #fff;
+    border: 2px dashed #108ee9;
+    margin-right: 20rpx;
+}
+
+.img_center {
+    color: #108ee9;
+    font-size: 44rpx;
+    text-align: center;
+}
+
+.take_phone1 image {
+    width: 100%;
+    height: 100%;
+}
+
+.img_title {
+    font-weight: 700;
+    width: 150rpx;
+    font-size: 26rpx;
+    padding-left: 30rpx;
+}

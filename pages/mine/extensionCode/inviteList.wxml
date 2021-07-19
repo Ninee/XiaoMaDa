@@ -1,0 +1,79 @@
+<view class="out_padding">
+    <view class="white_box ly-flex-center-center">
+        <view class="money_l ly_flex_center_column">
+            <view class="moneys_num">
+                <text class="DIN">{{on_the_road_earnings}}</text>
+                <text class="money_symbol">元</text>
+            </view>
+            <view class="moneys_title">在路上收益</view>
+        </view>
+        <view class="lines"></view>
+        <view class="money_l ly_flex_center_column">
+            <view class="moneys_num">
+                <text class="DIN">{{accumulative_total_earnings}}</text>
+                <text class="money_symbol">元</text>
+            </view>
+            <view class="moneys_title">累计收益</view>
+        </view>
+    </view>
+    <view class="white_box" style="padding:30rpx 24rpx 0rpx 24rpx;">
+        <view class="top_btns ly-flex-center-center">
+            <block wx:if="{{is_road_money}}">
+                <view bindtap="__e" class="top_btns_l ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'selList',[1] ] ] ] ]}}">在路上收益</view>
+                <view bindtap="__e" class="top_btns_r ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'selList',[0] ] ] ] ]}}">累计收益</view>
+            </block>
+            <block wx:else>
+                <view bindtap="__e" class="top_btns_r ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'selList',[1] ] ] ] ]}}" style="border-radius:26rpx 0px 0px 26rpx;">在路上收益</view>
+                <view bindtap="__e" class="top_btns_l ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'selList',[0] ] ] ] ]}}" style="border-radius:0px 26rpx 26rpx 0px;">累计收益</view>
+            </block>
+        </view>
+        <view class="friend_list">
+            <block wx:if="{{is_road_money}}">
+                <view class="list_item ly-flex-center" wx:for="{{my_invitation_list}}" wx:key="index">
+                    <image class="friend_list_head_img" src="{{item.pic}}" wx:if="{{item.pic}}"></image>
+                    <image class="friend_list_head_img" src="/static/mine/defaultHeader.png" wx:else></image>
+                    <view class="list_item_tell ly_flex_column">
+                        <view class="list_item_top">{{item.phone}}</view>
+                        <view class="list_item_time">{{item.create_time_str}}</view>
+                    </view>
+                    <view class="friend_list_money ly-flex-end">
+                        <view class="friend_list_money_num DIN">{{item.sub_rule.prize[0].value}}</view>
+                        <view style="font-size:20rpx;padding-bottom:10rpx;">元</view>
+                    </view>
+                    <view class="list_item_btn ly-flex-center-center">
+                        <button class="phone_btn list_item_btns ly-flex-center-center" openType="share" style="background:#ff9000;">提醒下单</button>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="list_item ly-flex-center" wx:for="{{my_invitation_list}}" wx:key="index">
+                    <image class="friend_list_head_img" src="{{item.pic}}" wx:if="{{item.pic}}"></image>
+                    <image class="friend_list_head_img" src="/static/mine/defaultHeader.png" wx:else></image>
+                    <view class="list_item_tell ly_flex_column">
+                        <view class="list_item_top">{{item.phone}}</view>
+                        <view class="list_item_time">{{item.create_time_str}}</view>
+                    </view>
+                    <view class="friend_list_money ly-flex-end">
+                        <view class="friend_list_money_num DIN">{{item.sub_rule.prize[0].value}}</view>
+                        <view style="font-size:20rpx;padding-bottom:10rpx;">元</view>
+                    </view>
+                    <view bindtap="__e" class="list_item_btn ly_flex_center_column" data-event-opts="{{[ [ 'tap',[ [ 'toGetRewards',['$0'],[ [ ['my_invitation_list','',index] ] ] ] ] ] ]}}">
+                        <view class="list_item_btns ly-flex-center-center" wx:if="{{item.status==2}}">领取红包</view>
+                        <view class="des_two" wx:if="{{item.status==3}}">奖励已发放</view>
+                    </view>
+                </view>
+            </block>
+            <view class="ly-flex-center-center" style="padding-bottom:20rpx;" wx:if="{{my_invitation_list.length==0}}">暂无数据~</view>
+        </view>
+    </view>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="getGift" maskClick="{{true}}" type="center" vueId="6fc018a9-1" vueSlots="{{['default']}}">
+        <view class="pops">
+            <view class="pops_title">{{now_rewards.title}}</view>
+            <view class="pops_img">
+                <image src="/static/task/jinbi2.png"></image>
+            </view>
+            <view class="pops_dis">{{now_rewards.sub_rule.prize[0].value+'个环保币'}}</view>
+            <view bindtap="__e" class="pops_btn" data-event-opts="{{[ [ 'tap',[ [ 'close_pop',['$event'] ] ] ] ]}}">领取成功</view>
+        </view>
+    </uni-popup>
+</view>

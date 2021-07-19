@@ -1,0 +1,77 @@
+.uni-calendar-item__weeks-box.data-v-40c6684c {
+    -webkit-box-flex: 1;
+    flex: 1;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.uni-calendar-item__weeks-box-text.data-v-40c6684c {
+    font-size: 28rpx;
+    color: #333;
+}
+
+.uni-calendar-item__weeks-lunar-text.data-v-40c6684c {
+    font-size: 24rpx;
+    color: #333;
+}
+
+.uni-calendar-item__weeks-box-item.data-v-40c6684c {
+    position: relative;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.uni-calendar-item__weeks-box-circle.data-v-40c6684c {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #dd524d;
+}
+
+.uni-calendar-item--disable.data-v-40c6684c {
+    background-color: hsla(0,0%,97.6%,.3);
+    color: silver;
+}
+
+.uni-calendar-item--isDay-text.data-v-40c6684c {
+    color: #007aff;
+}
+
+.uni-calendar-item--isDay.data-v-40c6684c {
+    background-color: #007aff;
+    opacity: .8;
+    color: #fff;
+}
+
+.uni-calendar-item--extra.data-v-40c6684c {
+    color: #dd524d;
+    opacity: .8;
+}
+
+.uni-calendar-item--checked.data-v-40c6684c,.uni-calendar-item--multiple.data-v-40c6684c {
+    background-color: #007aff;
+    color: #fff;
+    opacity: .8;
+}
+
+.uni-calendar-item--after-checked.data-v-40c6684c,.uni-calendar-item--before-checked.data-v-40c6684c {
+    background-color: #ff5a5f;
+    color: #fff;
+}

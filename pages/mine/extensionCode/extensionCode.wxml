@@ -1,0 +1,245 @@
+<view style="padding-bottom:184rpx;">
+    <view class="topNav" style="{{'height:'+navHeight+'px'+';'}}"></view>
+    <view class="top" style="{{'top:'+navHeight+'px'+';'}}">
+        <view bindtap="__e" class="go_back ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'goBack',['$event'] ] ] ] ]}}">
+            <image src="/static/task/icon_zjt_white.png"></image>
+        </view>
+    </view>
+    <view style="{{'background:'+'#CD0B0B'+';'+'height:'+'calc('+navHeight+'px + '+88+'rpx)'+';'}}"></view>
+    <view class="top_bg" style="{{'background-image: url('+$root.g1+')'}}" wx:if="{{$root.g0}}">
+        <view class="rules_box ly-flex-center">
+            <view bindtap="__e" class="rules_btn" data-event-opts="{{[ [ 'tap',[ [ 'goBottom',['$event'] ] ] ] ]}}">规则</view>
+        </view>
+        <view class="ly-flex-center-between" style="margin-top:-14rpx;padding:0 144rpx;">
+            <view class="gradual_change_line_l"></view>
+            <view class="small_title title_font">多邀多得上不封顶</view>
+            <view class="gradual_change_line_r"></view>
+        </view>
+        <view class="big_title title_font">好友下单 你赚赏金</view>
+        <view class="notice_box ly-flex-center-center">
+            <view class="white_boxs ly-flex-center">
+                <swiper autoplay="{{true}}" circular="{{true}}" class="notice" duration="{{500}}" interval="{{3000}}" vertical="{{true}}">
+                    <swiper-item class="ly-flex-center" wx:for="{{notice_msgs}}" wx:key="index">
+                        <image src="/static/mine/defaultHeader.png"></image>
+                        <text class="tells">{{item.phone||''}}</text>
+                        <text>{{'已赚'+item.moneys+'元'}}</text>
+                    </swiper-item>
+                </swiper>
+            </view>
+        </view>
+        <view class="hongbao_bg" style="{{'background-image: url('+$root.g3+')'}}" wx:if="{{$root.g2}}">
+            <view class="hongbao_titles">每邀请1位新用户下单可获得</view>
+            <view class="hongbao_money">
+                <text class="money_num money_num_color">{{invite_task_list.first_prize.prize[0].value||'?'}}</text>
+                <text class="money_num_symbol money_num_color">元</text>
+            </view>
+            <view class="btn_box ly-flex-center-center">
+                <button class="phone_btn now_invate_btn" openType="share">立即邀请</button>
+            </view>
+            <view bindtap="__e" class="btn_box ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'toOpenCode',['$event'] ] ] ] ]}}" style="margin-top:30rpx;">
+                <view class="face_to_face_btn ly-flex-center-center">面对面邀请</view>
+            </view>
+        </view>
+    </view>
+    <view class="invate_boxs" style="background:#F5F5F5;">
+        <view class="head_img_box">
+            <image class="head_img" src="/static/mine/title.png"></image>
+            <view class="head_img_title">我的邀请</view>
+        </view>
+        <view class="my_datas_box ly-flex-center-center">
+            <view bindtap="__e" class="my_datas ly_flex_center_column" data-event-opts="{{[ [ 'tap',[ [ 'toInviteList',['$event'] ] ] ] ]}}">
+                <view style="width:100%;text-align:center;">
+                    <text class="my_money">{{on_the_road_earnings}}</text>
+                    <text class="money_symbol">元</text>
+                </view>
+                <view class="money_symbol_des ly-flex-center-center">在路上收益></view>
+            </view>
+            <view class="red_line"></view>
+            <view bindtap="__e" class="my_datas ly_flex_center_column" data-event-opts="{{[ [ 'tap',[ [ 'toInviteList',['$event'] ] ] ] ]}}">
+                <view style="width:100%;text-align:center;">
+                    <text class="my_money">{{accumulative_total_earnings}}</text>
+                    <text class="money_symbol">元</text>
+                </view>
+                <view class="money_symbol_des ly-flex-center-center">累计收益></view>
+            </view>
+            <view class="red_line"></view>
+            <view bindtap="__e" class="my_datas ly_flex_center_column" data-event-opts="{{[ [ 'tap',[ [ 'toInviteLogs',['$event'] ] ] ] ]}}">
+                <view style="width:100%;text-align:center;">
+                    <text class="my_money">{{success_invitation_count}}</text>
+                    <text class="money_symbol">人</text>
+                </view>
+                <view class="money_symbol_des ly-flex-center-center">成功邀请></view>
+            </view>
+        </view>
+        <view class="invate_boxs_bottom">
+            <block wx:if="{{accumulative_total_earnings==0}}">
+                <view class="invate_b_b_title">暂无可提取收益</view>
+                <button class="phone_btn invite_btn ly-flex-center-center" openType="share">立刻邀请好友</button>
+            </block>
+            <view bindtap="__e" class="invite_btn ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'toWithDraw',['$event'] ] ] ] ]}}" wx:if="{{accumulative_total_earnings>0}}">提取收益</view>
+            <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toWithDrawLog',['$event'] ] ] ] ]}}" style="padding:14rpx 0 34rpx 0;">
+                <view class="withdraw_logs ly-flex-center-center">
+                    <view>提取记录</view>
+                    <image src="../../../static/index/icon_jt.png" style="width:24rpx;height:24rpx;"></image>
+                </view>
+            </view>
+            <view class="friend_list">
+                <view class="list_item ly-flex-center" wx:for="{{my_invitation_list}}" wx:key="index">
+                    <image class="friend_list_head_img" src="{{item.pic}}" wx:if="{{item.pic}}"></image>
+                    <image class="friend_list_head_img" src="/static/mine/defaultHeader.png" wx:else></image>
+                    <view class="list_item_tell ly_flex_column">
+                        <view class="list_item_top">{{item.phone}}</view>
+                        <view class="list_item_time">{{item.create_time_str}}</view>
+                    </view>
+                    <view class="friend_list_money ly-flex-end">
+                        <view class="friend_list_money_num">{{item.sub_rule.prize[0].value}}</view>
+                        <view style="font-size:20rpx;padding-bottom:10rpx;">元</view>
+                    </view>
+                    <view bindtap="__e" class="list_item_btn ly-flex-center" data-event-opts="{{[ [ 'tap',[ [ 'toGetRewards',['$0',0],[ [ ['my_invitation_list','',index] ] ] ] ] ] ]}}">
+                        <view class="list_item_btns ly-flex-center-center" wx:if="{{item.status==2}}">领取红包</view>
+                        <view class="des_two" wx:if="{{item.status==3}}">奖励已发放</view>
+                        <button class="phone_btn list_item_btns ly-flex-center-center" openType="share" style="background:#ff9000;" wx:if="{{item.status==0||item.status==1}}">提醒下单</button>
+                    </view>
+                </view>
+                <view bindtap="__e" class="look_more" data-event-opts="{{[ [ 'tap',[ [ 'toInviteList',['$event'] ] ] ] ]}}" wx:if="{{my_invitation_list.length>0}}">查看更多</view>
+            </view>
+        </view>
+    </view>
+    <view class="invate_boxs" style="background:#FFFFFF;padding-bottom:62rpx;">
+        <view class="head_img_box">
+            <image class="head_img" src="/static/mine/title.png"></image>
+            <view class="head_img_title">赚提成</view>
+        </view>
+        <view class="get_commission_step ly-flex-center-between">
+            <view class="step_item ly_flex_center_column">
+                <image src="/static/mine/icon_yqhy.png"></image>
+                <view>邀请好友</view>
+            </view>
+            <view class="get_commission_lines"></view>
+            <view class="step_item ly_flex_center_column">
+                <image src="/static/mine/icon_hyxd.png"></image>
+                <view>好友下单</view>
+            </view>
+            <view class="get_commission_lines"></view>
+            <view class="step_item ly_flex_center_column">
+                <image src="/static/mine/icon_lqjl.png"></image>
+                <view>领取奖励</view>
+            </view>
+        </view>
+        <view class="get_commission_title ly-flex-center-between">
+            <view class="gradual_change_line_l"></view>
+            <view>第①重：邀请赏金</view>
+            <view class="gradual_change_line_r"></view>
+        </view>
+        <view class="my_new_custom">已获得<text style="margin:0 16rpx;">{{accumulative_total_earnings}}</text>元，成功邀请<text style="margin:0 16rpx;">{{success_invitation_count}}</text>位好朋友</view>
+        <view class="money_reward_rule ly-flex-center-center">
+            <view style="width:216rpx;">每邀请1位新用户下单必得<text style="margin-left:12rpx;">{{(invite_task_list.first_prize.prize[0].value||'?')+' 元'}}</text>
+            </view>
+            <view class="hongbao_box">
+                <view class="hongbao_box_money">
+                    <text class="hongbao_box_money_num">{{invite_task_list.first_prize.prize[0].value||'?'}}</text>
+                    <text class="money_company">元</text>
+                </view>
+            </view>
+        </view>
+        <view class="get_commission_title ly-flex-center-between" style="margin-top:48rpx;">
+            <view class="gradual_change_line_l"></view>
+            <view>第②重：累计赏金</view>
+            <view class="gradual_change_line_r"></view>
+        </view>
+        <view class="my_new_custom">已邀请<text style="margin:0 16rpx;">{{success_invitation_count}}</text>人，邀请好友越多，赏金越多</view>
+        <view class="commission_hongbao ly-flex-center">
+            <block wx:for="{{invite_task_list.second_prizes_list}}" wx:key="index">
+                <view bindtap="__e" class="commission_hongbao_item" data-event-opts="{{[ [ 'tap',[ [ 'toGetRewards',['$0',2],[ [ ['invite_task_list.second_prizes_list','',index] ] ] ] ] ] ]}}" wx:if="{{invite_task_list.second_prizes_list.length>1&&index<invite_task_list.second_prizes_list.length-1&&(item.status==2||item.status==3)}}">
+                    <view class="commission_h_item_nums ly-flex-end">
+                        <view class="commission_h_item_num">{{item.prize[0].value}}</view>
+                        <view class="money_company">元</view>
+                    </view>
+                    <view class="commission_h_item_des">{{'邀请'+(item.total_count||0)+'人'}}</view>
+                    <view class="commission_h_item_btn ly-flex-center-center" wx:if="{{item.status==2}}">待领取</view>
+                    <view class="commission_h_item_btn ly-flex-center-center" style="color:#666666;" wx:if="{{item.status==3}}">已领取</view>
+                    <view class="now_step" wx:if="{{item.now_step}}">
+                        <text>当前进度</text>
+                        <view class="now_step_sanjiao"></view>
+                    </view>
+                </view>
+                <view class="commission_hongbao_item2" wx:if="{{invite_task_list.second_prizes_list.length>1&&index<invite_task_list.second_prizes_list.length-1&&(item.status==0||item.status==1)}}">
+                    <view class="commission_h_item_nums ly-flex-end">
+                        <view class="commission_h_item_num">{{item.prize[0].value}}</view>
+                        <view class="money_company">元</view>
+                    </view>
+                    <view class="commission_h_item_des" style="color:#FFFFFF;">{{'邀请'+(item.total_count||0)+'人'}}</view>
+                    <view class="commission_h_item_btn ly-flex-center-center">待领取</view>
+                </view>
+            </block>
+        </view>
+        <view bindtap="__e" class="{{['commission_big_hb',invite_task_list.second_prizes_list[invite_task_list_length].status==0||invite_task_list.second_prizes_list[invite_task_list_length].status==1?'big_hb_bg_yellow':'big_hb_bg_red']}}" data-event-opts="{{[ [ 'tap',[ [ 'toGetRewards',['$0',2],['invite_task_list.second_prizes_list.'+invite_task_list_length+''] ] ] ] ]}}" wx:if="{{invite_task_list.second_prizes_list.length>0}}">
+            <view class="commission_h_item_nums ly-flex-end">
+                <view class="commission_h_item_num" wx:if="{{invite_task_list.second_prizes_list[invite_task_list_length].status==0||invite_task_list.second_prizes_list[invite_task_list_length].status==1}}">{{invite_task_list.second_prizes_list[invite_task_list_length].prize[0].value}}</view>
+                <view class="commission_h_item_num" style="color:#DC0000;" wx:else>{{invite_task_list.second_prizes_list[invite_task_list_length].prize[0].value}}</view>
+                <view class="money_company" wx:if="{{invite_task_list.second_prizes_list[invite_task_list_length].status==0||invite_task_list.second_prizes_list[invite_task_list_length].status==1}}">元</view>
+                <view class="money_company" style="color:#DC0000;" wx:else>元</view>
+            </view>
+            <view class="commission_h_item_des" style="color:#FFFFFF;">{{'邀请'+invite_task_list.second_prizes_list[invite_task_list_length].total_count+'人'}}</view>
+            <view class="commission_h_item_btn ly-flex-center-center" style="color:#666666;" wx:if="{{invite_task_list.second_prizes_list[invite_task_list_length].status==3}}">已领取</view>
+            <view class="commission_h_item_btn ly-flex-center-center" wx:else>
+                <text wx:if="{{invite_task_list.second_prizes_list[invite_task_list_length].status==2}}">待领取</text>
+                <text wx:if="{{invite_task_list.second_prizes_list[invite_task_list_length].status==0||invite_task_list.second_prizes_list[invite_task_list_length].status==1}}">待领取</text>
+            </view>
+            <view class="now_step" style="left:84rpx;top:-48rpx;" wx:if="{{invite_task_list.second_prizes_list[invite_task_list_length].now_step}}">
+                <text>当前进度</text>
+                <view class="now_step_sanjiao"></view>
+            </view>
+        </view>
+    </view>
+    <view class="invate_boxs" style="background:#FFFFFF;padding:52rpx 24rpx 20rpx 36rpx;">
+        <view class="head_img_box">
+            <image class="head_img" src="/static/mine/title.png"></image>
+            <view class="head_img_title">活动规则</view>
+        </view>
+        <view style="text-align:justify;">
+            <view style="text-align:left;">{{'1、活动时间：'+(invite_task_list.start_time_str||'?')+'-'+(invite_task_list.end_time_str||'?')+'。'}}</view>
+            <view>2、参与规则：活动期间，好友通过您分享的链接（或二维码）接受邀请并下单（且符合首单标准），即为邀请成功。</view>
+            <view>3、新人定义：同一账号、同一手机均是第一次在每日一收平台下单的用户。</view>
+            <view>4、首单标准：新用户在平台上完成首次下单，<text wx:if="{{invite_task_list.first_prize.min_order_price&&!invite_task_list.first_prize.min_order_weight}}">{{'且首单金额满'+invite_task_list.first_prize.min_order_price+'元。'}}</text>
+                <text wx:if="{{!invite_task_list.first_prize.min_order_price&&invite_task_list.first_prize.min_order_weight}}">{{'且首单重量满'+invite_task_list.first_prize.min_order_weight+'kg。'}}</text>
+                <text wx:if="{{invite_task_list.first_prize.min_order_price&&invite_task_list.first_prize.min_order_weight}}">{{'且首单重量满'+invite_task_list.first_prize.min_order_weight+'kg且首单金额满'+invite_task_list.first_prize.min_order_price+'元。'}}</text>
+                <text wx:if="{{!invite_task_list.first_prize.min_order_price&&!invite_task_list.first_prize.min_order_weight}}">且首单重量满?kg且金额满?元。</text>
+            </view>
+            <view>{{'5、基础奖励：活动期间每成功邀请一位新用户，您都将获得'+(invite_task_list.first_prize.prize[0].value||'?')+'元红包，多邀多得，上不封顶。'}}</view>
+            <view>6、叠加奖励：活动期间累计邀请达标享受额外奖励，详情如上图所示。</view>
+            <view>7、温馨提示：本次活动同一登录账号、同一手机号视为同一用户，不可互相邀请，若通过不正当手段获取奖励，经查实，每日一收有权撤销该用户的活动资格并取消其奖励，情节严重讲追究其法律责任。</view>
+        </view>
+    </view>
+    <view class="{{['ly-flex-center-center',is_show_bottom_btn?'bottom_share_btn_float':'bottom_share_btn_box']}}">
+        <button class="phone_btn invite_get_wealth_btn ly-flex-center-center" openType="share" style="width:600rpx;">
+            <view>邀请好友赚赏金</view>
+            <image src="/static/mine/icon_youjt.png"></image>
+        </button>
+    </view>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="goAway" maskClick="{{false}}" type="center" vueId="9b38f680-1" vueSlots="{{['default']}}">
+        <view class="go_away_bg">
+            <view class="go_away_title">每邀请1位新用户下单可获得</view>
+            <view class="go_away_monyes">
+                <text class="go_away_money_num yellow_font">{{invite_task_list.first_prize.prize[0].value||'?'}}</text>
+                <text class="go_away_money_symbol yellow_font">元</text>
+            </view>
+            <view class="go_away_des ly-flex-center-center">好友下单 你赚赏金</view>
+            <view class="go_away_btn_box ly-flex-center-center">
+                <view bindtap="__e" class="go_away_btn ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'goAway',['$event'] ] ] ] ]}}">暂时离开</view>
+                <view bindtap="__e" class="continue_btn ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'e0',['$event'] ] ] ] ]}}">立即赚赏金</view>
+            </view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="getGift" maskClick="{{true}}" type="center" vueId="9b38f680-2" vueSlots="{{['default']}}">
+        <view class="pops">
+            <view class="pops_title">{{now_rewards.title}}</view>
+            <view class="pops_img">
+                <image src="/static/task/jinbi2.png"></image>
+            </view>
+            <view class="pops_dis" wx:if="{{is_list_get_gift}}">{{now_rewards.sub_rule.prize[0].value+'个环保币'}}</view>
+            <view class="pops_dis" wx:else>{{now_rewards.prize[0].value+'个环保币'}}</view>
+            <view bindtap="__e" class="pops_btn" data-event-opts="{{[ [ 'tap',[ [ 'close_pop',['$event'] ] ] ] ]}}">领取成功</view>
+        </view>
+    </uni-popup>
+</view>

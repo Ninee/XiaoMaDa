@@ -1,0 +1,197 @@
+<view class="content">
+    <view class="c_top flex_arr">
+        <view bindtap="__e" class="c_item" data-event-opts="{{[ [ 'tap',[ [ 'selTabHand',['$0'],[ [ ['tabs','',idx,'id'] ] ] ] ] ] ]}}" wx:for="{{tabs}}" wx:for-index="idx" wx:key="idx">
+            <text class="{{[selTab==item.id?' sel_item_color':'']}}" style="height:56rpx;">{{item.tit}}</text>
+            <view class="{{[selTab==item.id?' selItem':'']}}"></view>
+        </view>
+    </view>
+    <view style="width:100%;height:80rpx;"></view>
+    <view bindtap="__e" class="tabbar" data-event-opts="{{[ [ 'tap',[ [ 'lookPickUpIng',['$event'] ] ] ] ]}}" wx:if="{{pickUpIng&&selTab==20}}">
+        <view class="show_price">
+            <view>
+                <image src="../../static/index/icon_tishi.png"></image>回收哥正在火速赶来，请保持电话畅通~</view>
+        </view>
+    </view>
+    <view bindtap="__e" class="order_content" data-event-opts="{{[ [ 'tap',[ [ 'toOrderDetail',['$0'],[ [ ['list','',index,'id'] ] ] ] ] ] ]}}" wx:for="{{list}}" wx:key="index">
+        <view class="rider_info" wx:if="{{item.order_status!=10}}">
+            <view class="ly-flex-center" wx:if="{{item.carter_name}}">
+                <image class="head_img" src="/static/order/img_usr@2x.png" wx:if="{{!item.carter_pic}}"></image>
+                <image class="head_img" src="{{item.carter_pic}}" wx:else></image>
+                <view>
+                    <text class="rider_name">{{item.carter_name}}</text>
+                    <view class="ly-flex-center">
+                        <view class="example-body">
+                            <uni-rate bind:__l="__l" readonly="{{true}}" size="{{14}}" value="{{stars_num}}" vueId="{{'3c50aaa2-1-'+index}}"></uni-rate>
+                        </view>
+                        <view class="rider_score ly-flex-center-center">4.5</view>
+                        <view class="rider_orders">{{item.total_complete_order+'单'}}</view>
+                    </view>
+                </view>
+            </view>
+            <view style="height:100rpx;line-height:100rpx;" wx:else>暂无骑手接单</view>
+            <view class="is_take_order" style="color:#666666;" wx:if="{{item.order_status==50}}">已取消</view>
+            <view class="ly-flex-center" wx:if="{{item.order_status!=50}}">
+                <image catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toTell',['$0'],[ [ ['list','',index,'carter_phone'] ] ] ] ] ] ]}}" src="../../static/order/icon_pho.png"></image>
+            </view>
+        </view>
+        <view style="width:100%;height:2rpx;" wx:else></view>
+        <view class="order_contents ly-flex-center" style="margin-top:28rpx;">
+            <view class="ly-flex-center">
+                <view class="order_contents_l">订单编号:</view>
+                <text class="order_contents_r" style="width:auto;">{{item.order_no}}</text>
+                <view catchtap="__e" class="copy_order_num ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'copy',['$0'],[ [ ['list','',index,'order_no'] ] ] ] ] ] ]}}">复制</view>
+            </view>
+            <view class="is_take_order" wx:if="{{item.order_status==10}}">未接单</view>
+        </view>
+        <view style="padding-right:20rpx;">
+            <view class="order_contents ly-flex-center">
+                <view class="order_contents_l">下单时间:</view>
+                <view class="order_contents_r" style="font-weight:bold;">{{item.create_time_str}}</view>
+            </view>
+            <view class="order_contents ly-flex-center">
+                <view class="order_contents_l">联系方式:</view>
+                <text class="min_length" style="font-size:28rpx;margin-right:20rpx;font-weight:bold;max-width:290rpx;">{{item.terminal_user_name}}</text>
+                <text style="font-size:28rpx;font-weight:bold;">{{item.terminal_user_phone}}</text>
+            </view>
+            <view class="order_contents" style="display:flex;align-items:flex-start;">
+                <view class="order_contents_l">上门地址:</view>
+                <view class="order_contents_r">{{item.terminal_user_address}}</view>
+            </view>
+            <view class="order_contents ly-flex-center">
+                <view class="order_contents_l">预约时间:</view>
+                <view class="order_contents_r" style="font-weight:bold;">{{item.appointment_time_str}}</view>
+            </view>
+            <view catchtap="__e" class="recovery_goods" data-event-opts="{{[ [ 'tap',[ [ 'showMoreGoods',[index] ] ] ] ]}}">
+                <view>
+                    <text style="margin-right:46rpx;">回收物品</text>{{'('+(item.type2_count&&item.type2_count>0?item.type2_count:item.type1_count)+')'}}</view>
+                <view class="more_goods ly-flex-center">
+                    <text wx:if="{{item.order_status==30||item.order_status==40}}">{{'￥'+item.sum_price}}</text>
+                    <view class="more_goods">
+                        <image src="../../static/index/icon_jt.png" wx:if="{{!item.is_show_more_goods}}"></image>
+                        <image src="../../static/order/icon_jtxia.png" wx:else></image>
+                    </view>
+                </view>
+            </view>
+            <view class="recovery_items" wx:if="{{item.is_show_more_goods}}">
+                <block wx:for="{{item.order_item_list_resps}}" wx:for-index="ind" wx:for-item="val" wx:key="ind">
+                    <block wx:if="{{item.order_status==30||item.order_status==40}}">
+                        <view class="ly-flex-center-between recovery_items_line" wx:if="{{item.has_type2&&val.order_item_type==2}}">
+                            <view class="recovery_items_name min_length">{{val.recovery_category_str}}</view>
+                            <view class="recovery_items_name">{{val.single_price+'元/'+val.unit_symbol}}</view>
+                            <view class="recovery_items_name">{{val.weight+val.unit_symbol}}</view>
+                            <view class="recovery_items_name">{{val.total_price+'元'}}</view>
+                        </view>
+                        <view class="ly-flex-center-between recovery_items_line" wx:if="{{!item.has_type2&&val.order_item_type==1}}">
+                            <view class="recovery_items_name min_length">{{val.recovery_category_str}}</view>
+                            <view class="recovery_items_name">{{val.single_price+'元/'+val.unit_symbol}}</view>
+                            <view class="recovery_items_name">{{val.weight+val.unit_symbol}}</view>
+                            <view class="recovery_items_name">{{val.total_price+'元'}}</view>
+                        </view>
+                    </block>
+                    <view class="ly-flex-center-between recovery_items_line" wx:else>
+                        <view class="recovery_items_name min_length">{{val.recovery_category_str}}</view>
+                        <view class="recovery_items_name">{{val.weight_remark}}</view>
+                        <view class="recovery_items_name" style="min-width:230rpx;padding-right:20rpx;" wx:if="{{val.price_remark}}">{{val.price_remark}}</view>
+                    </view>
+                </block>
+            </view>
+            <view class="remarks_msg">
+                <view class="remarks">备注</view>
+                <view class="remarks_content">{{item.message}}</view>
+            </view>
+            <view class="not_take_order btns ly-flex-center-center" wx:if="{{item.order_status==10}}">
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'cancleOrder',['$0'],[ [ ['list','',index,'id'] ] ] ] ] ] ]}}" style="margin-right:20rpx;">取消订单</view>
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ '',['$event'] ] ] ] ]}}">
+                    <button class="phone_btn tell_servicer" openType="contact">联系客服</button>
+                </view>
+            </view>
+            <view class="not_take_order btns ly-flex-center-around" wx:if="{{item.order_status==20||item.order_status==25}}">
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'cancleOrder',['$0'],[ [ ['list','',index,'id'] ] ] ] ] ] ]}}">取消订单</view>
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toOrderDetail',['$0'],[ [ ['list','',index,'id'] ] ] ] ] ] ]}}">查看进度</view>
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ '',['$event'] ] ] ] ]}}">
+                    <button class="phone_btn tell_servicer" openType="contact">联系客服</button>
+                </view>
+            </view>
+            <view class="not_take_order btns ly-flex-center-around" wx:if="{{item.order_status==30}}">
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toDelOrder',['$0'],[ [ ['list','',index,'id'] ] ] ] ] ] ]}}">删除</view>
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toEvaluate',['$0',index],[ [ ['list','',index] ] ] ] ] ] ]}}">评价</view>
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ '',['$event'] ] ] ] ]}}">
+                    <button class="phone_btn tell_servicer" openType="contact">联系客服</button>
+                </view>
+            </view>
+            <view class="not_take_order btns ly-flex-center-center" wx:if="{{item.order_status==40}}">
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toDelOrder',['$0'],[ [ ['list','',index,'id'] ] ] ] ] ] ]}}" style="margin-right:20rpx;">删除</view>
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ '',['$event'] ] ] ] ]}}">
+                    <button class="phone_btn tell_servicer" openType="contact">联系客服</button>
+                </view>
+            </view>
+            <view class="not_take_order btns ly-flex-center-center" wx:if="{{item.order_status==50}}">
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toDelOrder',['$0'],[ [ ['list','',index,'id'] ] ] ] ] ] ]}}" style="margin-right:20rpx;">删除</view>
+                <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toPlayOrder',['$event'] ] ] ] ]}}">重新下单</view>
+            </view>
+        </view>
+    </view>
+    <view class="loading" hidden="{{!dataLoad}}">
+        <image src="../../static/order/loading.gif" style="width:80rpx;height:80rpx;"></image>
+    </view>
+    <view class="noMore" hidden="{{!(list.length!=0&&!dataLoad)}}">没有更多了~</view>
+    <view class="not_data ly_flex_center_column" wx:if="{{list.length==0&&!dataLoad}}">
+        <image src="../../static/order/pic_che2.png"></image>
+        <view>暂无订单</view>
+        <view bindtap="__e" class="play_order_btn" data-event-opts="{{[ [ 'tap',[ [ 'toPlayOrder',['$event'] ] ] ] ]}}">去下单</view>
+    </view>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="popup" type="bottom" vueId="3c50aaa2-2" vueSlots="{{['default']}}">
+        <view class="contact">
+            <view class="contact_q">是否拨打骑手电话</view>
+            <view bindlongpress="__e" class="contact_phone" data-event-opts="{{[ [ 'longpress',[ [ 'copy',['$event'] ] ] ] ]}}">{{phoneNum}}</view>
+            <view class="contact_content">
+                <view>确定将自动跳转至拨号页面</view>
+                <view>如跳转失败请长按电话号码复制</view>
+            </view>
+            <view class="contact_btn">
+                <view bindtap="__e" class="contact_btn_l" data-event-opts="{{[ [ 'tap',[ [ 'e0',['$event'] ] ] ] ]}}">返回</view>
+                <view bindtap="__e" class="contact_btn_r" data-event-opts="{{[ [ 'tap',[ [ 'confirm1',['$event'] ] ] ] ]}}">确定</view>
+            </view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="cancleOrder" type="center" vueId="3c50aaa2-3" vueSlots="{{['default']}}">
+        <view class="cancle_order">
+            <view class="cancle_order_title">取消订单</view>
+            <image src="../../static/order/pic_che2.png"></image>
+            <view class="cancle_tip">回收小哥正在火速赶来中</view>
+            <view class="cancle_tips">本次取消无需费用</view>
+            <view class="cancle_pupop_btn">
+                <view bindtap="__e" class="cancle_pupop_btn_l" data-event-opts="{{[ [ 'tap',[ [ 'e1',['$event'] ] ] ] ]}}">暂不取消</view>
+                <view bindtap="__e" class="cancle_pupop_btn_r" data-event-opts="{{[ [ 'tap',[ [ 'confirmCancleOrder',['$event'] ] ] ] ]}}">确认取消</view>
+            </view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="popup2" type="bottom" vueId="3c50aaa2-4" vueSlots="{{['default']}}">
+        <view class="order_evaluate">
+            <view class="evaluate_con">
+                <view class="evaluate_title">请对小哥本次服务进行评价</view>
+                <view class="evaluate_man">
+                    <image class="evaluate_head" src="../../static/index/icon-zhuye-1@2x.png"></image>
+                    <view class="evaluate_name">{{pjcarTerName}}</view>
+                </view>
+            </view>
+            <view class="feel_good">
+                <view bindtap="__e" class="feel_goods" data-event-opts="{{[ [ 'tap',[ [ 'bad',['$event'] ] ] ] ]}}">
+                    <image class="feel_good_img" src="../../static/order/icon-bmy@2x.png"></image>
+                    <text class="{{['feel_good_msg',carter_satisfied==2?'huise':carter_satisfied==0?'hongse':'huise']}}">不满意</text>
+                </view>
+                <view bindtap="__e" class="feel_not" data-event-opts="{{[ [ 'tap',[ [ 'good',['$event'] ] ] ] ]}}">
+                    <image class="feel_nots" src="../../static/order/icon-my@2x.png"></image>
+                    <text class="{{['feel_not_msg',carter_satisfied==2?'huise':carter_satisfied==1?'bgyellow':'huise']}}">满意</text>
+                </view>
+            </view>
+            <view class="to_evaluate">
+                <view class="write_evaluate">写评价</view>
+                <view class="evaluate_input">
+                    <textarea bindinput="__e" class="evaluate_tex" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','content','$event',[] ] ] ] ] ]}}" placeholder="请留下您的建议或者鼓励，感谢您的支持！" placeholderStyle="text-align:center;padding-top:40rpx" value="{{content}}" wx:if="{{showTextArea}}"></textarea>
+                </view>
+                <button bindtap="__e" class="btn" data-event-opts="{{[ [ 'tap',[ [ 'toSubmit',['$event'] ] ] ] ]}}">提交</button>
+            </view>
+        </view>
+    </uni-popup>
+</view>

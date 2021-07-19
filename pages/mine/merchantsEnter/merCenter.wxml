@@ -1,0 +1,19 @@
+<view style="padding-bottom:20rpx;">
+    <view class="top_content">
+        <view class="mer_name">商户名</view>
+        <view class="confirm_name">{{confirm_name}}</view>
+        <view class="energy">{{energyName}}</view>
+        <view bindtap="__e" class="energy_num" data-event-opts="{{[ [ 'tap',[ [ 'lookEnergy',['$event'] ] ] ] ]}}">{{energy}}</view>
+    </view>
+    <view class="advertisement">
+        <image src="../../../static/mine/60px.png"></image>
+        <text class="text_one">免费广告投放入口</text>
+        <text class="text_two">(12月开放功能)</text>
+    </view>
+    <view class="none">
+        <canvas bindtouchstart="__e" canvasId="canvasLineA" class="charts" data-event-opts="{{[ [ 'touchstart',[ [ 'touchLineA',['$event'] ] ] ] ]}}" disableScroll="{{true}}" id="canvasLineA"></canvas>
+    </view>
+    <view class="none">
+        <canvas bindtouchstart="__e" canvasId="canvasArea" class="charts" data-event-opts="{{[ [ 'touchstart',[ [ 'touchArea',['$event'] ] ] ] ]}}" id="canvasArea"></canvas>
+    </view>
+</view>

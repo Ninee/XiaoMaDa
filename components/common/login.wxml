@@ -1,0 +1,12 @@
+<uni-popup bind:__l="__l" bind:change="__e" class="vue-ref" data-event-opts="{{[ [ '^change',[ [ 'loginPropChange',['$event','$0'],['loginStatus'] ] ] ] ]}}" data-ref="loginProp" type="center" vueId="38558e86-1" vueSlots="{{['default']}}" wx:if="{{showProp}}">
+    <view style="width:100vw;padding:0 60rpx;">
+        <view style="background-color:#FFFFFF;width:100%;border-radius:20rpx;padding:98rpx 0 71rpx;">
+            <view style="margin:0 auto;display:flex;justify-content:center;padding-bottom:70rpx;">
+                <image src="../../static/index/logo-g@2x.png" style="width:178rpx;height:252rpx;"></image>
+            </view>
+            <view style="width:100%;height:90rpx;padding:0 43rpx;">
+                <button bindgetphonenumber="__e" data-event-opts="{{[ [ 'getphonenumber',[ [ 'getPhoneNumber',['$event'] ] ] ] ]}}" openType="getPhoneNumber" style="background-color:#F9D500;">登陆</button>
+            </view>
+        </view>
+    </view>
+</uni-popup>

@@ -1,0 +1,89 @@
+page {
+    background-color: #fff;
+}
+
+.top_border {
+    border-bottom: 2rpx solid #e6e6e6;
+    padding-bottom: 74rpx;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 143rpx 50rpx 0;
+}
+
+.top_border .top_img {
+    width: 200rpx;
+    height: 200rpx;
+}
+
+.top_border .top_img image {
+    width: 100%;
+    height: 100%;
+}
+
+.top_border .top_title {
+    font-size: 36rpx;
+    color: #333;
+    margin-top: 61rpx;
+}
+
+.step {
+    padding: 0 106rpx;
+    margin-top: 60rpx;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+}
+
+.step image {
+    width: 38rpx;
+    height: 38rpx;
+}
+
+.step .line_out {
+    height: 38rpx;
+    width: 180rpx;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.step .line_out .line {
+    margin: 0 16rpx;
+    width: 180rpx;
+    height: 2rpx;
+    background-color: #9f9f9f;
+}
+
+.step .step_one {
+    position: absolute;
+    left: 122rpx;
+    top: 60rpx;
+}
+
+.step .step_two {
+    position: absolute;
+    left: 340rpx;
+    top: 60rpx;
+}
+
+.step .step_three {
+    position: absolute;
+    left: 546rpx;
+    top: 60rpx;
+}
+
+.btns {
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 10rpx;
+    background-color: #108ee9;
+    text-align: center;
+    font-size: 36rpx;
+    color: #fff;
+    margin: 60rpx 30rpx 0;
+}

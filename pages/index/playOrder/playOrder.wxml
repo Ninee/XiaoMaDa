@@ -1,0 +1,114 @@
+<view>
+    <view class="content">
+        <view class="contents">
+            <view class="ly-flex-center-between play_order_content">
+                <view class="play_order_content_l">回收类型</view>
+                <view bindtap="__e" class="play_order_content_r" data-event-opts="{{[ [ 'tap',[ [ 'toSlelctCategory',['$event'] ] ] ] ]}}">{{recovery_category_name}}</view>
+            </view>
+            <view class="ly-flex-center-between play_order_content" style="max-height:105rpx;">
+                <view class="play_order_content_l">今日价格预估</view>
+                <view class="price">
+                    <view class="price_area" hidden="{{!showPrice}}">{{price_areas}}</view>
+                    <view bindtap="__e" class="look_price_area" data-event-opts="{{[ [ 'tap',[ [ 'showPriceProp',['$event'] ] ] ] ]}}" hidden="{{!showPrice}}">点击查看价目表</view>
+                    <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'noPriceClick',['$event'] ] ] ] ]}}" hidden="{{!!showPrice}}" style="font-size:24rpx;color:#FF0000;">{{noPriceMsg}}</view>
+                </view>
+            </view>
+            <view class="ly-flex-center-between play_order_content">
+                <view class="play_order_content_l">回收重量</view>
+                <view bindtap="__e" class="play_order_content_r" data-event-opts="{{[ [ 'tap',[ [ 'toSlelctWeight',['$event'] ] ] ] ]}}" hidden="{{!!selectWeight}}">请选择重量范围</view>
+                <view bindtap="__e" class="play_order_content_r" data-event-opts="{{[ [ 'tap',[ [ 'toSlelctWeight',['$event'] ] ] ] ]}}" hidden="{{!selectWeight}}">{{selectWeight}}</view>
+            </view>
+            <view class="ly-flex-center-between play_order_content">
+                <view class="play_order_content_l">回收地址</view>
+                <view bindtap="__e" class="play_order_content_r" data-event-opts="{{[ [ 'tap',[ [ 'chooseAddress',['$event'] ] ] ] ]}}" hidden="{{!!terminal_user_address_id}}">请选择回收地址</view>
+                <view bindtap="__e" class="play_order_content_r none" data-event-opts="{{[ [ 'tap',[ [ 'chooseAddress',['$event'] ] ] ] ]}}" hidden="{{!terminal_user_address_id}}" style="max-width:420rpx;">{{chose_address}}</view>
+            </view>
+            <view class="ly-flex-center-between play_order_content" style="border-bottom:none;">
+                <view class="play_order_content_l">预约时间</view>
+                <view bindtap="__e" class="play_order_content_r" data-event-opts="{{[ [ 'tap',[ [ 'toChooseTime',['$event'] ] ] ] ]}}" hidden="{{!!select_day_str}}">请选择预约时间</view>
+                <view bindtap="__e" class="play_order_content_r" data-event-opts="{{[ [ 'tap',[ [ 'toChooseTime',['$event'] ] ] ] ]}}" hidden="{{!select_day_str}}">{{select_day_str+' '+select_hour_str}}</view>
+            </view>
+            <view class="phone_title" hidden="{{!show_more}}">实拍照片(选填)</view>
+            <view class="take_phone ly-flex-center-between" hidden="{{!show_more}}">
+                <view bindtap="__e" class="take_phone1" data-event-opts="{{[ [ 'tap',[ [ 'chooseImage',['upImg1'] ] ] ] ]}}">
+                    <block wx:if="{{upImg1.show}}">+</block>
+                    <image src="{{upImg1.url}}" wx:else></image>
+                </view>
+                <view bindtap="__e" class="take_phone1" data-event-opts="{{[ [ 'tap',[ [ 'chooseImage',['upImg2'] ] ] ] ]}}">
+                    <block wx:if="{{upImg2.show}}">+</block>
+                    <image src="{{upImg2.url}}" wx:else></image>
+                </view>
+                <view bindtap="__e" class="take_phone1" data-event-opts="{{[ [ 'tap',[ [ 'chooseImage',['upImg3'] ] ] ] ]}}">
+                    <block wx:if="{{upImg3.show}}">+</block>
+                    <image src="{{upImg3.url}}" wx:else></image>
+                </view>
+                <view bindtap="__e" class="take_phone1" data-event-opts="{{[ [ 'tap',[ [ 'chooseImage',['upImg4'] ] ] ] ]}}">
+                    <block wx:if="{{upImg4.show}}">+</block>
+                    <image src="{{upImg4.url}}" wx:else></image>
+                </view>
+            </view>
+            <view class="message" hidden="{{!show_more}}" style="margin-bottom:34rpx;">
+                <view style="font-size:30rpx;width:270rpx;padding-top:0;vertical-align:top;">备注留言(选填)</view>
+                <input bindinput="__e" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','message','$event',[] ] ] ] ] ]}}" placeholder="请输入备注留言" placeholderStyle="text-align:right;" value="{{message}}"></input>
+            </view>
+            <view bindtap="__e" class="look_more" data-event-opts="{{[ [ 'tap',[ [ 'e0',['$event'] ] ] ] ]}}">
+                <view hidden="{{!!show_more}}">补充更多信息<image src="../../../static/index/jt@2x.png"></image>
+                </view>
+                <view hidden="{{!show_more}}">收起更多<image src="../../../static/index/jt2@2x.png"></image>
+                </view>
+            </view>
+        </view>
+        <button bindtap="__e" class="btn" data-event-opts="{{[ [ 'tap',[ [ 'pushAuthor',['$event'] ] ] ] ]}}">预约回收</button>
+        <uni-popup bind:__l="__l" class="vue-ref" data-ref="slelctCategory" maskClick="{{false}}" type="bottom" vueId="701fdab2-1" vueSlots="{{['default']}}">
+            <picker-view bindchange="__e" class="picker_view_layout" data-event-opts="{{[ [ 'change',[ [ 'categoryOptionChange',['$event'] ] ] ] ]}}" value="{{setDefCategoryValue}}" wx:if="{{categoryShow}}">
+                <view class="slelctTime_true_btn">
+                    <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'categoryCancel',['$event'] ] ] ] ]}}">取消</view>
+                    <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'categoryOk',['$event'] ] ] ] ]}}" style="color:#017F36;">确认</view>
+                </view>
+                <picker-view-column style="margin-top:-80rpx;">
+                    <view class="item" wx:for="{{firstCategorys}}" wx:key="index">{{item.value}}</view>
+                </picker-view-column>
+            </picker-view>
+        </uni-popup>
+        <uni-popup bind:__l="__l" class="vue-ref" data-ref="slelctWeight" maskClick="{{false}}" type="bottom" vueId="701fdab2-2" vueSlots="{{['default']}}">
+            <picker-view bindchange="__e" class="picker_view_layout" data-event-opts="{{[ [ 'change',[ [ 'weightOptionChange',['$event'] ] ] ] ]}}" value="{{setDefWeightValue}}" wx:if="{{weightShow}}">
+                <view class="slelctTime_true_btn">
+                    <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'weightCancel',['$event'] ] ] ] ]}}">取消</view>
+                    <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'weightOk',['$event'] ] ] ] ]}}" style="color:#017F36;">确认</view>
+                </view>
+                <picker-view-column style="margin-top:-80rpx;">
+                    <view class="item" wx:for="{{goodWeight}}" wx:key="index">{{item}}</view>
+                </picker-view-column>
+            </picker-view>
+        </uni-popup>
+        <uni-popup bind:__l="__l" class="vue-ref" data-ref="slelctTime" maskClick="{{false}}" type="bottom" vueId="701fdab2-3" vueSlots="{{['default']}}">
+            <picker-view bindchange="__e" class="picker_view_layout" data-event-opts="{{[ [ 'change',[ [ 'timeOptionChange',['$event'] ] ] ] ]}}" value="{{setDefTimeValue}}" wx:if="{{timeShow}}">
+                <view class="slelctTime_true_btn">
+                    <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'timeCancel',['$event'] ] ] ] ]}}">取消</view>
+                    <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'slelctTime_true_btn_confirm',['$event'] ] ] ] ]}}" style="color:#017F36;">确认</view>
+                </view>
+                <picker-view-column style="margin-top:-80rpx;">
+                    <view class="item" wx:for="{{time_area}}" wx:key="index">{{item.day_str}}</view>
+                </picker-view-column>
+                <picker-view-column style="margin-top:-80rpx;">
+                    <view class="item" wx:for="{{hours}}" wx:key="index">{{item.hour_str}}</view>
+                </picker-view-column>
+            </picker-view>
+        </uni-popup>
+        <uni-popup bind:__l="__l" class="vue-ref" data-ref="popup" maskClick="{{false}}" type="center" vueId="701fdab2-4" vueSlots="{{['default']}}">
+            <view class="btns">
+                <view class="bgcolor">
+                    <view style="text-align:center;font-size:30rpx;padding-top:20rpx;font-weight:bold;">价目表</view>
+                    <scroll-view class="list" scrollY="true" style="max-height:400rpx;">
+                        <view class="poplist" wx:for="{{lookPriceLists}}" wx:key="index">
+                            <view style="padding:20rpx 30rpx;">{{item.id}}</view>
+                            <view style="padding:20rpx 30rpx;">{{item.value+'元/公斤'}}</view>
+                        </view>
+                    </scroll-view>
+                    <view bindtap="__e" class="price_confirm" data-event-opts="{{[ [ 'tap',[ [ 'e1',['$event'] ] ] ] ]}}">确定</view>
+                </view>
+            </view>
+        </uni-popup>
+        <common-login bind:__l="__l" bind:success="__e" data-event-opts="{{[ [ '^success',[ ['onLoginSuccess'] ] ] ]}}" vueId="701fdab2-5" wx:if="{{showLogin}}"></common-login>
+    </view>
+</view>

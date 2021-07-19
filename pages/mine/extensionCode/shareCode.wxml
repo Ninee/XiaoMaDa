@@ -1,0 +1,57 @@
+<view>
+    <view class="img" wx:if="{{!is_share}}">
+        <image class="bg" src="{{bgImg}}"></image>
+        <view class="title_l"></view>
+        <view class="code_border">
+            <view class="code">
+                <image src="{{qrCodeUrl}}"></image>
+            </view>
+        </view>
+        <button bindtap="__e" class="share_btn share" data-event-opts="{{[ [ 'tap',[ [ 'shareEvn',['$event'] ] ] ] ]}}" hidden="{{!qrCodeUrl}}">分享给好友</button>
+    </view>
+    <image lazyLoad="{{true}}" mode="widthFix" src="{{formFriend}}" style="width:100vw;position:absolute;top:0px;bottom:0px;" wx:else></image>
+    <canvas canvasId="qrcode" style="width:500rpx;height:500rpx;position:absolute;top:-999px;"></canvas>
+    <canvas canvasId="mySharePoster" style="{{'width:'+(posterResult.width||10)+'px'+';'+'height:'+(posterResult.height||10)+'px;position:absolute;top:-99999px'+';'}}"></canvas>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="share" maskClick="{{false}}" type="bottom" vueId="32456420-1" vueSlots="{{['default']}}">
+        <view class="top_box" style="{{'margin-bottom:calc((100vh - 310rpx - 800rpx)/2)'}}">
+            <image src="{{posterResult.finalPath}}" style="width:450rpx;height:800rpx;border-radius:10rpx;"></image>
+        </view>
+        <view class="bottom_box">
+            <view class="colne_pop">
+                <view class="colne_pop_l">分享</view>
+                <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'close_pop',['$event'] ] ] ] ]}}" style="width:50rpx;height:50rpx;padding:10rpx;">
+                    <image src="../../../static/mine/close@2x.png" style="width:100%;height:100%;"></image>
+                </view>
+            </view>
+            <view class="share_btns">
+                <view class="share_btns_item">
+                    <button class="phone_btn" openType="share">
+                        <view class="item-title">
+                            <image src="../../../static/mine/sharwx@2x.png"></image>
+                        </view>
+                        <view>分享到微信</view>
+                    </button>
+                </view>
+                <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'shareFriend',['$event'] ] ] ] ]}}" wx:if="{{phone_type!='ios'}}">
+                    <button>
+                        <view class="item-title">
+                            <image src="../../../static/mine/pyq@2x.png"></image>
+                        </view>
+                        <view>分享到朋友圈</view>
+                    </button>
+                </view>
+                <view bindtap="__e" class="share-item" data-event-opts="{{[ [ 'tap',[ [ 'saveImg',['$event'] ] ] ] ]}}">
+                    <view class="item-title">
+                        <image src="../../../static/mine/savexc@2x.png"></image>
+                    </view>
+                    <view>保存到相册</view>
+                </view>
+            </view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="shareFriend" maskClick="{{true}}" type="top" vueId="32456420-2" vueSlots="{{['default']}}">
+        <image bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'e0',['$event'] ] ] ] ]}}" src="../../../static/mine/2.png" style="width:174rpx;height:64rpx;position:absolute;top:0;right:66rpx;"></image>
+        <image bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'e1',['$event'] ] ] ] ]}}" src="../../../static/mine/jiantou.png" style="width:48rpx;height:48rpx;position:absolute;top:64rpx;right:230rpx;"></image>
+        <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'e2',['$event'] ] ] ] ]}}" style="color:#FFFFFF;font-size:32rpx;position:absolute;top:106rpx;right:104rpx;">点击右上角三个点处</view>
+    </uni-popup>
+</view>

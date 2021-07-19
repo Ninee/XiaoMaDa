@@ -1,0 +1,22 @@
+<view class="out_padding">
+    <textarea bindinput="__e" class="textareas" data-event-opts="{{[ [ 'input',[ [ 'textInput',['$event'] ] ] ] ]}}" maxlength="50" placeholder="上门回收时，请先电话联系" value="{{messages}}"></textarea>
+    <view class="labels">
+        <view>快捷标签</view>
+        <view wx:if="{{have_system_msg}}">
+            <view bindtap="__e" class="labels_r" data-event-opts="{{[ [ 'tap',[ [ 'toEdit',['$event'] ] ] ] ]}}" wx:if="{{!is_editing}}">
+                <image src="../../../static/mine/xiugai@2x.png"></image>编辑</view>
+            <view bindtap="__e" class="labels_r" data-event-opts="{{[ [ 'tap',[ [ 'toEdit',['$event'] ] ] ] ]}}" wx:else>
+                <label>
+                    <radio checked="true" style="transform:scale(0.5);"></radio>完成</label>
+            </view>
+        </view>
+    </view>
+    <view class="labels_box">
+        <view style="position:relative;display:inline;" wx:for="{{system_msg}}" wx:key="index">
+            <view bindtap="__e" class="labels_items" data-event-opts="{{[ [ 'tap',[ [ 'toSelMsg',['$0'],[ [ ['system_msg','',index,'msg'] ] ] ] ] ] ]}}">{{item.msg}}</view>
+            <view bindtap="__e" class="delete_label" data-event-opts="{{[ [ 'tap',[ [ 'toDelLab',['$0'],[ [ ['system_msg','',index,'msg'] ] ] ] ] ] ]}}" wx:if="{{item.id&&is_editing}}">
+                <image src="../../../static/garbageSelet/icon_shanchu.png"></image>
+            </view>
+        </view>
+    </view>
+</view>

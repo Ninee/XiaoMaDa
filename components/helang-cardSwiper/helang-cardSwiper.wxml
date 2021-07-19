@@ -1,0 +1,13 @@
+<view>
+    <view class="top-swiper">
+        <view class="box">
+            <view style="height:44px;"></view>
+            <swiper activeClass="active_class" bindchange="__e" circular="{{true}}" class="swiper" data-event-opts="{{[ [ 'change',[ [ 'swiperChange',['$event'] ] ] ] ]}}" nextMargin="{{swiper.margin}}" previousMargin="{{swiper.margin}}">
+                <swiper-item style="width:450rpx;" wx:for="{{list}}" wx:key="index">
+                    <image class="{{['le-img',swiper.index==index?'le-active':'']}}" src="{{item}}"></image>
+                </swiper-item>
+            </swiper>
+            <view style="text-align:center;color:#FFFFFF;margin-top:50rpx;">{{swiper.index+1+'/'+list.length}}</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,94 @@
+<view>
+    <image class="business_img" mode="widthFix" src="{{$root.g0}}"></image>
+    <view class="out_padding">
+        <form bindsubmit="__e" data-event-opts="{{[ [ 'submit',[ [ 'formSubmit',['$event'] ] ] ] ]}}">
+            <view class="form_items ly_flex_column">
+                <view class="form_items_title">您的姓名<text>*</text>
+                </view>
+                <input bindinput="__e" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','username','$event',[] ] ] ] ] ]}}" placeholder="请填写姓名" value="{{username}}"></input>
+            </view>
+            <view class="form_items ly_flex_column">
+                <view class="form_items_title">您的电话<text>*</text>
+                </view>
+                <input bindinput="__e" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','user_phone','$event',[] ] ] ] ] ]}}" placeholder="请填写电话" value="{{user_phone}}"></input>
+            </view>
+            <view class="form_items ly_flex_column">
+                <view class="form_items_title">咨询意向(单选)<text>*</text>
+                </view>
+                <radio-group bindchange="__e" class="ly-flex-center" data-event-opts="{{[ [ 'change',[ [ 'radioChange',['$event'] ] ] ] ]}}">
+                    <label class="ly-flex-center" style="flex:1;" wx:for="{{items}}" wx:key="value">
+                        <radio checked="{{item.value===city_or_area}}" style="transform:scale(0.6);" value="{{item.value}}"></radio>
+                        <view>{{item.name}}</view>
+                    </label>
+                </radio-group>
+            </view>
+            <view class="form_items ly_flex_column">
+                <view class="form_items_title">意向区域<text>*</text>
+                </view>
+                <view bindtap="__e" class="ly-flex-center-between" data-event-opts="{{[ [ 'tap',[ [ 'toSelPCA',['$event'] ] ] ] ]}}" style="padding:10rpx 0;" wx:if="{{!PCA_name}}">
+                    <view style="color:#666;">请选择您的意向区域</view>
+                    <image src="../../../static/index/icon_jt.png"></image>
+                </view>
+                <view bindtap="__e" class="ly-flex-center-between" data-event-opts="{{[ [ 'tap',[ [ 'toSelPCA',['$event'] ] ] ] ]}}" style="padding:10rpx 0;" wx:else>
+                    <view>{{PCA_name}}</view>
+                    <image src="../../../static/index/icon_jt.png"></image>
+                </view>
+            </view>
+            <view class="form_items ly_flex_column">
+                <view class="form_items_title">投资预算<text>*</text>
+                </view>
+                <view bindtap="__e" class="ly-flex-center-between" data-event-opts="{{[ [ 'tap',[ [ 'toSelBudget',['$event'] ] ] ] ]}}" style="padding:10rpx 0;" wx:if="{{!my_budget}}">
+                    <view style="color:#666;">请选择您的投资预算</view>
+                    <image src="../../../static/index/icon_jt.png"></image>
+                </view>
+                <view bindtap="__e" class="ly-flex-center-between" data-event-opts="{{[ [ 'tap',[ [ 'toSelBudget',['$event'] ] ] ] ]}}" style="padding:10rpx 0;" wx:else>
+                    <view>{{my_budget}}</view>
+                    <image src="../../../static/index/icon_jt.png"></image>
+                </view>
+            </view>
+            <button class="submit_btn" formType="submit">立即提交</button>
+        </form>
+    </view>
+    <view class="bottom_btns">
+        <view class="ly-flex-center-between">
+            <view bindtap="__e" class="btns ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'toTell',['$event'] ] ] ] ]}}">
+                <image src="../../../static/index/icon_dianhua.png"></image>免费热线</view>
+            <button class="phone_btn btns ly-flex-center-center" openType="contact">
+                <image src="../../../static/index/icon_kefu.png" style="width:30rpx;height:30rpx;"></image>在线咨询</button>
+        </view>
+    </view>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="selPCA" type="bottom" vueId="6481f921-1" vueSlots="{{['default']}}">
+        <view class="sel_goods" wx:if="{{visible}}">
+            <view class="sel_goods_title">选择区域</view>
+            <picker-view bindchange="__e" class="picker-view" data-event-opts="{{[ [ 'change',[ [ 'PCAChange',['$event'] ] ] ] ]}}" indicatorStyle="{{indicatorStyle}}" maskClass="picker_bg" value="{{PCA_index}}">
+                <picker-view-column>
+                    <view class="item" style="line-height:70rpx;" wx:for="{{provices}}" wx:key="index">{{item.value}}</view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view class="item" wx:for="{{citys}}" wx:key="index">{{item.value}}</view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view class="item" wx:for="{{areas}}" wx:key="index">{{item.value}}</view>
+                </picker-view-column>
+            </picker-view>
+            <view class="sel_goods_btn ly-flex-center-center">
+                <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'closePicker',['$event'] ] ] ] ]}}">取消</view>
+                <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'confirmPicker',['$event'] ] ] ] ]}}">确认</view>
+            </view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="budget" type="bottom" vueId="6481f921-2" vueSlots="{{['default']}}">
+        <view class="sel_goods" wx:if="{{budget_visible}}">
+            <view class="sel_goods_title">选择预算</view>
+            <picker-view bindchange="__e" class="picker-view" data-event-opts="{{[ [ 'change',[ [ 'budgetChange',['$event'] ] ] ] ]}}" indicatorStyle="{{indicatorStyle}}" maskClass="picker_bg" value="{{budget_ind}}">
+                <picker-view-column>
+                    <view class="item" style="line-height:70rpx;" wx:for="{{budgets}}" wx:key="index">{{item.name}}</view>
+                </picker-view-column>
+            </picker-view>
+            <view class="sel_goods_btn ly-flex-center-center">
+                <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'closeSelBudget',['$event'] ] ] ] ]}}">取消</view>
+                <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'confirmSelBudget',['$event'] ] ] ] ]}}">确认</view>
+            </view>
+        </view>
+    </uni-popup>
+</view>

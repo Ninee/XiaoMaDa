@@ -1,0 +1,46 @@
+.content {
+    width: 100%;
+    padding: 0 30rpx;
+}
+
+.code_bg {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 20rpx;
+    margin-top: 30rpx;
+    padding-top: 46rpx;
+}
+
+.code_bg .code {
+    width: 440rpx;
+    height: 440rpx;
+    border: 4rpx solid #343434;
+    margin: 0 auto;
+}
+
+.code_bg .discribe {
+    font-size: 30rpx;
+    font-weight: 700;
+    color: #343434;
+    text-align: center;
+    padding: 36rpx 0;
+    margin-top: 14rpx;
+}
+
+.code_bg .extend_ask {
+    padding: 20rpx 0 44rpx;
+    font-size: 30rpx;
+    border-top: 2rpx solid #e7e7e7;
+    margin-left: 24rpx;
+}
+
+.btn {
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    background-color: #fff;
+    color: #343434;
+    font-size: 36rpx;
+    margin-top: 20rpx;
+    border-radius: 20rpx;
+}

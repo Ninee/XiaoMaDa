@@ -1,0 +1,55 @@
+.uni-swipe.data-v-23d3384e {
+    position: relative;
+    overflow: hidden;
+}
+
+.uni-swipe_box.data-v-23d3384e {
+    display: flex;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.uni-swipe_button-group.data-v-23d3384e {
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.button-group--left.data-v-23d3384e {
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.button-group--right.data-v-23d3384e {
+    right: 0;
+    transform: translateX(100%);
+}
+
+.uni-swipe_button.data-v-23d3384e {
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.uni-swipe_button-text.data-v-23d3384e {
+    flex-shrink: 0;
+    font-size: 14px;
+}
+
+.ani.data-v-23d3384e {
+    transition-property: transform;
+    transition-property: transform,-webkit-transform;
+    transition-duration: .3s;
+    transition-timing-function: cubic-bezier(.165,.84,.44,1);
+}

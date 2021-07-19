@@ -1,0 +1,13 @@
+<view>
+    <view class="index">
+        <view style="padding:0 30rpx 30rpx 30rpx;background-color:#FFFFFF;border-radius:30rpx;">
+            <view class="content">
+                <view class="title">{{news_data.news_title}}</view>
+                <view class="create_time">{{news_data.create_time_str}}</view>
+                <view class="richText_box">
+                    <rich-text nodes="{{news_content}}"></rich-text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

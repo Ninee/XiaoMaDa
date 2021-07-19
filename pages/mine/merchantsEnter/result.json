@@ -1,0 +1,13 @@
+{
+    "navigationBarTitleText": "结果查询",
+    "navigationBarBackgroundColor": "#108EE9",
+    "enablePullDownRefresh": false,
+    "usingComponents": {
+        "uni-popup": "/components/uni-popup/uni-popup",
+        "uni-popup-message": "/components/uni-popup/uni-popup-message",
+        "uni-popup-dialog": "/components/uni-popup/uni-popup-dialog",
+        "common-login": "/components/common/login",
+        "pick-uping": "/components/common/pickUpingBtn",
+        "notices": "/components/common/notices"
+    }
+}

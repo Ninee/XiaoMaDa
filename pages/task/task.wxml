@@ -1,0 +1,192 @@
+<view>
+    <view class="topNav" style="{{'height:'+navHeight+'px'+';'}}"></view>
+    <view class="top" style="{{'top:'+navHeight+'px'+';'}}">
+        <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'goBack',['$event'] ] ] ] ]}}" style="margin-left:20rpx;font-size:26rpx;">
+            <image src="../../static/task/icon_zjt_white.png" style="width:20rpx;height:20rpx;"></image>返回</view>
+    </view>
+    <view class="top_content">
+        <image src="../../static/task/headbg.jpg"></image>
+        <view class="contents">
+            <view bindtap="__e" class="data_border" data-event-opts="{{[ [ 'tap',[ [ 'toCoiin',['$event'] ] ] ] ]}}">
+                <image src="../../static/task/bg1.png"></image>
+                <view class="datas">
+                    <view class="titles">已获得环保币</view>
+                    <view>{{has_coin_balance}}</view>
+                </view>
+            </view>
+            <view bindtap="__e" class="data_border" data-event-opts="{{[ [ 'tap',[ [ 'toGiftList',['$event'] ] ] ] ]}}">
+                <image src="../../static/task/bg1.png"></image>
+                <view class="datas">
+                    <view class="titles">已获得奖品数</view>
+                    <view>{{have_prize}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="notice_bar">
+            <view class="horn">
+                <image src="../../static/task/laba.png"></image>
+            </view>
+            <swiper autoplay="{{true}}" circular="{{true}}" class="swiper" duration="{{1000}}" interval="{{3000}}" vertical="{{true}}">
+                <swiper-item class="swiper_items" wx:for="{{notice_list}}" wx:key="index">
+                    <view class="swiper_itemsL min_length">{{item.id}}</view>
+                    <view class="swiper_itemsR" wx:if="{{item.value}}">{{'完成任务+'+item.value+'环保币'}}</view>
+                </swiper-item>
+            </swiper>
+        </view>
+    </view>
+    <view class="tasks_list" style="{{'min-height:calc(100vh - 540rpx)'}}">
+        <view wx:for="{{task_list}}" wx:key="index">
+            <view class="lists" wx:if="{{item.status!=3}}">
+                <view class="imgs">
+                    <image src="{{'../../static/task/'+item.icon_url}}"></image>
+                </view>
+                <view class="lists_r">
+                    <view class="task_contents">
+                        <view class="task_dis">{{item.title}}</view>
+                        <view class="discribe" wx:if="{{!item.total_progress}}">邀请好友->好友下单->获得奖励</view>
+                        <view class="discribe" wx:if="{{item.rules_list.prize[0].type==1}}">完成后得环保币<image src="../../static/task/icon_jinbi.png" style="width:20rpx;height:20rpx;"></image>
+                            <text class="prize" wx:if="{{item.rules_list.prize[0].value_type==1}}">{{item.rules_list.prize[0].value+'个环保币'}}</text>
+                            <text class="prize" wx:if="{{item.rules_list.prize[0].value_type==2}}">{{item.rules_list.prize[0].value+'%环保币'}}</text>
+                        </view>
+                        <view class="discribe" wx:if="{{item.rules_list.prize[0].type==2}}">完成后得奖品<image src="../../static/task/icon_liwu.png" style="width:20rpx;height:20rpx;"></image>
+                            <text class="prize">{{item.rules_list.prize[0].value}}</text>
+                        </view>
+                        <view class="progress_out" wx:if="{{item.total_progress}}">
+                            <view class="progress" style="{{'background: linear-gradient(to right, red '+item.progress/item.total_progress*100+'% , #E6E6E6 0%)'}}"></view>
+                            <view>{{item.progress+'/'+item.total_progress}}</view>
+                        </view>
+                    </view>
+                    <view bindtap="__e" class="to_over" data-event-opts="{{[ [ 'tap',[ [ 'toFinishTask',['$0'],[ [ ['task_list','',index] ] ] ] ] ] ]}}" wx:if="{{item.status==1||!item.status}}">去完成</view>
+                    <view bindtap="__e" class="to_over has_over" data-event-opts="{{[ [ 'tap',[ [ 'toGetRewards',['$0'],[ [ ['task_list','',index] ] ] ] ] ] ]}}" wx:if="{{item.status==2}}">领取奖励</view>
+                </view>
+            </view>
+        </view>
+        <view class="lists" wx:if="{{!$root.g0}}">
+            <view class="imgs">
+                <image src="../../static/task/icon.png"></image>
+            </view>
+            <view class="lists_r">
+                <view class="task_contents">
+                    <view class="task_dis">新人首次下单</view>
+                    <view class="discribe">新人首次下单获得奖励</view>
+                </view>
+                <view bindtap="__e" class="to_over1" data-event-opts="{{[ [ 'tap',[ [ 'notOpen',['$event'] ] ] ] ]}}" style="background-color:#e5e5e5;color:#999999;">敬请期待</view>
+            </view>
+        </view>
+        <view class="lists" wx:if="{{!$root.g1}}">
+            <view class="imgs">
+                <image src="../../static/task/icon_manesong.png"></image>
+            </view>
+            <view class="lists_r">
+                <view class="task_contents">
+                    <view class="task_dis">攒立奖</view>
+                    <view class="discribe">订单金额或重量达标奖励</view>
+                </view>
+                <view bindtap="__e" class="to_over1" data-event-opts="{{[ [ 'tap',[ [ 'notOpen',['$event'] ] ] ] ]}}" style="background-color:#e5e5e5;color:#999999;">敬请期待</view>
+            </view>
+        </view>
+        <view class="lists" wx:if="{{!$root.g2}}">
+            <view class="imgs">
+                <image src="../../static/task/icon_ljxiadan.png"></image>
+            </view>
+            <view class="lists_r">
+                <view class="task_contents">
+                    <view class="task_dis">满立奖</view>
+                    <view class="discribe">累计下单数量达标奖励</view>
+                </view>
+                <view bindtap="__e" class="to_over1" data-event-opts="{{[ [ 'tap',[ [ 'notOpen',['$event'] ] ] ] ]}}" style="background-color:#e5e5e5;color:#999999;">敬请期待</view>
+            </view>
+        </view>
+        <view class="lists" wx:if="{{!$root.g3}}">
+            <view class="imgs">
+                <image src="../../static/task/icon_invite.png"></image>
+            </view>
+            <view class="lists_r">
+                <view class="task_contents">
+                    <view class="task_dis">邀请奖</view>
+                    <view class="discribe">邀请新用户数量达标奖励</view>
+                </view>
+                <view bindtap="__e" class="to_over1" data-event-opts="{{[ [ 'tap',[ [ 'notOpen',['$event'] ] ] ] ]}}" style="background-color:#e5e5e5;color:#999999;">敬请期待</view>
+            </view>
+        </view>
+        <view class="lists">
+            <view class="imgs">
+                <image src="../../static/task/icon_grchengjiu.png"></image>
+            </view>
+            <view class="lists_r">
+                <view class="task_contents">
+                    <view class="task_dis">成就奖</view>
+                    <view class="discribe">累计回收重量达标奖励</view>
+                </view>
+                <view bindtap="__e" class="to_over1" data-event-opts="{{[ [ 'tap',[ [ 'notOpen',['$event'] ] ] ] ]}}" style="background-color:#e5e5e5;color:#999999;">敬请期待</view>
+            </view>
+        </view>
+        <view class="lists">
+            <view class="imgs">
+                <image src="../../static/task/icon_gongxianj.png"></image>
+            </view>
+            <view class="lists_r">
+                <view class="task_contents">
+                    <view class="task_dis">贡献奖</view>
+                    <view class="discribe">累计回收金额达标奖励</view>
+                </view>
+                <view bindtap="__e" class="to_over1" data-event-opts="{{[ [ 'tap',[ [ 'notOpen',['$event'] ] ] ] ]}}" style="background-color:#e5e5e5;color:#999999;">敬请期待</view>
+            </view>
+        </view>
+        <view class="lists">
+            <view class="imgs">
+                <image src="../../static/task/icon_darenjiang.png"></image>
+            </view>
+            <view class="lists_r">
+                <view class="task_contents">
+                    <view class="task_dis">达人奖</view>
+                    <view class="discribe">用户积分等级达标奖励</view>
+                </view>
+                <view bindtap="__e" class="to_over1" data-event-opts="{{[ [ 'tap',[ [ 'notOpen',['$event'] ] ] ] ]}}">敬请期待</view>
+            </view>
+        </view>
+        <view class="lists">
+            <view class="imgs">
+                <image src="../../static/task/icon_qiandaol.png"></image>
+            </view>
+            <view class="lists_r">
+                <view class="task_contents">
+                    <view class="task_dis">签到礼</view>
+                    <view class="discribe">每天签到送奖励</view>
+                </view>
+                <view bindtap="__e" class="to_over1" data-event-opts="{{[ [ 'tap',[ [ 'notOpen',['$event'] ] ] ] ]}}">敬请期待</view>
+            </view>
+        </view>
+        <view class="lists">
+            <view class="imgs">
+                <image src="../../static/task/icon_jiajiaq.png"></image>
+            </view>
+            <view class="lists_r">
+                <view class="task_contents">
+                    <view class="task_dis">加价券</view>
+                    <view class="discribe">订单金额享受加价奖励</view>
+                </view>
+                <view bindtap="__e" class="to_over1" data-event-opts="{{[ [ 'tap',[ [ 'notOpen',['$event'] ] ] ] ]}}">敬请期待</view>
+            </view>
+        </view>
+    </view>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="slelctWeight" maskClick="{{true}}" type="center" vueId="3e2494c0-1" vueSlots="{{['default']}}">
+        <view class="pops">
+            <view class="pops_title">{{now_rewards.title}}</view>
+            <view class="pops_img" wx:if="{{now_rewards.rules_list.prize[0].type==1||!now_rewards.status}}">
+                <image src="../../static/task/jinbi2.png"></image>
+            </view>
+            <view class="pops_img" wx:if="{{now_rewards.rules_list.prize[0].type==2}}">
+                <image src="../../static/task/liwu2.png"></image>
+            </view>
+            <view class="pops_dis" wx:if="{{now_rewards.rules_list.prize[0].type==1}}">
+                <text wx:if="{{now_rewards.rules_list.prize[0].value_type==1}}">{{now_rewards.rules_list.prize[0].value+'个环保币'}}</text>
+                <text wx:if="{{now_rewards.rules_list.prize[0].value_type==2}}">{{now_rewards.rules_list.prize[0].value+'%环保币'}}</text>
+            </view>
+            <view class="pops_dis" wx:if="{{now_rewards.rules_list.prize[0].type==2}}">{{now_rewards.rules_list.prize[0].value}}</view>
+            <view bindtap="__e" class="pops_btn" data-event-opts="{{[ [ 'tap',[ [ 'close_pop',['$event'] ] ] ] ]}}" wx:if="{{is_get_gift==true}}">领取成功</view>
+            <view bindtap="__e" class="pops_btn" data-event-opts="{{[ [ 'tap',[ [ 'toTaskPage',['$event'] ] ] ] ]}}" wx:if="{{now_rewards.status==1||!now_rewards.status}}">去完成</view>
+            <view bindtap="__e" class="konw_detail" data-event-opts="{{[ [ 'tap',[ [ 'toDetailRules',['$event'] ] ] ] ]}}" wx:if="{{now_rewards.status==1}}">详细规则></view>
+        </view>
+    </uni-popup>
+</view>

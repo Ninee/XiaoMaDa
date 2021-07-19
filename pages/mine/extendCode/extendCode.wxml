@@ -1,0 +1,15 @@
+<view class="content">
+    <view class="code_bg">
+        <view class="code">
+            <image src="{{qrCodeUrl}}"></image>
+        </view>
+        <view class="discribe">地推二维码，扫码推广</view>
+        <view class="extend_ask">
+            <view>推广条件：</view>
+            <view style="padding:6rpx 0;">1.展示推广码，新用户扫码推广</view>
+            <view>2.推广码仅限本人使用</view>
+        </view>
+    </view>
+    <view bindtap="__e" class="btn" data-event-opts="{{[ [ 'tap',[ [ 'toLookData',['$event'] ] ] ] ]}}">查看推广数据</view>
+    <canvas canvasId="qrcode" style="width:500rpx;height:500rpx;position:absolute;top:-999px;"></canvas>
+</view>

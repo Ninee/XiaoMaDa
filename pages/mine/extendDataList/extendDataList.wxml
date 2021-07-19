@@ -1,0 +1,36 @@
+<view>
+    <view class="c_top flex_arr">
+        <view bindtap="__e" class="{{['c_item',selTab==item.id?' selItem':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'selTabHand',['$0'],[ [ ['tabs','',idx,'id'] ] ] ] ] ] ]}}" wx:for="{{tabs}}" wx:for-index="idx" wx:key="idx">{{item.tit}}</view>
+    </view>
+    <view class="head ly-flex-center-between">
+        <view style="display:flex;justify-content:space-between;">
+            <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toChooseTime',['$0'],[ [ ['tabDay','id',item.id,'id'] ] ] ] ] ] ]}}" wx:for="{{tabDay}}" wx:for-index="__i0__" wx:key="id">
+                <view class="{{['yellow_btn',selTime==item.id?'y_btn':'']}}" style="margin-right:10rpx;">{{item.tit}}</view>
+            </view>
+        </view>
+        <view bindtap="__e" class="choose_Time" data-event-opts="{{[ [ 'tap',[ [ 'toChooseTimeOpen',['$event'] ] ] ] ]}}" hidden="{{!(selTime==0)}}">
+            <text style="margin-right:14rpx;">选择时间</text>
+            <image src="../../../static/mine/icon-ct@2x.png"></image>
+        </view>
+    </view>
+    <view class="selectTime">
+        <view>{{'所选时间：'+show_time}}</view>
+    </view>
+    <view class="data_list">
+        <view class="list_item" wx:for="{{dataList}}" wx:key="index">
+            <view class="item_l">
+                <image class="item_l_img" src="../../../static/mine/defaultHeader.png" wx:if="{{!item.pic}}"></image>
+                <image class="item_l_img" src="{{item.pic}}" wx:else></image>
+            </view>
+            <view class="item_r">
+                <view class="item_r_l">
+                    <view style="color:#343434;font-weight:bold;" wx:if="{{item.nickname}}">{{item.nickname}}</view>
+                    <view>{{item.user_tel}}</view>
+                </view>
+                <view wx:if="{{item.complete_order_count==0}}">暂未下单</view>
+                <view wx:else>{{'已下单：'+item.complete_order_count}}</view>
+            </view>
+        </view>
+    </view>
+    <uni-calendar bind:__l="__l" bind:confirm="__e" class="vue-ref" data-event-opts="{{[ [ '^confirm',[ ['confirm'] ] ] ]}}" data-ref="calendar" insert="{{false}}" range="{{true}}" vueId="6e8d764c-1"></uni-calendar>
+</view>

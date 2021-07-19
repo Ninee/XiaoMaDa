@@ -1,0 +1,6 @@
+<view bindtap="__e" class="upDoor" data-event-opts="{{[ [ 'tap',[ [ 'lookPickUpIng',['$event'] ] ] ] ]}}" style="{{'bottom:'+bottom+';'}}">
+    <view class="upDoor_img">
+        <image src="../../static/mine/defaultHeader.png"></image>
+    </view>
+    <view class="font">取货中</view>
+</view>

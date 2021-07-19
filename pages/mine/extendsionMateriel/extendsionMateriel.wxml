@@ -1,0 +1,44 @@
+<view>
+    <view class="box" wx:if="{{!is_share}}">
+        <view bindtap="__e" class="rules" data-event-opts="{{[ [ 'tap',[ [ 'e0',['$event'] ] ] ] ]}}">规则</view>
+        <view style="position:absolute;left:0;z-index:8;width:100%;overflow:hidden;">
+            <swiper bindchange="__e" circular="{{true}}" class="swipers" data-event-opts="{{[ [ 'change',[ [ 'swiperChange',['$event'] ] ] ] ]}}" nextMargin="{{paddingLR}}" previousMargin="{{paddingLR}}">
+                <swiper-item style="height:100%;" wx:for="{{list}}" wx:for-index="ind" wx:key="ind">
+                    <view style="padding:0 10rpx 10rpx 10rpx;box-sizing:border-box;height:100%;position:relative;">
+                        <image class="{{['le-img',index==ind?'le-active':'']}}" mode="heightFix" src="{{list[ind]}}" style="height:100%;"></image>
+                        <view class="{{['qrcode_style',index==ind?'sel_img_bg':'']}}">
+                            <image class="{{[index==ind?'le-active':'']}}" src="{{qrCodeUrl}}"></image>
+                        </view>
+                    </view>
+                </swiper-item>
+            </swiper>
+            <view class="btns ly-flex-center-around">
+                <button class="phone_btn shar_btns ly-flex-center-center" openType="share">
+                    <image src="../../../static/mine/sharwx@2x.png"></image>分享给好友</button>
+                <view bindtap="__e" class="shar_btns ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'popueShare',['$event'] ] ] ] ]}}">
+                    <image src="../../../static/mine/savexc@2x.png"></image>保存到相册</view>
+            </view>
+        </view>
+    </view>
+    <image lazyLoad="{{true}}" mode="widthFix" src="{{formFriend}}" style="width:100vw;position:absolute;top:0px;bottom:0px;" wx:else></image>
+    <view style="position:absolute;z-index:-1;width:100rpx;height:100rpx;top:0;left:0;background:#FFFFFF;overflow:hidden;opacity:0;">
+        <canvas canvasId="qrcode" style="width:150px;height:150px;position:absolute;top:-999px;"></canvas>
+        <canvas canvasId="share_qr_code" disableScroll="true" id="share_qr" style="width:540px;height:960px;border-radius:32rpx;position:absolute;top:-999px;" wx:if="{{showCanvas}}"></canvas>
+    </view>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="rulesPopup" maskClick="{{true}}" type="center" vueId="0b901e5a-1" vueSlots="{{['default']}}">
+        <view class="tips_popup">
+            <view class="tips_popup_box">
+                <view class="titles">规则</view>
+                <view class="tips">
+                    <view>1、怎么挣钱：</view>
+                    <view style="text-align:justify;">{{'活动期间，好友通过您分享的链接(或二维码)接受邀请并下单，即为邀请成功；邀请成功后，好友每次下单，你都将获得每次订单金额'+shard_active_rule+'%的奖励，活动奖励到账情况请在【我的→环保币】内查询。'}}</view>
+                    <view>2、怎么提现：</view>
+                    <view>{{'活动奖励金额大于等于'+withdrawal_min_money+'元即可进行提现。'}}</view>
+                    <view>3、温馨提示：</view>
+                    <view>本次活动同一登录账号、同一手机号视为同一用户，不可互相邀请，若通过不正当手段获取奖励，经查实，每日一收有权撤销该用户的活动资格并取消其奖励，情节严重讲追究其法律责任。</view>
+                </view>
+                <view bindtap="__e" class="i_konw" data-event-opts="{{[ [ 'tap',[ [ 'e1',['$event'] ] ] ] ]}}">知道了</view>
+            </view>
+        </view>
+    </uni-popup>
+</view>

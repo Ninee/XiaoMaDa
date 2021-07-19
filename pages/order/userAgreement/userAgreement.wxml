@@ -1,0 +1,6 @@
+<view style="padding:50rpx 0rpx 150rpx 0rpx;">
+    <view style="padding:0rpx 20rpx 0rpx 20rpx;">
+        <rich-text nodes="{{agreement}}"></rich-text>
+    </view>
+    <view class="whiteSqure"></view>
+</view>

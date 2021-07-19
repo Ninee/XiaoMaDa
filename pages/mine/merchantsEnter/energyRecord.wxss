@@ -1,0 +1,70 @@
+.content {
+    height: 180rpx;
+    background-color: #108ee9;
+    padding-top: 46rpx;
+    color: #fff;
+    padding-left: 68rpx;
+}
+
+.content .energy {
+    font-size: 24rpx;
+}
+
+.content .energy_num {
+    font-size: 60rpx;
+}
+
+.head {
+    width: 100%;
+    padding: 26rpx 59rpx 14rpx 50rpx;
+    background: #fff;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-bottom: 2rpx solid #d8d8d8;
+    font-size: 24rpx;
+}
+
+.head .choose_Time {
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 24rpx;
+}
+
+.yellow_btn {
+    min-width: 140rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    border-radius: 25px;
+    padding: 0 20rpx;
+    font-weight: 700;
+}
+
+.y_btn {
+    background-color: #f9d500;
+}
+
+.choose_Time image {
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 2rpx;
+}
+
+.logList {
+    margin-top: 330rpx;
+}
+
+.logs:first-child {
+    border: none;
+}
+
+.logs {
+    height: 90rpx;
+    line-height: 90rpx;
+    padding: 0 63rpx;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    background-color: #fff;
+    border-top: 2rpx solid #d9d9d9;
+}

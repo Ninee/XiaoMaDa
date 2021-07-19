@@ -1,0 +1,38 @@
+<view class="content">
+    <view class="{{['topNav','bg_colors'+garbages]}}" style="{{'height:'+navHeight+'px'+';'}}"></view>
+    <view class="{{['top','bg_colors'+garbages]}}" style="{{'top:'+navHeight+'px'+';'}}">
+        <view style="width:100%;display:flex;">
+            <view style="margin-left:30rpx;">
+                <view style="display:flex;justify-content:center;">
+                    <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'goBack',['$event'] ] ] ] ]}}" style="width:80rpx;">
+                        <image class="icon_type" src="../../../static/mine/back@2x.png"></image>
+                    </view>
+                </view>
+            </view>
+            <view style="font-size:36rpx;color:#FFFFFF;position:absolute;top:0;left:41%;">每日一收</view>
+        </view>
+    </view>
+    <view class="{{['top_content','bg_colors'+garbages]}}" style="{{'margin-top:calc('+navHeight+'px + 88rpx);'}}">
+        <view class="garbage_name">{{key_word}}</view>
+        <view class="imgs">
+            <image src="../../../static/garbageSelet/kehuishou.png" wx:if="{{garbages==1}}"></image>
+            <image src="../../../static/garbageSelet/bukehuishou.png" wx:if="{{garbages==2}}"></image>
+            <image src="../../../static/garbageSelet/chiyu.png" wx:if="{{garbages==3}}"></image>
+            <image src="../../../static/garbageSelet/qita.png" wx:if="{{garbages==4}}"></image>
+        </view>
+        <view class="garbage_titlesF" wx:if="{{garbages==1}}">可回收物</view>
+        <view class="garbage_titlesF" wx:if="{{garbages==2}}">有害垃圾</view>
+        <view class="garbage_titlesF" wx:if="{{garbages==3}}">湿垃圾</view>
+        <view class="garbage_titlesF" wx:if="{{garbages==4}}">干垃圾</view>
+    </view>
+    <view class="garbage_contentF" wx:if="{{garbages==1}}">是指适宜回收和资源化利用的生活垃圾，主要包括废纸、塑料、玻璃、金属和布料五大类。</view>
+    <view class="garbage_contentF" wx:if="{{garbages==2}}">是指存有对人体有害的重金属、有毒物质或者对环境造成现实危害或者潜在危害的废弃物。包括电池、荧光灯管、灯泡、水银温度计、油漆桶、</view>
+    <view class="garbage_contentF" wx:if="{{garbages==3}}">部分地区又称”厨余垃圾”，日常生活垃圾产生的容易腐烂的生物质废物。</view>
+    <view class="garbage_contentF" wx:if="{{garbages==4}}">部分地区又称”其他垃圾”，除有害垃圾、可回收物、湿垃圾以外的生活废弃物。</view>
+    <view class="bottom_content">
+        <view class="garbage_titlesS">回收指导</view>
+        <view class="garbage_contentS">
+            <rich-text nodes="{{content}}"></rich-text>
+        </view>
+    </view>
+</view>

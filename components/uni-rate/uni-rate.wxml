@@ -1,0 +1,10 @@
+<view class="data-v-3cc54657">
+    <view class="uni-rate data-v-3cc54657 vue-ref" data-ref="uni-rate">
+        <view catchtouchmove="__e" catchtouchstart="__e" class="uni-rate__icon data-v-3cc54657" data-event-opts="{{[ [ 'touchstart',[ [ 'touchstart',['$event'] ] ] ],[ 'touchmove',[ [ 'touchmove',['$event'] ] ] ] ]}}" style="{{'margin-right:'+margin+'px'+';'}}" wx:for="{{stars}}" wx:for-item="star" wx:key="index">
+            <uni-icons bind:__l="__l" class="data-v-3cc54657" color="{{color}}" size="{{size}}" type="{{isFill?'star-filled':'star'}}" vueId="{{'3cadca3c-1-'+index}}"></uni-icons>
+            <view class="uni-rate__icon-on data-v-3cc54657" style="{{'width:'+star.activeWitch+';'}}">
+                <uni-icons bind:__l="__l" class="data-v-3cc54657" color="{{disabled?disabledColor:activeColor}}" size="{{size}}" type="star-filled" vueId="{{'3cadca3c-2-'+index}}"></uni-icons>
+            </view>
+        </view>
+    </view>
+</view>

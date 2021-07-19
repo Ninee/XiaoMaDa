@@ -1,0 +1,318 @@
+<view style="overflow-x:hidden;padding-bottom:20rpx;">
+    <view class="topNav" style="{{'height:'+navHeight+'px'+';'+'background-color:'+topBgColor+';'}}"></view>
+    <view class="top" style="{{'background-color:'+topBgColor+';'+'top:'+navHeight+'px'+';'}}">
+        <button class="phone_btn tell_servicer" openType="contact">
+            <image class="customer_service" src="../../static/firstPage/icon_kefu.png"></image>
+        </button>
+        <view class="nav_title">每日一收</view>
+    </view>
+    <view class="select_box" style="{{'background-color:'+topBgColor+';'+'margin-top:'+'calc('+navHeight+'px + '+88+'rpx)'+';'}}">
+        <view class="selects_input">
+            <view bindtap="__e" class="sel_let" data-event-opts="{{[ [ 'tap',[ [ 'toSelGarbage',['$event'] ] ] ] ]}}">
+                <image src="../../static/garbageSelet/icon_sousuo.png"></image>
+                <text style="color:#B3B3B3;">请输入垃圾名称</text>
+            </view>
+            <view class="sel_right">
+                <image bindtap="__e" class="take_phone" data-event-opts="{{[ [ 'tap',[ [ 'toSelGarbage',['$event'] ] ] ] ]}}" src="../../static/firstPage/icon_saomiao.png"></image>
+                <image bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toOpenVoicePopup',['$event'] ] ] ] ]}}" src="../../static/firstPage/icon_yuyin.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="menu" style="{{'background-color:'+topBgColor+';'}}">
+        <scroll-view class="scroll-menu" scrollX="true">
+            <view style="display:inline-block;" wx:for="{{menus}}" wx:key="index">
+                <view bindtap="__e" class="scroll_item" data-event-opts="{{[ [ 'tap',[ [ 'toOtherPage',['$0'],[ [ ['menus','',index] ] ] ] ] ] ]}}">
+                    <view>{{item.value}}</view>
+                    <view class="{{['under_line',index==0?'line_bg':'']}}"></view>
+                </view>
+            </view>
+        </scroll-view>
+        <view bindtap="__e" class="menu_types" data-event-opts="{{[ [ 'tap',[ [ 'toCategory',['$event'] ] ] ] ]}}">
+            <image src="/static/firstPage/icon_fenlei.png"></image>分类</view>
+    </view>
+    <view class="swiper_box" id="bannerSwiper" style="{{'background-color:'+topBgColor+';'}}">
+        <image class="bg_img" src="../../static/firstPage/bg.png"></image>
+        <swiper autoplay="{{bannerAuto}}" bindchange="__e" circular="{{true}}" class="swiper" data-event-opts="{{[ [ 'change',[ [ 'change_swiper',['$event'] ] ] ] ]}}" duration="{{500}}" interval="{{3000}}">
+            <swiper-item wx:for="{{swiper_img}}" wx:key="index">
+                <image bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'swiperJumpPage',['$0'],[ [ ['swiper_img','',index] ] ] ] ] ] ]}}" src="{{item.pic_url}}"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="notice_box">
+        <view class="white_boxs">
+            <view class="ly-flex-center">
+                <image src="../../static/firstPage/icon_new.png"></image>
+            </view>
+            <swiper autoplay="{{true}}" circular="{{true}}" class="notice" duration="{{500}}" interval="{{2000}}" vertical="{{true}}">
+                <swiper-item wx:for="{{msgs}}" wx:key="index">{{''+item+''}}</swiper-item>
+            </swiper>
+        </view>
+    </view>
+    <view class="fun_btns">
+        <view class="align_s_a">
+            <view bindtap="__e" class="fun_btns_item" data-event-opts="{{[ [ 'tap',[ [ 'nowPlayOrder',['$0'],[ [ ['hot_btns','',index,'id'] ] ] ] ] ] ]}}" wx:for="{{hot_btns}}" wx:key="index">
+                <image src="{{item.data}}"></image>
+                <view class="btn_name">{{item.value}}</view>
+                <view class="hot_tips" wx:if="{{item.pid==1}}">热门</view>
+            </view>
+        </view>
+        <view class="align_s_a" style="margin-top:20rpx;" wx:if="{{xcxIsAudit==1}}">
+            <view bindtap="__e" class="fun_btns_item" data-event-opts="{{[ [ 'tap',[ [ 'openNewPage',['$event'] ] ] ] ]}}">
+                <image src="../../static/firstPage/ficon06.png"></image>
+                <view class="btn_name">手机数码</view>
+                <view class="hot_tips" style="width:82rpx;background-size:82rpx 22rpx;right:-40rpx;">加价25%</view>
+            </view>
+            <view bindtap="__e" class="fun_btns_item" data-event-opts="{{[ [ 'tap',[ [ 'toGiftsPage',['$event'] ] ] ] ]}}">
+                <view class="ly-flex-center-center" style="width:80rpx;height:80rpx;">
+                    <frame-animation bind:__l="__l" count="60" duration="3" height="90" url="{{$root.g0}}" vueId="8dd740cc-1" width="60"></frame-animation>
+                </view>
+                <view class="btn_name">福利社</view>
+            </view>
+            <view class="fun_btns_item"></view>
+            <view class="fun_btns_item"></view>
+            <view class="fun_btns_item"></view>
+        </view>
+        <view class="align_s_a" style="margin-top:20rpx;" wx:if="{{xcxIsAudit==0}}">
+            <view bindtap="__e" class="fun_btns_item" data-event-opts="{{[ [ 'tap',[ [ 'openNewPage',['$event'] ] ] ] ]}}">
+                <image src="../../static/firstPage/ficon06.png"></image>
+                <view class="btn_name">手机数码</view>
+                <view class="hot_tips" style="width:82rpx;background-size:82rpx 22rpx;right:-40rpx;">加价25%</view>
+            </view>
+            <view bindtap="__e" class="fun_btns_item" data-event-opts="{{[ [ 'tap',[ [ 'not_open',['$event'] ] ] ] ]}}">
+                <image src="../../static/firstPage/ficon08.png"></image>
+                <view class="btn_name">公益行动</view>
+            </view>
+            <view bindtap="__e" class="fun_btns_item" data-event-opts="{{[ [ 'tap',[ [ 'not_open',['$event'] ] ] ] ]}}">
+                <image src="../../static/firstPage/ficon09.png"></image>
+                <view class="btn_name">环保商城</view>
+            </view>
+            <view bindtap="__e" class="fun_btns_item" data-event-opts="{{[ [ 'tap',[ [ 'not_open',['$event'] ] ] ] ]}}">
+                <image src="../../static/firstPage/ficon10.png"></image>
+                <view class="btn_name">家政服务</view>
+            </view>
+            <view bindtap="__e" class="fun_btns_item" data-event-opts="{{[ [ 'tap',[ [ 'toGiftsPage',['$event'] ] ] ] ]}}">
+                <view class="ly-flex-center-center" style="width:80rpx;height:80rpx;">
+                    <frame-animation bind:__l="__l" count="60" duration="3" height="90" url="{{$root.g1}}" vueId="8dd740cc-2" width="60"></frame-animation>
+                </view>
+                <view class="btn_name">福利社</view>
+            </view>
+        </view>
+    </view>
+    <view class="level_padding">
+        <view class="recovery_box" style="margin-top:10rpx;">
+            <view class="titles_box ly-flex-center-center">
+                <view class="herd_img">回收指南</view>
+            </view>
+            <view class="process">
+                <view class="process_item">
+                    <image src="../../static/firstPage/icon-lc1.png"></image>
+                    <view>在线预约</view>
+                </view>
+                <view class="ellipsis">
+                    <view></view>
+                    <view></view>
+                    <view></view>
+                </view>
+                <view class="process_item">
+                    <image src="../../static/firstPage/icon-lc2.png"></image>
+                    <view>免费上门</view>
+                </view>
+                <view class="ellipsis">
+                    <view></view>
+                    <view></view>
+                    <view></view>
+                </view>
+                <view class="process_item">
+                    <image src="../../static/firstPage/icon-lc3.png"></image>
+                    <view>完成订单</view>
+                </view>
+                <view class="ellipsis">
+                    <view></view>
+                    <view></view>
+                    <view></view>
+                </view>
+                <view class="process_item">
+                    <image src="../../static/firstPage/icon-lc4.png"></image>
+                    <view>领取奖励</view>
+                </view>
+            </view>
+            <view class="over_reduce_tips_box ly_flex_center_column" wx:if="{{activities.length>0}}">
+                <view animation="{{animationData}}" class="ly_flex_center_column" style="position:absolute;">
+                    <view class="over_reduce_tips">{{activities[0].sub_rule}}</view>
+                    <view class="sanjiao"></view>
+                </view>
+            </view>
+            <view class="over_reduce_tips_box ly_flex_center_column" style="opacity:0;background:#FFFFFF;" wx:else>
+                <view class="over_reduce_tips">1</view>
+                <view class="sanjiao" style="border:none;"></view>
+            </view>
+            <view bindtap="__e" class="flex_centers" data-event-opts="{{[ [ 'tap',[ [ 'toPlayOrder',['$event'] ] ] ] ]}}">
+                <view class="quckily_play_order">立即回收</view>
+                <view class="flash-across"></view>
+            </view>
+        </view>
+        <view bindtap="__e" class="ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'toExtensionCode',['$event'] ] ] ] ]}}" style="width:100%;">
+            <frame-animation bind:__l="__l" count="75" duration="3" height="204" url="{{$root.g2}}" vueId="8dd740cc-3" width="710"></frame-animation>
+        </view>
+    </view>
+    <view class="hot_swiper_box">
+        <swiper autoplay="{{false}}" bindchange="__e" circular="{{true}}" class="swiper" current="{{current}}" data-event-opts="{{[ [ 'change',[ [ 'changes',['$event'] ] ] ] ]}}" duration="{{500}}" interval="{{3000}}" nextMargin="{{margin}}" previousMargin="{{margin}}">
+            <swiper-item bindtap="__e" class="{{[index==leftCurrent?'left_current':'',index==rightCurrent?'right_current':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'swiperJump',[index] ] ] ] ]}}" wx:for="{{hot_imgs}}" wx:key="index">
+                <image class="{{[index==current?'le-active':'']}}" src="{{index==current?item:hot_anthore_imgs[index]}}"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="level_padding">
+        <view class="business_cooperation">
+            <view class="titles_box ly-flex-center-center">
+                <view class="herd_img">商务合作</view>
+            </view>
+            <image bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'toBusinessCooperation',['$event'] ] ] ] ]}}" src="{{$root.g3}}"></image>
+        </view>
+        <view class="we_promise">
+            <view class="titles_box ly-flex-center-center">
+                <view class="herd_img">我们承诺</view>
+            </view>
+            <view class="we_promise_top">
+                <view class="promise_box">
+                    <view class="promise_l">
+                        <view class="promise_title">及时上门</view>
+                        <view class="promise_contents">5分钟内响应</view>
+                        <view class="promise_contents">2小时内完成</view>
+                    </view>
+                    <view class="promise_r">
+                        <image src="../../static/firstPage/wicon01.png"></image>
+                    </view>
+                </view>
+                <view class="promise_box">
+                    <view class="promise_l">
+                        <view class="promise_title">即时到账</view>
+                        <view class="promise_contents">收益秒结</view>
+                        <view class="promise_contents">无需提现</view>
+                    </view>
+                    <view class="promise_r">
+                        <image src="../../static/firstPage/wicon02.png"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="we_promise_bottom">
+                <view class="promise_box">
+                    <view class="promise_l">
+                        <view class="promise_title">价格透明</view>
+                        <view class="promise_contents">线上估价</view>
+                        <view class="promise_contents">公开透明</view>
+                    </view>
+                    <view class="promise_r">
+                        <image src="../../static/firstPage/wicon03.png"></image>
+                    </view>
+                </view>
+                <view class="promise_box">
+                    <view class="promise_l">
+                        <view class="promise_title">隐私保护</view>
+                        <view class="promise_contents">虚拟拨号</view>
+                        <view class="promise_contents">隐私安全</view>
+                    </view>
+                    <view class="promise_r">
+                        <image src="../../static/firstPage/wicon04.png"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="cooperative_partner">
+            <view class="titles_box ly-flex-center-center">
+                <view class="herd_img">合作伙伴</view>
+            </view>
+            <view class="top_partner ly-flex-center-between">
+                <image src="{{partner_url[0]}}"></image>
+                <image src="{{partner_url[1]}}"></image>
+                <image src="{{partner_url[2]}}"></image>
+                <image src="{{partner_url[3]}}"></image>
+            </view>
+            <view class="bottom_partner ly-flex-center-between">
+                <image src="{{partner_url[4]}}"></image>
+                <image src="{{partner_url[5]}}"></image>
+                <image src="{{partner_url[6]}}"></image>
+                <image src="{{partner_url[7]}}"></image>
+            </view>
+        </view>
+    </view>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="voicePropu" maskClick="{{false}}" type="center" vueId="8dd740cc-4" vueSlots="{{['default']}}">
+        <view class="voice_input_popup">
+            <view class="voice_input_popup_box">
+                <view>语音识别</view>
+                <view class="voice_popup_imgs">
+                    <image class="voice_popup_imgs_a" src="../../static/index/yuyin.png"></image>
+                    <image class="{{['voice_popup_imgs_b',is_speaking==true?'voice_run':'']}}" src="../../static/index/yuyin2.png"></image>
+                </view>
+                <view class="voice_popup_tips">请说出搜索内容</view>
+                <view bindtap="__e" class="voice_over" data-event-opts="{{[ [ 'tap',[ [ 'toClosePopup',['$event'] ] ] ] ]}}">说好了</view>
+            </view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="recovertRuselt" maskClick="{{false}}" type="center" vueId="8dd740cc-5" vueSlots="{{['default']}}">
+        <view class="tips_popup">
+            <view class="tips_popup_box">
+                <view class="titles">回收规则</view>
+                <view class="tips">
+                    <view>1. 拒绝掺水、拒绝掺杂</view>
+                    <view>2. 小于10公斤，暂不保证上门回收</view>
+                    <view>3. 因回收成本原因，成交价格以骑 手评估后为准</view>
+                </view>
+                <view bindtap="__e" class="i_konw" data-event-opts="{{[ [ 'tap',[ [ 'e0',['$event'] ] ] ] ]}}">知道了</view>
+            </view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="vue-ref" data-ref="noviceGuidance" maskClick="{{false}}" type="bottom" vueId="8dd740cc-6" vueSlots="{{['default']}}">
+        <view class="level_padding">
+            <view style="font-size:36rpx;color:#FFFFFF;text-align:center;margin-bottom:16rpx;">点击这里快速下单</view>
+            <view class="ly-flex-center-center" style="margin-bottom:20rpx;">
+                <image src="../../static/firstPage/icon_zyjt.png" style="width:70rpx;height:70rpx;"></image>
+            </view>
+            <view bindtap="__e" class="recovery_box" data-event-opts="{{[ [ 'tap',[ [ 'closeNoviceGuidance',['$event'] ] ] ] ]}}">
+                <view class="titles_box ly-flex-center-center">
+                    <view class="herd_img">回收指南</view>
+                </view>
+                <view class="process" style="margin-top:10rpx;">
+                    <view class="process_item">
+                        <image src="../../static/firstPage/icon-lc1.png"></image>
+                        <view>在线预约</view>
+                    </view>
+                    <view class="ellipsis">
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                    </view>
+                    <view class="process_item">
+                        <image src="../../static/firstPage/icon-lc2.png"></image>
+                        <view>免费上门</view>
+                    </view>
+                    <view class="ellipsis">
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                    </view>
+                    <view class="process_item">
+                        <image src="../../static/firstPage/icon-lc3.png"></image>
+                        <view>完成订单</view>
+                    </view>
+                    <view class="ellipsis">
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                    </view>
+                    <view class="process_item">
+                        <image src="../../static/firstPage/icon-lc4.png"></image>
+                        <view>领取奖励</view>
+                    </view>
+                </view>
+                <view class="flex_centers" style="position:relative;overflow:hidden;margin-top:20rpx;">
+                    <view class="quckily_play_order">立即回收</view>
+                    <view class="flash-across"></view>
+                </view>
+            </view>
+            <view class="i_see ly-flex-center-center">
+                <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'closeNoviceGuidance',['$event'] ] ] ] ]}}">去下单</view>
+            </view>
+        </view>
+    </uni-popup>
+</view>

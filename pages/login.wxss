@@ -1,0 +1,54 @@
+.logo {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 166rpx;
+}
+
+.logo image {
+    width: 178rpx;
+    height: 252rpx;
+    display: block;
+}
+
+.phone_btn {
+    background: none;
+    padding: 0;
+    line-height: 1;
+}
+
+.phone_btn,.phone_btn:after {
+    border: none;
+}
+
+.login {
+    background-color: #017f36;
+    border-radius: 10rpx;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 36rpx;
+    color: #fff;
+    height: 92rpx;
+    line-height: 92rpx;
+    margin: 164rpx 30rpx 0;
+}
+
+.login .wxlogo image {
+    width: 44rpx;
+    height: 36rpx;
+    vertical-align: middle;
+    margin-right: 10rpx;
+}
+
+.not_login {
+    margin: 0 30rpx;
+    height: 92rpx;
+    line-height: 92rpx;
+    text-align: center;
+    color: #666;
+}

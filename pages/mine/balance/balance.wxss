@@ -1,0 +1,135 @@
+.top_bg {
+    background: linear-gradient(240deg,#ff9e28,#ff5356);
+    width: 100%;
+}
+
+.top_bg .nav {
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    font-size: 36rpx;
+    color: #fff;
+    position: relative;
+}
+
+.top_bg .nav .back {
+    width: 24rpx;
+    height: 40rpx;
+    position: absolute;
+    top: 13px;
+    left: 30rpx;
+}
+
+.top_bg .top_content {
+    padding: 42rpx 0rpx 20rpx 66rpx;
+    font-size: 24rpx;
+    color: #fff;
+}
+
+.top_bg .top_content .top_c_title {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: end;
+    align-items: flex-end;
+    font-weight: 700;
+}
+
+.top_bg .top_content .top_c_title .top_c_money {
+    margin-left: -10rpx;
+    font-size: 60rpx;
+}
+
+.top_bg .top_content .top_c_title .take_btns {
+    padding: 14rpx 32rpx;
+    font-size: 24rpx;
+    background-color: #fff;
+    color: #414c41;
+    border-radius: 26rpx;
+    margin-right: 64rpx;
+}
+
+.top_bg .top_content .in_out {
+    margin-top: 36rpx;
+}
+
+.select {
+    font-size: 28rpx;
+    color: #333;
+    padding: 14rpx 0;
+    background-color: #fff;
+    border-bottom: 2rpx solid #ededed;
+}
+
+.select,.select .select_item {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.select .select_item {
+    -webkit-box-flex: 1;
+    flex: 1;
+    text-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.select .select_item .botton_line {
+    width: 100rpx;
+    height: 6rpx;
+    border-radius: 4rpx;
+}
+
+.select .select_item .bg_red {
+    background-color: red;
+}
+
+.in_list {
+    height: 78rpx;
+    font-size: 24rpx;
+}
+
+.in_list,.out_list {
+    padding: 0 62rpx;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 2rpx solid #ededed;
+    color: #333;
+}
+
+.out_list {
+    height: 96rpx;
+    font-size: 20rpx;
+}
+
+.out_list .out_list_l_title {
+    font-size: 24rpx;
+}
+
+.out_list .out_list_r {
+    font-size: 20rpx;
+    text-align: right;
+}
+
+.out_list .out_list_r .out_list_r_titleF {
+    color: red;
+    font-size: 24rpx;
+}
+
+.out_list .out_list_r .out_list_r_titleS {
+    color: #017f36;
+    font-size: 24rpx;
+}
+
+.out_list .out_list_r .out_list_r_titleT {
+    color: #333;
+    font-size: 24rpx;
+}

@@ -1,0 +1,17 @@
+<view class="uni-popup-dialog data-v-c9db5f1e">
+    <view class="uni-dialog-title data-v-c9db5f1e">
+        <text class="{{['uni-dialog-title-text data-v-c9db5f1e','uni-popup__'+dialogType]}}">{{title}}</text>
+    </view>
+    <view class="uni-dialog-content data-v-c9db5f1e">
+        <text class="uni-dialog-content-text data-v-c9db5f1e" wx:if="{{mode==='base'}}">{{content}}</text>
+        <input bindinput="__e" class="uni-dialog-input data-v-c9db5f1e" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','val','$event',[] ] ] ] ] ]}}" focus="{{focus}}" placeholder="{{placeholder}}" type="text" value="{{val}}" wx:else></input>
+    </view>
+    <view class="uni-dialog-button-group data-v-c9db5f1e">
+        <view bindtap="__e" class="uni-dialog-button data-v-c9db5f1e" data-event-opts="{{[ [ 'tap',[ [ 'close',['$event'] ] ] ] ]}}">
+            <text class="uni-dialog-button-text data-v-c9db5f1e">取消</text>
+        </view>
+        <view bindtap="__e" class="uni-dialog-button uni-border-left data-v-c9db5f1e" data-event-opts="{{[ [ 'tap',[ [ 'onOk',['$event'] ] ] ] ]}}">
+            <text class="uni-dialog-button-text uni-button-color data-v-c9db5f1e">确定</text>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,10 @@
+<view class="notice_box">
+    <view class="white_boxs">
+        <swiper autoplay="{{true}}" circular="{{true}}" class="notice" duration="{{500}}" interval="{{3000}}" vertical="{{true}}">
+            <swiper-item class="ly-flex-center" wx:for="{{msgs}}" wx:key="index">
+                <image src="{{'/static/'+icon_urls+'/'+item.icon_url}}" style="margin-left:0;width:54rpx;height:24rpx;"></image>{{(item.sub_rule||'')+''}}</swiper-item>
+        </swiper>
+        <view class="ly-flex-center-center" style="font-size:20rpx;color:#666666;margin-left:10rpx;min-width:100rpx;text-align:right;">{{'共'+msgs.length+'条'}}<image src="/static/index/icon_jt.png" style="width:20rpx;height:20rpx;margin:0 0 0 4rpx;"></image>
+        </view>
+    </view>
+</view>

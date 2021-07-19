@@ -1,0 +1,46 @@
+page {
+    background-color: #fff;
+}
+
+.border {
+    padding: 0 60rpx 40rpx;
+}
+
+.header {
+    font-size: 80rpx;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-top: 68rpx;
+}
+
+.first_title {
+    height: 128rpx;
+    line-height: 128rpx;
+    font-weight: 700;
+    font-size: 40rpx;
+}
+
+.first_content {
+    margin-left: 40rpx;
+}
+
+.first_content,.first_content1 {
+    font-size: 28rpx;
+    font-weight: 700;
+    color: #666;
+}
+
+.area {
+    color: #666;
+    margin-left: 40rpx;
+}
+
+.area,.tips {
+    font-size: 28rpx;
+}
+
+.tips {
+    color: red;
+    margin-left: 68rpx;
+}

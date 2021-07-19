@@ -1,0 +1,56 @@
+<view>
+    <view class="top_bg" style="{{'height: calc(244rpx + '+navHeight+'px + '+44+'px)'}}">
+        <view style="{{'height: '+navHeight+'px'}}"></view>
+        <view class="nav">
+            <image bindtap="__e" class="back" data-event-opts="{{[ [ 'tap',[ [ 'goBack',['$event'] ] ] ] ]}}" src="../../../static/mine/back@2x.png"></image>环保币</view>
+        <view class="top_content">
+            <view>环保币</view>
+            <view class="top_c_title">
+                <view class="top_c_money">{{'￥'+coin}}</view>
+                <view bindtap="__e" class="take_btns" data-event-opts="{{[ [ 'tap',[ [ 'toWithdrawal',['$event'] ] ] ] ]}}">立刻提现</view>
+            </view>
+            <view class="in_out">
+                <block wx:if="{{income<10000}}">
+                    <text>累积收益(元)</text>
+                    <text style="margin-left:36rpx;">{{income}}</text>
+                </block>
+                <block wx:else>
+                    <text>累积收益(万元)</text>
+                    <text style="margin-left:36rpx;">{{income/10000}}</text>
+                </block>
+                <block wx:if="{{withdrawal<10000}}">
+                    <text style="margin-left:122rpx;">累积提现(元)</text>
+                    <text style="margin-left:38rpx;">{{withdrawal}}</text>
+                </block>
+                <block wx:else>
+                    <text style="margin-left:122rpx;">累积提现(万元)</text>
+                    <text style="margin-left:38rpx;">{{withdrawal/10000}}</text>
+                </block>
+            </view>
+        </view>
+    </view>
+    <view class="select">
+        <view bindtap="__e" class="select_item" data-event-opts="{{[ [ 'tap',[ [ 'select_tabs',['$0'],[ [ ['selects','id',item.id,'id'] ] ] ] ] ] ]}}" wx:for="{{selects}}" wx:key="id">
+            <view class="select_title">{{item.lable}}</view>
+            <view class="{{['botton_line',item.id==selectTabId?'bg_red':'']}}"></view>
+        </view>
+    </view>
+    <view class="in_list" hidden="{{!(selectTabId==0)}}" wx:for="{{incomeLog}}" wx:key="index">
+        <view>{{item.create_time_str}}</view>
+        <view>{{'+'+item.value}}</view>
+    </view>
+    <view class="out_list" hidden="{{!(selectTabId==1)}}" wx:for="{{withdrawalLog}}" wx:key="index">
+        <view class="out_list_l">
+            <view class="out_list_l_title">{{'提现'+item.withdraw_price+'元(手续费'+item.service_price+'元)'}}</view>
+            <view>{{item.create_time_str}}</view>
+        </view>
+        <view class="out_list_r">
+            <view class="out_list_r_titleF" wx:if="{{item.status==2}}">提现失败</view>
+            <view class="out_list_r_titleS" wx:if="{{item.status==1}}">提现成功</view>
+            <view class="out_list_r_titleT" wx:if="{{item.status==0}}">审核中</view>
+            <view class="out_list_r_titleF" wx:if="{{item.status==3}}">审核拒绝</view>
+            <view wx:if="{{item.status==2}}">{{item.error_message||''}}</view>
+            <view wx:if="{{item.status==3}}">{{item.reason||''}}</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,16 @@
+<view class="content">
+    <view class="bg_img">
+        <image mode="widthFix" src="{{bg_img}}"></image>
+        <view class="positions">
+            <view class="title">使用规则</view>
+            <view class="rules">
+                <view class="rules_f" style="margin-bottom:40rpx;">1.门店码用于门店推广客户，产生的相关收益归门店所有。</view>
+                <view class="rules_f" style="margin-bottom:40rpx;">2.激活方式，门店负责人扫码后点击激活按钮激活。</view>
+                <view class="rules_f">3.激活后即可与门店产生绑定关系。(其他说明:门店码不可转让，激活操作不可逆)</view>
+            </view>
+        </view>
+        <view class="btn">
+            <view bindtap="__e" class="btns" data-event-opts="{{[ [ 'tap',[ [ 'bindStoreCode',['$event'] ] ] ] ]}}">激活并使用</view>
+        </view>
+    </view>
+</view>

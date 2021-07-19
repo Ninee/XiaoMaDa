@@ -1,0 +1,85 @@
+page {
+    background-color: #fff;
+}
+
+.out_padding {
+    padding: 20rpx 20rpx 0;
+}
+
+.out_padding .textareas {
+    width: 94%;
+    height: 250rpx;
+    background: #fbfbfb;
+    border: 2rpx solid #e6e6e6;
+    border-radius: 16rpx;
+    padding: 20rpx;
+}
+
+.out_padding .labels {
+    margin-top: 58rpx;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 0 16rpx 0 8rpx;
+    height: 50rpx;
+    font-size: 28rpx;
+    color: #666;
+}
+
+.out_padding .labels,.out_padding .labels .labels_r {
+    display: flex;
+}
+
+.out_padding .labels .labels_r {
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.out_padding .labels .labels_r image {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 12rpx;
+}
+
+.out_padding .labels_box {
+    margin-top: 6rpx;
+    width: 100%;
+}
+
+.out_padding .labels_box .labels_items {
+    display: flex;
+    display: inline-block;
+    border: 2rpx solid #e6e6e6;
+    border-radius: 16rpx;
+    color: #333;
+    font-size: 24rpx;
+    padding: 16rpx;
+    margin: 20rpx 20rpx 0 0;
+    position: relative;
+}
+
+.out_padding .labels_box .delete_label,.out_padding .labels_box .labels_items {
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.out_padding .labels_box .delete_label {
+    width: 40rpx;
+    height: 40rpx;
+    display: flex;
+    position: absolute;
+    top: -34rpx;
+    right: 0rpx;
+    z-index: 100;
+}
+
+.out_padding .labels_box .delete_label image {
+    width: 20rpx;
+    height: 20rpx;
+}
+
+.del_lab {
+    border: 2rpx solid #e6e6e6;
+    color: #ccc;
+}

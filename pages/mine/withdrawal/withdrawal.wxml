@@ -1,0 +1,17 @@
+<view>
+    <view class="content">
+        <view class="title">
+            <text class="title_l">提现环保币</text>
+            <text>(查看提现规则)</text>
+        </view>
+        <view class="content_bottom">
+            <view class="content_bottom_l">
+                <view>￥</view>
+                <input bindinput="__e" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '','takeMoney','$event',[] ] ] ] ] ]}}" placeholder="{{$root.m0}}" placeholderStyle="font-size:24rpx;color:#666666" value="{{takeMoney}}"></input>
+            </view>
+            <view bindtap="__e" class="content_bottom_r" data-event-opts="{{[ [ 'tap',[ [ 'takeAll',['$event'] ] ] ] ]}}">全部</view>
+        </view>
+    </view>
+    <view bindtap="__e" class="btns" data-event-opts="{{[ [ 'tap',[ [ 'takeBalanceBefore',['$event'] ] ] ] ]}}">确认提现</view>
+    <view class="tips">{{'每次提现将收取手续费'+withdrawalRate+'%，默认收款账户为当前登入微信账号'}}</view>
+</view>

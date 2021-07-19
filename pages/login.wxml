@@ -1,0 +1,13 @@
+<view>
+    <view class="logo">
+        <image src="../static/index/logo-g@2x.png"></image>
+    </view>
+    <button bindgetphonenumber="__e" class="phone_btn login" data-event-opts="{{[ [ 'getphonenumber',[ [ 'getPhoneNumber',['$event'] ] ] ] ]}}" openType="getPhoneNumber">
+        <view class="wxlogo">
+            <image src="../static/index/weixin@2x.png"></image>
+        </view>
+        <view>微信用户一键登录</view>
+    </button>
+    <uni-link href text bind:__l="__l" vueId="f7872a74-1"></uni-link>
+    <view bindtap="__e" class="not_login" data-event-opts="{{[ [ 'tap',[ [ 'toIndex',['$event'] ] ] ] ]}}">暂不登录</view>
+</view>

@@ -1,0 +1,63 @@
+<view class="content">
+    <view class="search-box">
+        <view class="input-box">
+            <image src="../../../static/garbageSelet/icon_sousuo.png" style="width:30rpx;height:30rpx;display:block;"></image>
+            <input adjustPosition="{{true}}" bindconfirm="__e" bindinput="__e" data-event-opts="{{[ [ 'confirm',[ [ 'inputChange',['$event'] ] ] ],[ 'input',[ [ '__set_model',[ '','keyword','$event',[] ] ] ] ] ]}}" placeholder="请输入垃圾名称" placeholderClass="placeholder-class" type="text" value="{{keyword}}"></input>
+            <view catchtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'clearKeyWord',['$event'] ] ] ] ]}}" style="padding:4px 10px 0px 10px;" wx:if="{{keyword}}">
+                <image src="../../../static/garbageSelet/icon_shanchu.png" style="width:30rpx;height:30rpx;"></image>
+            </view>
+            <image bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'takePhoto',['$event'] ] ] ] ]}}" src="../../../static/garbageSelet/icon_saomiao.png" style="width:40rpx;height:40rpx;display:block;" wx:else></image>
+        </view>
+        <view bindtap="__e" class="search-btn" data-event-opts="{{[ [ 'tap',[ [ 'goBackPage',['$event'] ] ] ] ]}}">取消</view>
+    </view>
+    <view class="search-keyword">
+        <scroll-view class="keyword-list-box" hidden="{{!isShowKeywordList}}" scrollY="{{true}}">
+            <view catchtap="__e" class="keyword-entry" data-event-opts="{{[ [ 'tap',[ [ 'doSearch',['$0'],[ [ ['keywordList','',index,'keyword'] ] ] ] ] ] ]}}" hoverClass="keyword-entry-tap" wx:for="{{keywordList}}" wx:for-item="row" wx:key="index">
+                <view class="keyword-text">
+                    <rich-text nodes="{{row.htmlStr}}"></rich-text>
+                </view>
+                <view class="keyword-img">{{''+(row.item_category||'')+''}}</view>
+            </view>
+            <view class="ly-flex-center-center" style="height:100%;color:#B3B3B3;" wx:if="{{keywordList.length==0}}">暂无记录</view>
+        </scroll-view>
+        <scroll-view class="keyword-box" hidden="{{!!isShowKeywordList}}" scrollY="{{true}}">
+            <view class="keyword-block">
+                <view class="keyword-list-header">
+                    <view style="font-weight:bold;font-size:32rpx;">热搜</view>
+                    <view>
+                        <image bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'hotToggle',['$event'] ] ] ] ]}}" src="{{'/static/garbageSelet/attention'+forbid+'.png'}}"></image>
+                    </view>
+                </view>
+                <view class="keyword-list-content" style="display:flex;" wx:if="{{forbid==''}}">
+                    <view style="width:49%;">
+                        <view bindtap="__e" class="hot_keyword_list" data-event-opts="{{[ [ 'tap',[ [ 'doSearch',['$0'],[ [ ['leftHotKeyword','',index] ] ] ] ] ] ]}}" wx:for="{{leftHotKeyword}}" wx:for-item="keyword" wx:key="index">
+                            <view>{{(index+1)*2-1}}</view>
+                            <view class="key_word">{{keyword}}</view>
+                            <view class="hot_text">热</view>
+                        </view>
+                    </view>
+                    <view style="width:50%;">
+                        <view bindtap="__e" class="hot_keyword_list" data-event-opts="{{[ [ 'tap',[ [ 'doSearch',['$0'],[ [ ['rightHotKeyword','',index] ] ] ] ] ] ]}}" wx:for="{{rightHotKeyword}}" wx:for-item="keyword" wx:key="index">
+                            <view>{{index*2+2}}</view>
+                            <view class="key_word">{{keyword}}</view>
+                            <view class="hot_text">热</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="hide-hot-tis" wx:else>
+                    <view>当前搜热门搜索已隐藏</view>
+                </view>
+            </view>
+            <view class="keyword-block" wx:if="{{oldKeywordList.length>0}}">
+                <view class="keyword-list-header">
+                    <view style="font-weight:bold;font-size:32rpx;">历史搜索</view>
+                </view>
+                <view class="keyword">
+                    <view bindtap="__e" data-event-opts="{{[ [ 'tap',[ [ 'doSearch',['$0'],[ [ ['oldKeywordList','',index] ] ] ] ] ] ]}}" wx:for="{{oldKeywordList}}" wx:for-item="keyword" wx:key="index">{{keyword}}</view>
+                </view>
+                <view bindtap="__e" class="ly-flex-center-center" data-event-opts="{{[ [ 'tap',[ [ 'oldDelete',['$event'] ] ] ] ]}}" style="margin-top:10rpx;">
+                    <image src="/static/garbageSelet/delete.png" style="width:30rpx;height:30rpx;"></image>清空搜索历史</view>
+            </view>
+        </scroll-view>
+    </view>
+</view>

@@ -1,0 +1,91 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/index/firstPage",
+    "pages/order/order",
+    "pages/mine/mine",
+    "pages/index/playOrder/playOrder",
+    "pages/mine/manageAddress/manageAddress",
+    "pages/mine/manageAddress/addAddress",
+    "pages/index/newsList/newsList",
+    "pages/index/newsList/lookNews",
+    "pages/mine/extendCode/extendCode",
+    "pages/mine/extendDataList/extendDataList",
+    "pages/mine/addExtender/addExtender",
+    "pages/mine/manageAddress/chooseAddress",
+    "pages/index/priceTable/priceTable",
+    "pages/mine/balance/balance",
+    "pages/mine/withdrawal/withdrawal",
+    "pages/mine/extensionCode/extensionCode",
+    "pages/mine/extensionCode/shareCode",
+    "pages/mine/extensionCode/faceToFaceCode",
+    "pages/mine/extensionCode/inviteLogs",
+    "pages/mine/extensionCode/inviteList",
+    "pages/mine/extendsionMateriel/extendsionMateriel",
+    "pages/mine/inviteFriends/inviteFriends",
+    "pages/login",
+    "pages/mine/merchantsEnter/merchantsEnter",
+    "pages/mine/merchantsEnter/result",
+    "pages/mine/merchantsEnter/merCenter",
+    "pages/mine/merchantsEnter/energyRecord",
+    "pages/task/task",
+    "pages/task/detailRules/detailRules",
+    "pages/task/giftList/giftList",
+    "pages/storeCode/storeCode",
+    "pages/index/priceTable/garbageSelet",
+    "pages/index/priceTable/garbageDetail",
+    "pages/index/writeOrderInfo/writeOrderInfo",
+    "pages/index/leaveMessage/leaveMessage",
+    "pages/order/orderDetail/orderDetail",
+    "pages/order/details/details",
+    "pages/order/orderCancleSuccess/orderCancleSuccess",
+    "pages/webView/selPhone",
+    "pages/order/userAgreement/userAgreement",
+    "pages/index/businessCooperation/businessCooperation",
+    "pages/index/businessCooperation/cooperationForm"
+  ],
+  "window": {
+    "navigationBarTitleText": "每日一收",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#414C41",
+    "borderStyle": "black",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/firstPage/bicon01.png",
+        "selectedIconPath": "static/firstPage/bicon01fill.png"
+      },
+      {
+        "pagePath": "pages/index/priceTable/priceTable",
+        "text": "分类",
+        "iconPath": "static/firstPage/bicon02.png",
+        "selectedIconPath": "static/firstPage/bicon02fill.png"
+      },
+      {
+        "pagePath": "pages/index/firstPage",
+        "text": "一键回收",
+        "iconPath": "static/firstPage/bicon03.png",
+        "selectedIconPath": "static/firstPage/bicon03.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "static/firstPage/bicon04.png",
+        "selectedIconPath": "static/firstPage/bicon04fill.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "static/firstPage/bicon05.png",
+        "selectedIconPath": "static/firstPage/bicon05fill.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
